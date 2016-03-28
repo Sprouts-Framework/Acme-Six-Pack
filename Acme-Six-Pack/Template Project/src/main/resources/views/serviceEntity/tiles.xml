@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+
+	<definition name="serviceEntity/list" extends="template/master">	
+		<put-attribute name="title" type="string" value="serviceEntity.list" />
+		<put-attribute name="body" type="template" value="../serviceEntity/list.jsp" />
+	</definition>
+	
+	<definition name="serviceEntity/create" extends="template/master">	
+		<put-attribute name="title" type="string" value="serviceEntity.create" />
+		<put-attribute name="body" value="serviceEntity/create/body" />
+	</definition>
+	
+	<definition name="serviceEntity/create/body" template="../serviceEntity/show.jsp">	
+		<put-attribute name="readOnly" type="string" value="false" />
+		<put-attribute name="action" type="string" value="serviceOfGym.save" />
+	</definition>
+	
+	<definition name="serviceEntity/delete" extends="template/master">	
+		<put-attribute name="title" type="string" value="serviceEntity.delete" />
+		<put-attribute name="body" value="serviceEntity/delete/body" />
+	</definition>
+	
+	<definition name="serviceEntity/delete/body" template="../serviceEntity/show.jsp">	
+		<put-attribute name="readOnly" type="string" value="true" />
+		<put-attribute name="action" type="string" value="serviceOfGym.delete" />
+	</definition>
+
+</tiles-definitions>
+

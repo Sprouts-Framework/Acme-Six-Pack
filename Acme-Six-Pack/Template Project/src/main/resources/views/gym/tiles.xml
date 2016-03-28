@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+ * tiles.xml
+ *
+ * Copyright (C) 2013 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+	
+	<definition name="gym/list" extends="template/master">
+		<put-attribute name="title" type="string" value="gym.list.title" />
+		<put-attribute name="body"  type="template" value="../gym/list.jsp" />
+	</definition>
+
+	<definition name="gym/display" extends="template/master">
+		<put-attribute name="title" type="string" value="gym.display" />
+		<put-attribute name="body"  type="template" value="../gym/display.jsp" />
+	</definition>
+
+	<definition name="gym/show" extends="template/master">
+		<put-attribute name="title" type="string" value="gym.display" />
+		<put-attribute name="body" value="gym/show/body" />
+	</definition>
+
+	<definition name="gym/show/body" template="../gym/show.jsp">
+		<put-attribute name="readOnly" type="string" value="true" />
+		<put-attribute name="action" type="string" value="create.button" />
+	</definition>
+	
+	<definition name="gym/create" extends="template/master">
+		<put-attribute name="title" type="string"
+			value="gym.create.title" />
+		<put-attribute name="body" value="gym/create/body" />
+	</definition>
+
+	<definition name="gym/create/body" template="../gym/show.jsp">
+		<put-attribute name="readOnly" type="string" value="false" />
+		<put-attribute name="action" type="string" value="create.button" />
+	</definition>
+	
+		<definition name="gym/update" extends="template/master">
+		<put-attribute name="title" type="string" value="gym.update.title" />
+		<put-attribute name="body" value="gym/update/body" />
+	</definition>
+
+	<definition name="gym/update/body" template="../gym/show.jsp">
+		<put-attribute name="readOnly" type="string" value="false" />
+		<put-attribute name="action" type="string" value="update.button" />
+	</definition>
+	
+	<definition name="gym/delete" extends="template/master">
+		<put-attribute name="title" type="string" value="gym.delete.title" />
+		<put-attribute name="body" value="gym/delete/body" />
+	</definition>
+
+	<definition name="gym/delete/body" template="../gym/show.jsp">
+		<put-attribute name="readOnly" type="string" value="true" />
+		<put-attribute name="action" type="string" value="delete.button" />
+	</definition>
+	
+</tiles-definitions>
