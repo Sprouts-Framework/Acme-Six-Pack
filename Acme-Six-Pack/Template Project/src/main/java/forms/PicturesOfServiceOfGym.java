@@ -1,8 +1,5 @@
 package forms;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Entity;
 import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -12,8 +9,7 @@ import org.hibernate.validator.constraints.URL;
 
 import es.us.lsi.dp.domain.DomainForm;
 
-@Entity
-@Access(AccessType.PROPERTY)
+
 public class PicturesOfServiceOfGym implements DomainForm{
 
 	private String newPicture;

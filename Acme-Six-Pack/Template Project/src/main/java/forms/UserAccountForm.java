@@ -1,9 +1,6 @@
 package forms;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.SafeHtml;
@@ -11,8 +8,6 @@ import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 
 import es.us.lsi.dp.domain.DomainForm;
 
-@Entity
-@Access(AccessType.PROPERTY)
 public class UserAccountForm implements DomainForm{
 
 	private String username;
