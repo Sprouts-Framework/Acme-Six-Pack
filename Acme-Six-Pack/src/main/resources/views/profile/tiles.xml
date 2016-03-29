@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- * tiles.xml * * Copyright (C) 2013 Universidad de Sevilla * * The use 
+	of this project is hereby constrained to the conditions of the * TDG Licence, 
+	a copy of which you may download from * http://www.tdg-seville.info/License.html -->
+
+<!DOCTYPE tiles-definitions PUBLIC 
+	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="profile/editUserAccount" extends="template/master">
+		<put-attribute name="title" type="string"
+			value="editUserAccount.title" />
+		<put-attribute name="body" value="profile/editUserAccount/body" />
+	</definition>
+
+	<definition name="profile/editUserAccount/body" template="../profile/editUserAccount.jsp">
+		<put-attribute name="readOnly" type="string" value="false" />
+		<put-attribute name="action" type="string" value="update.button" />
+	</definition>
+
+	<definition name="profile/show" extends="template/master">
+		<put-attribute name="title" type="string"
+			value="customer.profile.title" />
+		<put-attribute name="body" value="profile/show/body" />
+	</definition>
+
+	<definition name="profile/show/body" template="../profile/show.jsp">
+		<put-attribute name="readOnly" type="string" value="true" />
+		<put-attribute name="action" type="string" value="create.button" />
+	</definition>
+
+
+	<definition name="profile/update" extends="template/master">
+		<put-attribute name="title" type="string"
+			value="customer.profile.update.title" />
+		<put-attribute name="body" value="profile/update/body" />
+	</definition>
+
+	<definition name="profile/update/body" template="../profile/update.jsp">
+		<put-attribute name="readOnly" type="string" value="false" />
+		<put-attribute name="action" type="string" value="update.button" />
+	</definition>
+
+</tiles-definitions>

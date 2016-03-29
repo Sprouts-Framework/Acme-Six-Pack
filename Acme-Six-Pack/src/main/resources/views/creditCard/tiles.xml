@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- * tiles.xml * * Copyright (C) 2013 Universidad de Sevilla * * The use 
+	of this project is hereby constrained to the conditions of the * TDG Licence, 
+	a copy of which you may download from * http://www.tdg-seville.info/License.html -->
+
+<!DOCTYPE tiles-definitions PUBLIC 
+	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="creditCard/create" extends="template/master">
+		<put-attribute name="title" type="string"
+			value="creditCard.create.title" />
+		<put-attribute name="body" value="creditCard/create/body" />
+	</definition>
+
+	<definition name="creditCard/create/body" template="../creditCard/show.jsp">
+		<put-attribute name="readOnly" type="string" value="false" />
+		<put-attribute name="action" type="string" value="create.button" />
+	</definition>
+
+	<definition name="creditCard/update" extends="template/master">
+		<put-attribute name="title" type="string"
+			value="creditCard.update.title" />
+		<put-attribute name="body" value="creditCard/update/body" />
+	</definition>
+
+	<definition name="creditCard/update/body" template="../creditCard/show.jsp">
+		<put-attribute name="readOnly" type="string" value="false" />
+		<put-attribute name="action" type="string" value="update.button" />
+	</definition>
+	
+	<definition name="creditCard/delete" extends="template/master">
+		<put-attribute name="title" type="string" value="creditCard.delete.title" />
+		<put-attribute name="body" value="creditCard/delete/body" />
+	</definition>
+
+	<definition name="creditCard/delete/body" template="../creditCard/show.jsp">
+		<put-attribute name="readOnly" type="string" value="true" />
+		<put-attribute name="action" type="string" value="delete.button" />
+	</definition>
+
+</tiles-definitions>

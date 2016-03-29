@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+	
+	<definition name="serviceOfGym/display" extends="template/master">
+		<put-attribute name="title" type="string" value="serviceOfGym.display2" />
+		<put-attribute name="body"  type="template" value="../serviceOfGym/display.jsp" />
+	</definition>
+	
+	<definition name="serviceOfGym/create" extends="template/master">	
+		<put-attribute name="title" type="string" value="serviceOfGym.create" />
+		<put-attribute name="body" value="serviceOfGym/create/body" />
+	</definition>
+	
+	<definition name="serviceOfGym/create/body" template="../serviceOfGym/show.jsp">	
+		<put-attribute name="readOnly" type="string" value="false" />
+		<put-attribute name="action" type="string" value="serviceOfGym.save" />
+	</definition>
+	
+	<definition name="serviceOfGym/delete" extends="template/master">	
+		<put-attribute name="title" type="string" value="serviceOfGym.delete" />
+		<put-attribute name="body" value="serviceOfGym/delete/body" />
+	</definition>
+	
+	<definition name="serviceOfGym/delete/body" template="../serviceOfGym/show.jsp">	
+		<put-attribute name="readOnly" type="string" value="true" />
+		<put-attribute name="action" type="string" value="serviceOfGym.delete" />
+	</definition>
+	
+	<definition name="serviceOfGym/edit" extends="template/master">	
+		<put-attribute name="title" type="string" value="serviceOfGym.edit" />
+		<put-attribute name="body" value="serviceOfGym/create/body" />
+	</definition>
+	
+	<definition name="serviceOfGym/addPicture" extends="template/master">	
+		<put-attribute name="title" type="string" value="serviceOfGym.picture.add" />
+		<put-attribute name="body" value="serviceOfGym/editPicture/body" />
+	</definition>
+	
+	<definition name="serviceOfGym/editPicture" extends="template/master">	
+		<put-attribute name="title" type="string" value="serviceOfGym.editPicture" />
+		<put-attribute name="body" value="serviceOfGym/editPicture/body" />
+	</definition>
+	
+	<definition name="serviceOfGym/editPicture/body" template="../serviceOfGym/editPicture.jsp">	
+		<put-attribute name="readOnly" type="string" value="false" />
+		<put-attribute name="action" type="string" value="serviceOfGym.save" />
+	</definition>
+	
+	<definition name="serviceOfGym/deletePicture" extends="template/master">	
+		<put-attribute name="title" type="string" value="serviceOfGym.deletePicture" />
+		<put-attribute name="body" value="serviceOfGym/deletePicture/body" />
+	</definition>
+	
+	<definition name="serviceOfGym/deletePicture/body" template="../serviceOfGym/deletePicture.jsp">	
+		<put-attribute name="readOnly" type="string" value="true" />
+		<put-attribute name="action" type="string" value="serviceOfGym.delete" />
+	</definition>
+
+</tiles-definitions>
+

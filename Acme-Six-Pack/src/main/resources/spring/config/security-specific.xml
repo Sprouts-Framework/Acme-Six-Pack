@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+	* security.xml 
+	* 
+	* Copyright (C) 2013 Universidad de Sevilla 
+	* 
+	* The use of this project is hereby constrained to the conditions of the 
+	* TDG Licence, a copy of which you may download from 
+	* http://www.tdg-seville.info/License.html 
+-->
+
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd		
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+    ">
+	
+	<!-- TODO: Here you must add the security configuration for your application -->
+
+	<security:http pattern="/serviceEntity/administrator/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Administrator')"  requires-channel="https"/>
+	</security:http>
+
+	<security:http pattern="/dashboard/administrator/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Administrator')" requires-channel="https"/>
+	</security:http>
+	
+	<security:http pattern="/gym/administrator/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Administrator')" requires-channel="https"/>
+	</security:http>
+	
+	<security:http pattern="/gym/customer/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Customer')" requires-channel="https"/>
+	</security:http>
+
+	<security:http pattern="/spamTerms/administrator/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Administrator')" requires-channel="https"/>
+	</security:http>
+	
+	<security:http pattern="/serviceOfGym/administrator/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Administrator')" requires-channel="https"/>
+	</security:http>
+
+	<security:http pattern="/profile/customer/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Customer')" requires-channel="https"/>
+	</security:http>
+
+	<security:http pattern="/profile/userAccount/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Customer')" requires-channel="https"/>
+	</security:http>	
+
+	<security:http pattern="/creditCard/customer/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Customer')" requires-channel="https"/>
+	</security:http>
+	<security:http pattern="/socialIdentity/customer/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Customer')" requires-channel="https"/>
+	</security:http>
+	
+	<security:http pattern="/box/customer/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Customer')" requires-channel="https"/>
+	</security:http>
+	
+	<security:http pattern="/box/administrator/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Administrator')" requires-channel="https"/>
+	</security:http>
+
+	<security:http pattern="/message/customer/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Customer')" requires-channel="https"/>
+	</security:http>
+	
+	<security:http pattern="/message/administrator/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Administrator')" requires-channel="https"/>
+	</security:http>
+	<security:http pattern="/feePayment/customer/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Customer')" requires-channel="https"/>
+	</security:http>
+
+	
+	<security:http pattern="/booking/customer/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Customer')" requires-channel="https"/>
+	</security:http>
+	<security:http pattern="/booking/administrator/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Administrator')" requires-channel="https"/>
+	</security:http>
+
+	
+	<security:http pattern="/feePayment/administrator/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Administrator')" requires-channel="https"/>
+	</security:http>
+
+ 	<security:http pattern="/comment/customer/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Customer')" requires-channel="https"/>
+	</security:http>
+	
+ 	<security:http pattern="/comment/administrator/**" use-expressions="true" auto-config="true" >
+		<security:intercept-url pattern="/**" access="hasRole('Administrator')" requires-channel="https"/>
+	</security:http>
+ 	
+</beans>
