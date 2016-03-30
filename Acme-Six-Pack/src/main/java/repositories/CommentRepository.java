@@ -4,14 +4,14 @@ import java.util.Collection;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import domain.Comment;
 
 @Repository
-public interface CommentRepository extends JpaRepository<Comment, Integer>{
+public interface CommentRepository extends PagingAndSortingRepository<Comment, Integer>{
 
 	/*Encuentra los comentarios que no estén borrados y que estén asociados al servicio que se le pasa por parámetro*/
 	@Query("select c from Comment c where c.serviceOfGym.id = ?1 and isDeleted=false")

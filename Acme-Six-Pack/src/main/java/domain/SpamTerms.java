@@ -8,6 +8,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
+import cz.jirutka.validator.collection.constraints.EachNotBlank;
 import es.us.lsi.dp.domain.DomainEntity;
 
 @Entity
@@ -31,6 +32,7 @@ public class SpamTerms extends DomainEntity {
 
 	@NotNull
 	@ElementCollection
+	@EachNotBlank
 	public List<String> getTerms() {
 		return terms;
 	}

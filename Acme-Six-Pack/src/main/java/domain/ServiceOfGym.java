@@ -15,6 +15,8 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 
+import cz.jirutka.validator.collection.constraints.EachURL;
+
 import es.us.lsi.dp.domain.DomainEntity;
 
 @Entity
@@ -52,6 +54,7 @@ public class ServiceOfGym extends DomainEntity {
 	
 	@ElementCollection
 	@NotNull
+	@EachURL
 	public List<String> getPictures() {
 		return pictures;
 	}
