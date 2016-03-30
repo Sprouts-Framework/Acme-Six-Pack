@@ -9,17 +9,7 @@
  * http://www.tdg-seville.info/License.html
  --%>
 
-<%@ page language="java"%>
-
-<%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="security"
-	uri="http://www.springframework.org/security/tags"%>
-<%@ taglib prefix="acme" tagdir="/WEB-INF/tags/template" %>
-<%@ taglib prefix="acmeCustom" tagdir="/WEB-INF/tags/custom" %>
+<%@ include file="../template/libraries.jsp" %>
 
 <acme:form modelAttribute="modelObject"
 	action="${requestScope['javax.servlet.forward.request_uri']}">
@@ -79,7 +69,7 @@
 			<acme:password-input code="sign-in.password" path="password" />
 			<acme:password-input code="sign-in.password" path="password2" />
 			
-			<acmeCustom:checkbox labelSize="4" code="sign-up.check" path="checkBox"/>
+			<acmeSpecific:checkbox labelSize="4" code="sign-up.check" path="checkBox"/>
 		</fieldset>
 	</div>
 

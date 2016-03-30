@@ -7,20 +7,10 @@
  * TDG Licence, a copy of which you may download from 
  * http://www.tdg-seville.info/License.html
  --%>
+<%@ include file="../template/libraries.jsp" %>
 
-<%@ page language="java"%>
 
-<%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="security"
-	uri="http://www.springframework.org/security/tags"%>
-<%@ taglib prefix="acme" tagdir="/WEB-INF/tags/template"%>
-<%@ taglib prefix="acmeCustom" tagdir="/WEB-INF/tags/custom"%>
-
-<acmeCustom:button code="create.button" url="message/${actor}/create.do"/>
+<acmeSpecific:button code="create.button" url="message/${actor}/create.do"/>
 <br />
 
 <acme:data-table i18n="datatables.language">

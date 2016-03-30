@@ -8,21 +8,11 @@
  * http://www.tdg-seville.info/License.html
  --%>
 
-<%@ page language="java"%>
-
-<%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="security"
-	uri="http://www.springframework.org/security/tags"%>
-<%@ taglib prefix="acme" tagdir="/WEB-INF/tags/template"%>
-<%@ taglib prefix="acmeCustom" tagdir="/WEB-INF/tags/custom"%>
+<%@ include file="../template/libraries.jsp" %>
 
 
-<acmeCustom:button code="createMessage.button" url="message/${actor}/create.do"/>
-<acmeCustom:button code="box.create" url="box/${actor}/create.do"/>
+<acmeSpecific:button code="createMessage.button" url="message/${actor}/create.do"/>
+<acmeSpecific:button code="box.create" url="box/${actor}/create.do"/>
 <br />
 <br />
 
