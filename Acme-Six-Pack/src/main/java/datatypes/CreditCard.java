@@ -1,8 +1,7 @@
-package domain;
+package datatypes;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.Entity;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
 import org.hibernate.validator.constraints.NotBlank;
@@ -10,11 +9,10 @@ import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 
-import es.us.lsi.dp.domain.DomainEntity;
+import es.us.lsi.dp.datatypes.Datatype;
 
-@Entity
 @Access(AccessType.PROPERTY)
-public class CreditCard extends DomainEntity{
+public class CreditCard implements Datatype{
 
 	/**
 	 * 

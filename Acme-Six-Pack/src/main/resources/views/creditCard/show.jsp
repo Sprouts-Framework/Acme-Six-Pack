@@ -24,11 +24,6 @@
 
 <acme:form modelAttribute="modelObject" readOnly="${readOnly}">
 
-	<acme:hidden-field path="id" />
-	<acme:hidden-field path="version" />
-
-	<acme:protected path="id" />
-	<acme:protected path="version" />
 
 	<div class="fieldset-btm-margin">
 			<acme:textbox-input code="customer.creditCard.holderName" path="holderName" />

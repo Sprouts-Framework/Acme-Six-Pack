@@ -58,15 +58,15 @@
 			<acme:textbox-input code="customer.creditCard.expirationYear" path="creditCard.expirationYear" />
 			
 			<jstl:choose>
-				<jstl:when test="${modelObject.creditCard.id == 0 }">
-					<a class="btn btn-default" href="creditCard/customer/create.do"><spring:message code="customer.creditCard-create" /></a>
+				<jstl:when test="${modelObject.creditCard.number == null}">
+					<a class="btn btn-default" href="creditCard/customer/${modelObject.id}/create.do"><spring:message code="customer.creditCard-create" /></a>
 				</jstl:when>
 				<jstl:otherwise>
-					<a class="btn btn-default" href="creditCard/customer/${modelObject.creditCard.id }/update.do"><spring:message code="customer.creditCard-update" /></a>
-					
-					<a class="btn btn-default" href="creditCard/customer/${modelObject.creditCard.id }/delete.do"><spring:message code="customer.creditCard-delete" /></a>
+					<a class="btn btn-default" href="creditCard/customer/${modelObject.id}/update.do"><spring:message code="customer.creditCard-update" /></a>
+					<a class="btn btn-default" href="creditCard/customer/${modelObject.id}/delete.do"><spring:message code="customer.creditCard-delete" /></a>
 				</jstl:otherwise>
 			</jstl:choose>
+			
 			
 		</fieldset>
 	</div>

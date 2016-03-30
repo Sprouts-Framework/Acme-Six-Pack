@@ -22,7 +22,7 @@ import validation.rules.IsNotExpiredCreditCardFeePayment;
 import validation.rules.IsNotExpiredFeePayment;
 import validation.rules.NotOverlapedFeePayementsWhenCreating;
 import validation.rules.NotOverlapedFeePayementsWhenUpdating;
-import domain.CreditCard;
+import datatypes.CreditCard;
 import domain.Customer;
 import domain.FeePayment;
 import domain.Gym;
@@ -42,8 +42,8 @@ public class FeePaymentService extends AbstractService<FeePayment, FeePaymentRep
 
 	@Autowired
 	private CustomerService customerService;
-	@Autowired
-	private CreditCardService creditCardService;
+//	@Autowired
+//	private CreditCardService creditCardService;
 	@Autowired
 	private GymService gymService;
 	@Autowired
@@ -80,8 +80,9 @@ public class FeePaymentService extends AbstractService<FeePayment, FeePaymentRep
 		// a a signarle ninguna otra tarjeta de crédito.
 		if (validable.getCreditCard() == null) {
 			CreditCard fpCreditCard;
-			fpCreditCard = creditCardService.create();
-
+			//fpCreditCard = creditCardService.create();
+			fpCreditCard = new CreditCard();
+			
 			if (customerCreditCard != null) {
 				fpCreditCard.setBrandName(customerCreditCard.getBrandName());
 				fpCreditCard.setHolderName(customerCreditCard.getHolderName());
@@ -113,8 +114,8 @@ public class FeePaymentService extends AbstractService<FeePayment, FeePaymentRep
 		CreditCard fpCreditCard;
 		fpCreditCard = validable.getCreditCard();
 
-		int fpCreditCardId = creditCardService.saveFeePaymentCreditCard(fpCreditCard);
-		fpCreditCard = creditCardService.findById(fpCreditCardId);
+		//int fpCreditCardId = creditCardService.saveFeePaymentCreditCard(fpCreditCard);
+		//fpCreditCard = creditCardService.findById(fpCreditCardId);
 		validable.setCreditCard(fpCreditCard);
 
 		Date inactivationDay;
@@ -211,12 +212,12 @@ public class FeePaymentService extends AbstractService<FeePayment, FeePaymentRep
 		feePayments = repository.findFeePaymentsByGym(gym.getId());
 		Assert.notNull(feePayments);
 
-		Collection<CreditCard> creditCards;
-		creditCards = creditCardService.findCreditCardByGym(gym.getId());
-		Assert.notNull(creditCards);
+		//Collection<CreditCard> creditCards;
+		//creditCards = creditCardService.findCreditCardByGym(gym.getId());
+		//Assert.notNull(creditCards);
 
 		repository.delete(feePayments);
-		creditCardService.delete(creditCards);
+		//creditCardService.delete(creditCards);
 	}
 
 }

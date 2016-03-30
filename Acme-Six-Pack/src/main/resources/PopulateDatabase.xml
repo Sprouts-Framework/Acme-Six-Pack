@@ -89,7 +89,7 @@
 	<!-- Other domain beans come here -->	
 	
 	<!-- CreditCard -->
-	<bean id="creditCard1" class="domain.CreditCard">
+	<bean id="creditCard1" class="datatypes.CreditCard">
 		<property name="holderName" value="Carlos Fernandez Pérez"/>
 		<property name="brandName" value="MasterCard"/>
 		<property name="number" value="5169525449186834"/>
@@ -98,7 +98,7 @@
 		<property name="cvvCode" value="658"/>
 	</bean>
 	
-	<bean id="creditCard2" class="domain.CreditCard">
+	<bean id="creditCard2" class="datatypes.CreditCard">
 		<property name="holderName" value="Beatriz Núñez Jiménez"/>
 		<property name="brandName" value="Visa"/>
 		<property name="number" value="349996446457656"/>
@@ -107,7 +107,7 @@
 		<property name="cvvCode" value="256"/>
 	</bean>
 	
-    <bean id="creditCard3" class="domain.CreditCard">
+    <bean id="creditCard3" class="datatypes.CreditCard">
    	   <property name="holderName" value="Adrián Fernández"/>
    	   <property name="brandName" value="Visa"/>
    	   <property name="number" value="349996446457656"/>
@@ -943,7 +943,7 @@
 	</bean>
 	
 	<!-- CreditCard -->
-	<bean id="creditCard1_1" class="domain.CreditCard">
+	<bean id="creditCard1_1" class="datatypes.CreditCard">
 		<property name="holderName" value="Carlos Fernandez Pérez"/>
 		<property name="brandName" value="MasterCard"/>
 		<property name="number" value="5169525449186834"/>
@@ -952,7 +952,7 @@
 		<property name="cvvCode" value="658"/>
 	</bean>
 	
-	<bean id="creditCard1_2" class="domain.CreditCard">
+	<bean id="creditCard1_2" class="datatypes.CreditCard">
 		<property name="holderName" value="Carlos Fernandez Pérez"/>
 		<property name="brandName" value="MasterCard"/>
 		<property name="number" value="5169525449186834"/>
@@ -961,7 +961,7 @@
 		<property name="cvvCode" value="658"/>
 	</bean>
 	
-	<bean id="creditCard1_3" class="domain.CreditCard">
+	<bean id="creditCard1_3" class="datatypes.CreditCard">
 		<property name="holderName" value="Carlos Fernandez Pérez"/>
 		<property name="brandName" value="MasterCard"/>
 		<property name="number" value="5169525449186834"/>
@@ -970,7 +970,7 @@
 		<property name="cvvCode" value="658"/>
 	</bean>
 	
-	<bean id="creditCard2_1" class="domain.CreditCard">
+	<bean id="creditCard2_1" class="datatypes.CreditCard">
 		<property name="holderName" value="Beatriz Núñez Jiménez"/>
 		<property name="brandName" value="Visa"/>
 		<property name="number" value="349996446457656"/>
@@ -979,7 +979,7 @@
 		<property name="cvvCode" value="256"/>
 	</bean>
 	
-	<bean id="creditCard2_2" class="domain.CreditCard">
+	<bean id="creditCard2_2" class="datatypes.CreditCard">
 		<property name="holderName" value="Beatriz Núñez Jiménez"/>
 		<property name="brandName" value="Visa"/>
 		<property name="number" value="349996446457656"/>
@@ -988,7 +988,7 @@
 		<property name="cvvCode" value="256"/>
 	</bean>
 	
-    <bean id="creditCard3_1" class="domain.CreditCard">
+    <bean id="creditCard3_1" class="datatypes.CreditCard">
    	   <property name="holderName" value="Adrián Fernández"/>
    	   <property name="brandName" value="Visa"/>
    	   <property name="number" value="349996446457656"/>

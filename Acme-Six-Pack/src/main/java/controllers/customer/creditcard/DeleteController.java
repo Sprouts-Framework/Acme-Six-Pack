@@ -1,31 +1,54 @@
 package controllers.customer.creditcard;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import services.CreditCardService;
 import services.CustomerService;
-import domain.CreditCard;
+import datatypes.CreditCard;
 import domain.Customer;
-import es.us.lsi.dp.controllers.entities.crud.AbstractDeleteController;
+import es.us.lsi.dp.controllers.datatypes.AbstractPostController;
 import es.us.lsi.dp.domain.UserAccount;
+import es.us.lsi.dp.validation.contracts.BusinessRule;
 
 @Controller("creditCardCustomerDelete")
-@RequestMapping("creditCard/customer")
-public class DeleteController extends AbstractDeleteController<CreditCard, CreditCardService>{
+@RequestMapping("creditCard/customer/{0}/delete")
+public class DeleteController extends AbstractPostController<CreditCard, Customer, CustomerService> {
 
-	@Autowired
-	private CustomerService customerService;
-	
 	@Override
-	public boolean authorize(CreditCard domainObject, UserAccount principal) {
-		Customer customer;
-		customer = customerService.findByCreditCard(domainObject.getId());
-		Assert.notNull(customer);
-		
-		return customer.getUserAccount().equals(principal);
+	public void businessRules(List<BusinessRule<Customer>> rules, List<Validator> validators) {
+	}
+
+	@Override
+	public boolean authorize(Customer domainObject, UserAccount principal) {
+		boolean authorized = false;
+
+		authorized = domainObject.getUserAccount().equals(principal);
+
+		return authorized;
+	}
+
+	@Override
+	protected String successCode() {
+		return "creditCard.delete.successful";
+	}
+
+	@Override
+	protected void action(CreditCard object, Customer entity, Map<String, String> pathVariables) {
+		entity.setCreditCard(null);
+		service.update(entity);
+	}
+
+	@Override
+	public CreditCard getObject(Map<String, String> pathVariables, Customer entity, List<String> context) {
+		CreditCard result;
+
+		result = service.findByPrincipal().getCreditCard();
+
+		return result;
 	}
 
 	@Override
@@ -36,5 +59,9 @@ public class DeleteController extends AbstractDeleteController<CreditCard, Credi
 	@Override
 	protected String onSuccess() {
 		return "/profile/customer/show.do";
+	}
+
+	@Override
+	public void beforeCommiting(CreditCard entityOrDatatype, Customer entity) {
 	}
 }

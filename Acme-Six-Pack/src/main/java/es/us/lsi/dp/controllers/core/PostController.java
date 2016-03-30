@@ -95,7 +95,7 @@ public abstract class PostController<D extends Validable, E extends Validable> e
 		E entityToAuthorize;
 
 		beforeAuthorization(entity, ContextParser.parse(pathVariables));
-		
+
 		safeObject = getSafeObject(entityOrDatatype, entity);
 
 		entityToAuthorize = isEntity(entityOrDatatype) ? (E) safeObject : entity;
@@ -108,9 +108,12 @@ public abstract class PostController<D extends Validable, E extends Validable> e
 		// the user didn't fill in.
 		if (ValidationHandler.validationFailed(bindingResult))
 			return errors(entityOrDatatype, ContextParser.parse(pathVariables));
-		
-		beforeCommiting(entity); //TODO Verify if it must be called here
-		
+
+		beforeCommiting(entity);
+		// This method if defined in this class and does nothing. It is needed
+		// to redefine if we are dealing with datatypes
+		beforeCommiting(entityOrDatatype, entity);
+
 		try {
 			newOrReconstructed = getNewOrReconstructed(safeObject, entity);
 			validate.businessRules(newOrReconstructed);
@@ -178,4 +181,9 @@ public abstract class PostController<D extends Validable, E extends Validable> e
 		return validable instanceof DomainEntity;
 	}
 
+	// Default definitions -----------------------------------------------------
+	@Override
+	public void beforeCommiting(D datatype, E entity) {
+
+	}
 }

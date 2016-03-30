@@ -6,7 +6,6 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -17,6 +16,7 @@ import javax.validation.constraints.Past;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import datatypes.CreditCard;
 import es.us.lsi.dp.domain.DomainEntity;
 
 @Entity
@@ -112,8 +112,7 @@ public class FeePayment extends DomainEntity {
 	public void setGym(Gym gym) {
 		this.gym = gym;
 	}
-	
-	@OneToOne(optional=false)
+
 	@NotNull
 	@Valid
 	public CreditCard getCreditCard() {

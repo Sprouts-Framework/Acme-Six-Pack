@@ -72,6 +72,10 @@ public abstract class AbstractPostController<D extends Datatype, E extends Domai
 		action(object, entity, pathVariables);
 	}
 
+	@Override
+	public void beforeCommiting(E entity) {
+	}
+
 	// Template methods --------------------------------------------------------
 
 	@Override
@@ -79,4 +83,5 @@ public abstract class AbstractPostController<D extends Datatype, E extends Domai
 
 	protected abstract void action(D object, E entity, Map<String, String> pathVariables);
 
+	public abstract void beforeCommiting(D entityOrDatatype, E entity);
 }
