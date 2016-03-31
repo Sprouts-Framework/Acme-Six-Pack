@@ -23,6 +23,7 @@
 	<acme:protected path="version" />
 	<acme:protected path="customer" />
 	
+	<spring:eval expression="modelObject.paymentMoment" />
 	<div class="fieldset-btm-margin">
 		
 		<fieldset>

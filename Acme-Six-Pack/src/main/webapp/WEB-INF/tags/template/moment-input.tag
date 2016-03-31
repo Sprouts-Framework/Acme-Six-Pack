@@ -24,10 +24,20 @@
 <%@ attribute name="readonly" required="false" %>
 
 <jstl:set var="path" value="${path.replace('.', '_')}" />
+<jstl:set var="genericLocale" value="${pageContext.response.locale.language}" />
+<jstl:set var="lang_es" value="es" />
+<jstl:set var="lang_en" value="en" />
 
 <jstl:choose>
 	<jstl:when test="${format == null}">
-		<jstl:set var="format" value="format: 'dd/mm/yyyy hh:ii'" />
+		<jstl:choose>
+			<jstl:when test="${genericLocale eq  lang_en}">
+				<jstl:set var="format" value="format: 'dd/mm/yy hh:ii'" />
+			</jstl:when>
+			<jstl:when test="${genericLocale eq  lang_es}">
+				<jstl:set var="format" value="format: 'mm/dd/yy hh:ii'" />
+			</jstl:when>
+		</jstl:choose>
 	</jstl:when>
 	<jstl:otherwise>
 		<jstl:set var="format" value="format: '${format}'" />
@@ -37,8 +47,6 @@
 <jstl:if test="${readonly == null}">
 	<jstl:set var="readonly" value="false" />
 </jstl:if>
-
-<jstl:set var="genericLocale" value="${pageContext.response.locale.language}" />
 
 <div class="form-group">
 	<form:label path="${path}">

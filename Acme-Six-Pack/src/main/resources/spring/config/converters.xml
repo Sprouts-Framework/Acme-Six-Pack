@@ -16,6 +16,9 @@
 	</util:list>
 
 	<util:list id="formatters">
+		<bean class="org.springframework.format.datetime.DateFormatter">
+			<property name="stylePattern" value="SS"/>
+		</bean>
 	</util:list>
 
 </beans>
