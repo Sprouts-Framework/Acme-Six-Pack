@@ -2,7 +2,6 @@ package domain;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
@@ -12,6 +11,8 @@ import datatypes.CreditCard;
 @Entity
 @Access(AccessType.PROPERTY)
 public class Customer extends Actor {
+
+	private CreditCard creditCard;
 
 	// Constructors -----------------------------------------------------------
 
@@ -26,10 +27,18 @@ public class Customer extends Actor {
 
 	// Attributes -------------------------------------------------------------
 
+	@Valid
+	public CreditCard getCreditCard() {
+		return creditCard;
+	}
+
+	public void setCreditCard(CreditCard creditCard) {
+		this.creditCard = creditCard;
+	}
+
 	// Relationships ----------------------------------------------------------
 
 	private SocialIdentity socialIdentity;
-	private CreditCard creditCard;
 
 	@OneToOne(optional = true)
 	@Valid
@@ -39,15 +48,6 @@ public class Customer extends Actor {
 
 	public void setSocialIdentity(SocialIdentity socialIdentity) {
 		this.socialIdentity = socialIdentity;
-	}
-
-	@Valid
-	public CreditCard getCreditCard() {
-		return creditCard;
-	}
-
-	public void setCreditCard(CreditCard creditCard) {
-		this.creditCard = creditCard;
 	}
 
 }
