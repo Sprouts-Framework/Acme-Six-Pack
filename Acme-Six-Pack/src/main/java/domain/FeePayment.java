@@ -1,5 +1,6 @@
 package domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Access;
@@ -9,15 +10,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 
 import datatypes.CreditCard;
 import es.us.lsi.dp.domain.DomainEntity;
+import formatters.CurrencyFormatter;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -37,7 +40,7 @@ public class FeePayment extends DomainEntity {
 
 	// Attributes -------------------------------------------------------------
 	private Date paymentMoment;
-	private double fee;
+	private BigDecimal fee;
 	private Date activationDay;
 	private Date inactivationDay;
 	
@@ -46,7 +49,6 @@ public class FeePayment extends DomainEntity {
 	@Past
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP) //Obligatorio
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm") //Formato de la fecha
 	public Date getPaymentMoment() {
 		return paymentMoment;
 	}
@@ -55,17 +57,16 @@ public class FeePayment extends DomainEntity {
 	}
 	
 	@Min(0)
-	@Digits(fraction=2,integer=12)
-	public double getFee() {
+	@CurrencyFormatter(currency="EUR")
+	public BigDecimal getFee() {
 		return fee;
 	}
-	public void setFee(double fee) {
+	public void setFee(BigDecimal fee) {
 		this.fee = fee;
 	}
 	
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP) //Obligatorio
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm") //Formato de la fecha
 	public Date getActivationDay() {
 		return activationDay;
 	}
@@ -75,7 +76,6 @@ public class FeePayment extends DomainEntity {
 	
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP) //Obligatorio
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm") //Formato de la fecha
 	public Date getInactivationDay() {
 		return inactivationDay;
 	}

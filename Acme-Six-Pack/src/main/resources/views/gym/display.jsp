@@ -7,8 +7,8 @@
  * TDG Licence, a copy of which you may download from 
  * http://www.tdg-seville.info/License.html
  --%>
-
 <%@ include file="../template/libraries.jsp" %>
+
 
 	<spring:message code="gym.servicesLabel" var="servicesLabel"/>
 	<spring:message code="gym.name" var="nameLabel"/>
@@ -29,7 +29,7 @@
 		<acmeSpecific:display-image-column src="${gym.picture}" />
 		<acmeSpecific:display-column title="${gym.name}"/>
 		<acmeSpecific:display-column data="${gym.description}"/>
-		<acmeSpecific:display-column title="${feeLabel}" data="${gym.fee}" message="EUR"/>
+		<acmeSpecific:display-column title="${feeLabel}" data="gym.fee" formatted="true"/>
 		<acmeSpecific:display-column title="${postalAddressLabel}" message="${gym.postalAddress}" url="https://www.google.es/maps/search/${gym.postalAddress}"/>
 		<acmeSpecific:display-column title="${phoneNumberLabel}" data="${gym.phoneNumber}"/>
 		<acmeSpecific:display-column title="${customersTotalNumberLabel}" data="${gym.customersTotalNumber}"/>

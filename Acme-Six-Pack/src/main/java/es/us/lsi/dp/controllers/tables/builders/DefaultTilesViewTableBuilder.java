@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -31,6 +33,7 @@ import org.springframework.expression.EvaluationException;
 import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.format.datetime.DateFormatter;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 
@@ -40,6 +43,7 @@ import es.us.lsi.dp.controllers.tables.builders.contracts.TableBuilder;
 import es.us.lsi.dp.domain.DomainEntity;
 import es.us.lsi.dp.services.SignInService;
 import es.us.lsi.dp.utilities.TilesUtils;
+import formatters.CustomCurrencyFormatter;
 
 @Primary
 @Component
@@ -61,12 +65,14 @@ public class DefaultTilesViewTableBuilder implements TableBuilder {
 
 	private static final String COLUMN_OPENING_TAG = ":data-column";
 	private static final String COLUMN_CLOSING_TAG = "/>";
-	
+
 	private static final String SECURITY_AUTHORIZE_OPENING_TAG = "security:authorize";
 	private static final String SECURITY_AUTHORIZE_CLOSING_TAG = "</security:authorize>";
 
 	private static final String ARRAY_DELIMITER = ",";
 
+	private static final String CURRENCY = "EUR";
+	
 	// Public methods ----------------------------------------------------------
 
 	@Override
@@ -103,69 +109,64 @@ public class DefaultTilesViewTableBuilder implements TableBuilder {
 
 		for (int i = 0; i < iDimension; i++) {
 			final DomainEntity entity = entities.get(i);
-			
+
 			for (int j = 0; j < jDimension - 1; j++) {
 				column = table.getColumn(j);
 				result[i][j] = resolveColumnValue(column, entity);
-				
-				if(column.getToShow() != null){
+
+				if (column.getToShow() != null) {
 					String aux = result[i][j];
 					result[i][j] = column.getToShow();
 					String res = StringUtils.replace(result[i][j], "+PATH", aux);
 					result[i][j] = res;
 				}
-				
-				if(column.getFormat() != null && column.getFormat().equals("image")){
+
+				if (column.getFormat() != null && column.getFormat().equals("image")) {
 					String width = null;
 					String height = null;
-					if(column.getImgSize() != null){
-						String [] aux = column.getImgSize().split("x");
+					if (column.getImgSize() != null) {
+						String[] aux = column.getImgSize().split("x");
 						width = aux[0];
 						height = aux[1];
 					}
-					if(column.getOutFormat() != null){
-						
-						String str = StringUtils.replace(column.getOutFormat(), "+PATH",resolveColumnValue(column, entity));
-						if(width != null && height != null)
-							result[i][j] = "<img src='"+str+"' class='img-responsive' width='"+width+"px' height='"+height+"px'/>";
+					if (column.getOutFormat() != null) {
+
+						String str = StringUtils.replace(column.getOutFormat(), "+PATH", resolveColumnValue(column, entity));
+						if (width != null && height != null)
+							result[i][j] = "<img src='" + str + "' class='img-responsive' width='" + width + "px' height='" + height + "px'/>";
 						else
-							result[i][j] = "<img src='"+str+"' class='img-responsive'/>";
-							
-					} else{
-						if(width != null && height != null)
-							result[i][j] = "<img src='"+result[i][j]+"' class='img-responsive' width='"+width+"px' height='"+height+"px'/>";
+							result[i][j] = "<img src='" + str + "' class='img-responsive'/>";
+
+					} else {
+						if (width != null && height != null)
+							result[i][j] = "<img src='" + result[i][j] + "' class='img-responsive' width='" + width + "px' height='" + height + "px'/>";
 						else
-							result[i][j] = "<img src='"+result[i][j]+"' class='img-responsive'/>";
+							result[i][j] = "<img src='" + result[i][j] + "' class='img-responsive'/>";
 					}
 
-				} else if(column.getFormat() != null && column.getFormat().equals("url")){
-					if(column.getOutFormat() != null){
-						String st = StringUtils.replace(column.getOutFormat(), "+PATH",resolveColumnValue(column, entity));
-						result[i][j] = "<a href='"+result[i][j]+"'>"+st+"</a>";
+				} else if (column.getFormat() != null && column.getFormat().equals("url")) {
+					if (column.getOutFormat() != null) {
+						String st = StringUtils.replace(column.getOutFormat(), "+PATH", resolveColumnValue(column, entity));
+						result[i][j] = "<a href='" + result[i][j] + "'>" + st + "</a>";
+					} else
+						result[i][j] = "<a href='" + result[i][j] + "'>" + result[i][j] + "</a>";
+				} else if (column.getFormat() != null && column.getFormat().equals("date")) {
+					DateFormatter formatter = new DateFormatter();
+
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+					Date dateAux = null;
+					try {
+						dateAux = sdf.parse(result[i][j]);
+					} catch (Throwable oops) {
+						oops.printStackTrace();
 					}
-					else
-						result[i][j] = "<a href='"+result[i][j]+"'>"+result[i][j]+"</a>";
-				} else if(column.getFormat() != null && column.getFormat().equals("date")){
-					String day;
-					String month;
-					String year;
-					String hour;
-					String minutes;
-					String aux[];
-					
-					aux = result[i][j].split(" ");
-					year = aux[0].split("-")[0];
-					month = aux[0].split("-")[1];
-					day = aux[0].split("-")[2];
-					hour = aux[1].split(":")[0];
-					minutes = aux[1].split(":")[1];
-					
-					if((locale+column.getFormat()).equals("esdate"))
-						result[i][j] = day+"/"+month+"/"+year+" "+hour+":"+minutes;
-					else if((locale+column.getFormat()).equals("endate") || (locale+column.getFormat()).equals("en-USdate") )
-						result[i][j] = year+"-"+month+"-"+day+" "+hour+":"+minutes;
-		
-				} 
+
+					result[i][j] = formatter.print(dateAux, LocaleContextHolder.getLocale());
+				} else if (column.getFormat() != null && column.getFormat().equals("price")) {
+					CustomCurrencyFormatter formatter = new CustomCurrencyFormatter();
+					formatter.setCurrencyName(CURRENCY);
+					result[i][j] = formatter.print(result[i][j], LocaleContextHolder.getLocale());
+				}
 			}
 
 			entityId = entity.getId();
@@ -196,9 +197,9 @@ public class DefaultTilesViewTableBuilder implements TableBuilder {
 			// If the resulting attribute value is null, get the message to
 			// display
 			result = value != null ? value.toString() : getNullMessage(column);
-			if(result.equals("true")){
+			if (result.equals("true")) {
 				result = getTrueMessage(column);
-			} else if (result.equals("false")){
+			} else if (result.equals("false")) {
 				result = getFalseMessage(column);
 			}
 		} catch (EvaluationException e) {
@@ -221,7 +222,7 @@ public class DefaultTilesViewTableBuilder implements TableBuilder {
 
 		return result;
 	}
-	
+
 	private String getTrueMessage(final Column column) {
 		String result;
 		String trueCode;
@@ -234,7 +235,7 @@ public class DefaultTilesViewTableBuilder implements TableBuilder {
 
 		return result;
 	}
-	
+
 	private String getFalseMessage(final Column column) {
 		String result;
 		String falseCode;
@@ -266,7 +267,7 @@ public class DefaultTilesViewTableBuilder implements TableBuilder {
 
 			result.add(column);
 		}
-		
+
 		return result;
 	}
 
@@ -283,7 +284,7 @@ public class DefaultTilesViewTableBuilder implements TableBuilder {
 			String[] securities;
 			String[] roles;
 			String[] datas;
-			
+
 			rawJsp = FileCopyUtils.copyToByteArray(new FileInputStream(path));
 
 			stringJsp = new String(rawJsp, StandardCharsets.ISO_8859_1);
@@ -292,16 +293,17 @@ public class DefaultTilesViewTableBuilder implements TableBuilder {
 			securities = StringUtils.substringsBetween(result[Integer.valueOf(tableIndex)], SECURITY_AUTHORIZE_OPENING_TAG, SECURITY_AUTHORIZE_CLOSING_TAG);
 			roles = StringUtils.substringsBetween(result[Integer.valueOf(tableIndex)], "hasRole('", "')");
 			resultAux = StringUtils.substringsBetween(result[Integer.valueOf(tableIndex)], COLUMN_OPENING_TAG, COLUMN_CLOSING_TAG);
-			
-			//Get rid of the columns that aren't allowed to be seen by someone who isn't allowed
-			if(securities != null)
-				for(int i=0;i<securities.length;i++){
-					if(!SignInService.checkAuthority(roles[i]) && securities[i].contains(COLUMN_OPENING_TAG)){
+
+			// Get rid of the columns that aren't allowed to be seen by someone
+			// who isn't allowed
+			if (securities != null)
+				for (int i = 0; i < securities.length; i++) {
+					if (!SignInService.checkAuthority(roles[i]) && securities[i].contains(COLUMN_OPENING_TAG)) {
 						datas = StringUtils.substringsBetween(securities[i], COLUMN_OPENING_TAG, COLUMN_CLOSING_TAG);
 						resultAux = ArrayUtils.removeElements(resultAux, datas);
 					}
 				}
-			
+
 			result = resultAux;
 
 		} catch (final IOException e) {

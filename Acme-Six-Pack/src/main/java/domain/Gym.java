@@ -1,17 +1,21 @@
 package domain;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 import org.hibernate.validator.constraints.URL;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 
 import es.us.lsi.dp.domain.DomainEntity;
+import formatters.CurrencyFormatter;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -35,7 +39,7 @@ public class Gym extends DomainEntity {
 	private String description;
 	private String postalAddress;
 	private String phoneNumber;
-	private double fee;
+	private BigDecimal fee;
 	private String picture;
 	private int customersTotalNumber;
 	
@@ -76,11 +80,12 @@ public class Gym extends DomainEntity {
 	}
 	
 	@Min(0)
-	@Digits(integer = 12, fraction = 2)
-	public double getFee() {
+	@CurrencyFormatter(currency="EUR")
+	//@NumberFormat(style = Style.CURRENCY)
+	public BigDecimal getFee() {
 		return fee;
 	}
-	public void setFee(double fee) {
+	public void setFee(BigDecimal fee) {
 		this.fee = fee;
 	}
 	

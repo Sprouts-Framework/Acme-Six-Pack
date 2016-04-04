@@ -1,18 +1,20 @@
 package controllers.home.gym;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.format.Formatter;
+import org.springframework.format.number.CurrencyFormatter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import domain.FeePayment;
-import domain.Gym;
-
 import services.FeePaymentService;
 import services.GymService;
-
+import domain.FeePayment;
+import domain.Gym;
 import es.us.lsi.dp.controllers.core.contracts.AddsToModel;
 import es.us.lsi.dp.controllers.entities.crud.AbstractShowController;
 import es.us.lsi.dp.domain.UserAccount;

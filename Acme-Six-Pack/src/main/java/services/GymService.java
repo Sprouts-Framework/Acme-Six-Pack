@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -55,6 +57,7 @@ public class GymService extends AbstractService<Gym, GymRepository> implements C
 	@Override
 	public void beforeCreating(Gym validable, List<String> context) {
 		validable.setCustomersTotalNumber(0);
+		Locale l = LocaleContextHolder.getLocale();
 	}
 
 	@Override

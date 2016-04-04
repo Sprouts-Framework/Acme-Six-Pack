@@ -19,6 +19,8 @@
 		<bean class="org.springframework.format.datetime.DateFormatter">
 			<property name="stylePattern" value="SS"/>
 		</bean>
+		<bean class="formatters.CustomCurrencyAnnotationFormatterFactory"/>
+		<bean class="org.springframework.format.number.NumberFormatter"/>
 	</util:list>
 
 </beans>

@@ -37,7 +37,7 @@
 	
 	<acme:data-column code="gym.phoneNumber" path="phoneNumber" width="15%"/>
 	
-	<acme:data-column code="gym.fee" path="fee" sortable="true" width="5%"/>
+	<acme:data-column code="gym.fee" path="fee" sortable="true" width="5%" format="price"/>
 	
 	<acme:data-column code="gym.customersTotalNumber" path="customersTotalNumber" sortable="true" width="15%"/>
 		

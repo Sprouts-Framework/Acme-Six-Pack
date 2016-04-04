@@ -14,7 +14,7 @@ import es.us.lsi.dp.domain.UserAccount;
 
 @Controller("showFeePaymentController")
 @RequestMapping("feePayment/customer")
-public class ShowController extends AbstractShowController<FeePayment, FeePaymentService>{
+public class ShowController extends AbstractShowController<FeePayment, FeePaymentService> {
 
 	@Override
 	public boolean authorize(FeePayment domainObject, UserAccount principal) {
@@ -25,7 +25,7 @@ public class ShowController extends AbstractShowController<FeePayment, FeePaymen
 	protected String view() {
 		return "feePayment/show";
 	}
-	
+
 	@Override
 	public FeePayment getObject(Map<String, String> pathVariables, FeePayment entity, List<String> context) {
 		FeePayment result;
