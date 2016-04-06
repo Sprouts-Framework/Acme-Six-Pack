@@ -113,6 +113,17 @@ public class CustomerService extends AbstractService<Customer, CustomerRepositor
 			result = 0;
 		return result;
 	}
+	
+	public Customer findBySocialAccount(String providerId, String userId){
+		Assert.notNull(providerId);
+		Assert.notNull(userId);
+		
+		Customer result;
+		
+		result = repository.findBySocialAccount(providerId, userId);
+		
+		return result;
+	}
 
 
 

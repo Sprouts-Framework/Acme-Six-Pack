@@ -32,6 +32,8 @@
 	<link rel="stylesheet" href="styles/tabletools.min.css" />
 	<link rel="stylesheet" href="styles/datetimepicker.min.css" />
 	<link rel="stylesheet" href="styles/acme.css" />
+	<link rel="stylesheet" href="styles/social-buttons-3.css" />
+	<link rel="stylesheet" href="styles/fontAwesome/css/font-awesome.min.css" />
 	
 	<script src="scripts/jquery.min.js"></script>
 	<script src="scripts/bootstrap.min.js"></script>

@@ -91,6 +91,17 @@
 		<li><a href="home/sign-out.do"> <spring:message
 					code="master.sign-out" /> (<security:authentication
 					property="principal.username" />)
+					
 		</a></li>
+		<security:authorize access="hasRole('Customer')">
+			<li>
+				<security:authentication property="principal.actors" var="actors"/>
+				<jstl:forEach items="${actors}" var="actor">
+						<jstl:if test="${actor.socialIdentity != null }">
+	        				<a href="${actor.socialIdentity.homePage}" target="_blank"><img alt="brand" src="${actor.socialIdentity.picture}" width="32px" height="32px" class="img-rounded"></a>
+						</jstl:if>
+				</jstl:forEach>
+			</li>
+		</security:authorize>
 	</ul>
 </security:authorize>

@@ -13,6 +13,18 @@
 <tiles:importAttribute name="readOnly" toName="readOnly" />
 <tiles:importAttribute name="action" toName="action" />
 
+<jstl:if test="${error!=null}">
+	<spring:message code="profile.socialAccount.error" var="errorMessage"/>
+
+	<div class="alert alert-danger alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert"
+			aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<jstl:out value="${errorMessage}"/>
+	</div>
+</jstl:if>
+
 <acme:form modelAttribute="modelObject" readOnly="${readOnly}">
 
 	<acme:hidden-field path="id" />
@@ -31,9 +43,14 @@
 			<acme:textbox-input code="customer.contactPhone" path="contactPhone" />
 			<acme:textbox-input code="customer.userAccount.username" path="userAccount.username" />
 			
-			<a class="btn btn-default" href="profile/userAccount/update.do"><spring:message code="customer.userAccount-update" /></a>
+			<jstl:if test="${modelObject.userAccount.socialAccounts == null}">
+				<a class="btn btn-default" href="profile/userAccount/update.do"><spring:message code="customer.userAccount-update" /></a>
+			</jstl:if>
 			
+			
+
 			<a class="btn btn-default" href="profile/customer/update.do"><spring:message code="customer.profile-update" /></a>
+			
 		</fieldset>
 	</div>
 	
@@ -93,7 +110,10 @@
 			
 		</fieldset>
 	</div>
+<<<<<<< .working
 
+=======
+>>>>>>> .merge-right.r98
 
 	<jstl:if test="${crudAction != 'showing'}">
 		<acme:submit-button code="${action}" name="${action}" />
@@ -101,4 +121,24 @@
 	<acme:cancel-button code="return.button" url="" />
 
 </acme:form>
+<br/>
+<div class="row">
+<div class="col-xs-12 col-md-3 col-sm-4">
+<spring:message code="authorize.twitter.add" var="twitter"/>
+	<form id="tw_signin" action="<jstl:url value="/signin/twitter.do"/>" method="POST">
+		  <button type="submit" class="btn btn-twitter">
+		    <i class="fa fa-twitter"></i> | <jstl:out value="${twitter}"/>
+		  </button>
+	</form>
+</div>
+
+<div class="col-xs-12 col-md-3 col-sm-4">
+	<spring:message code="authorize.google.add" var="google"/>
+	<form id="google_signin" action="<jstl:url value="/signin/google.do"/>" method="POST">
+		  <button type="submit" class="btn btn-google-plus">
+		    <i class="fa fa-google"></i> | <jstl:out value="${google}"/>
+		  </button>
+	</form>
+</div>
+</div>
 

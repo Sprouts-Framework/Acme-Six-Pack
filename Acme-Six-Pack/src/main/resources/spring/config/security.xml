@@ -22,6 +22,8 @@
 	<import resource="security-specific.xml"/>
 	
 	<security:http auto-config="true" use-expressions="true"  >
+		<security:intercept-url pattern="/signin/**" access="permitAll" />
+		<security:intercept-url pattern="/connect/**" access="permitAll" />
 		<security:intercept-url pattern="/security/manage-security.do" access="isAuthenticated()" requires-channel="https"/>
 		<security:intercept-url pattern="/security/manage-security-logout.do" access="isAnonymous()" requires-channel="http"/>
 		<security:intercept-url pattern="/home/customer/create.do" access="isAnonymous()" />
@@ -52,6 +54,7 @@
 			logout-url="/home/sign-out.do"
 			logout-success-url="/security/manage-security-logout.do"
 			invalidate-session="true" />
+			
 	</security:http>
 
 

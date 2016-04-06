@@ -38,20 +38,17 @@ public class HomeController {
 		return result;
 	}
 
-	// @RequestMapping(value = "/welcome", method = RequestMethod.GET)
-	// public ModelAndView welcome() {
-	// ModelAndView result;
-	//
-	// if(SignInService.checkAuthority("Customer")){
-	// Customer principal;
-	// principal = customerService.findByPrincipal();
-	// if(principal.getVersion() == 0)
-	// result = new ModelAndView("../creditCard/customer/create.do");
-	// else
-	// result = new ModelAndView("home/welcome");
-	// }else
-	// result = new ModelAndView("home/welcome");
-	//
-	// return result;
-	// }
+//	 @RequestMapping(value = "/welcome", method = RequestMethod.GET)
+//	 public ModelAndView welcome(@RequestParam(required=false) String imageURL, @RequestParam(required=false) String profileURL, @RequestParam(required=false) String displayName) {
+//		 ModelAndView result;
+//		 
+//		 result = new ModelAndView("home/welcome");
+//		 if(imageURL != null && profileURL != null && displayName != null){
+//			 result.addObject("imageURL", imageURL);
+//			 result.addObject("profileURL", profileURL);
+//			 result.addObject("displayName", displayName);
+//		 }
+//	
+//		 return result;
+//	 }
 }

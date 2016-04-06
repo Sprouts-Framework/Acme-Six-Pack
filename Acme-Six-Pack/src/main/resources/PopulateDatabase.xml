@@ -28,7 +28,11 @@
 		   <list>
 		    <ref bean="administrator1" />
 		   </list>
-		  </property> 
+		  </property>
+		   <property name="socialAccounts">
+		   <list>
+		   </list>
+		  </property>  
 	</bean>
 	
 	<bean id="userAccount2" class="es.us.lsi.dp.domain.UserAccount">
@@ -39,6 +43,10 @@
 		    <ref bean="administrator2" />
 		   </list>
 		  </property> 
+		   <property name="socialAccounts">
+		   <list>
+		   </list>
+		  </property>  
 	</bean>
 	
 	<bean id="userAccount3" class="es.us.lsi.dp.domain.UserAccount">
@@ -49,6 +57,10 @@
 		    <ref bean="customer1" />
 		   </list>
 		  </property> 
+		   <property name="socialAccounts">
+		   <list>
+		   </list>
+		  </property>  
 	</bean>
 
 	<bean id="userAccount4" class="es.us.lsi.dp.domain.UserAccount">
@@ -59,6 +71,10 @@
 		    <ref bean="customer2" />
 		   </list>
 		</property> 
+		 <property name="socialAccounts">
+		   <list>
+		   </list>
+		  </property>  
 	</bean>
 
 	<bean id="userAccount5" class="es.us.lsi.dp.domain.UserAccount">
@@ -69,6 +85,10 @@
 		    <ref bean="customer3" />
 		   </list>
 		  </property> 
+		   <property name="socialAccounts">
+		   <list>
+		   </list>
+		  </property>  
 	</bean>
 	    
 	<bean id="userAccount6" class="es.us.lsi.dp.domain.UserAccount">
@@ -78,7 +98,11 @@
 		   <list>
 		    <ref bean="customer4" />
 		   </list>
-		  </property> 
+		  </property>
+		   <property name="socialAccounts">
+		   <list>
+		   </list>
+		  </property>   
 	</bean>
 
 <!-- 	<bean id="userAccount7" class="es.us.lsi.dp.domain.UserAccount">

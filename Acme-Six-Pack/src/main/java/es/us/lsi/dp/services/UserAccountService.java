@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-
 import es.us.lsi.dp.domain.BaseActor;
 import es.us.lsi.dp.domain.UserAccount;
 import es.us.lsi.dp.repositories.UserAccountRepository;
@@ -87,6 +86,16 @@ public class UserAccountService {
 
 		result = userAccountRepository.findByActorId(actor.getId());
 
+		return result;
+	}
+	
+	public UserAccount findByUsername(String username){
+		Assert.notNull(username);
+		
+		UserAccount result;
+		
+		result = userAccountRepository.findByUsername(username);
+		
 		return result;
 	}
 

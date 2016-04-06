@@ -16,6 +16,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -111,6 +112,7 @@ public class UserAccount extends DomainEntity implements UserDetails {
 	// Relationships ----------------------------------------------------------
 
 	private Collection<BaseActor> actors;
+	private Collection<SocialAccount> socialAccounts;
 
 	@Valid
 	@OneToMany(mappedBy = "userAccount")
@@ -121,5 +123,19 @@ public class UserAccount extends DomainEntity implements UserDetails {
 	public void setActors(final Collection<BaseActor> actors) {
 		this.actors = actors;
 	}
+
+	@NotNull
+	@Valid
+	@OneToMany
+	public Collection<SocialAccount> getSocialAccounts() {
+		return socialAccounts;
+	}
+
+	
+	public void setSocialAccounts(Collection<SocialAccount> socialAccounts) {
+		this.socialAccounts = socialAccounts;
+	}
+	
+	
 
 }

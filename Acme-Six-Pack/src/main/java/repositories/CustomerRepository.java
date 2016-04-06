@@ -11,6 +11,9 @@ import domain.Customer;
 @Repository
 public interface CustomerRepository extends PagingAndSortingRepository<Customer, Integer>{
 
+	@Query("select c from Customer c, SocialAccount s where s member of c.userAccount.socialAccounts and s.providerId = ?1 and s.userId = ?2")
+	Customer findBySocialAccount(String providerId, String userId);
+	
 	@Query("select c from Customer c where c.creditCard.id = ?1")
 	Customer findByCreditCard(int creditCardId);
 	
