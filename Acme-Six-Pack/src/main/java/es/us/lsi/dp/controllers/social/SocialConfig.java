@@ -1,4 +1,4 @@
-package controllers;
+package es.us.lsi.dp.controllers.social;
 
 
 import javax.sql.DataSource;

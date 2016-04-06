@@ -110,10 +110,6 @@
 			
 		</fieldset>
 	</div>
-<<<<<<< .working
-
-=======
->>>>>>> .merge-right.r98
 
 	<jstl:if test="${crudAction != 'showing'}">
 		<acme:submit-button code="${action}" name="${action}" />
