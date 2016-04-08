@@ -162,11 +162,11 @@ public class DefaultTilesViewTableBuilder implements TableBuilder {
 					}
 
 					result[i][j] = formatter.print(dateAux, LocaleContextHolder.getLocale());
-				} else if (column.getFormat() != null && column.getFormat().equals("price")) {
+				} /*else if (column.getFormat() != null && column.getFormat().equals("price")) {
 					CustomCurrencyFormatter formatter = new CustomCurrencyFormatter();
 					formatter.setCurrencyName(CURRENCY);
 					result[i][j] = formatter.print(result[i][j], LocaleContextHolder.getLocale());
-				}
+				}*/
 			}
 
 			entityId = entity.getId();
