@@ -1,57 +1,71 @@
 package formatters;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.text.ParseException;
 import java.util.Locale;
 
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.format.number.NumberFormatter;
 
 public class CustomCurrencyFormatter extends NumberFormatter {
 
-	private String currencyName;
+	private String format;
+	private DecimalFormatSymbols decimalFormatSymbols;
 
-	public void setCurrencyName(String currencyName) {
-		this.currencyName = currencyName;
+	public CustomCurrencyFormatter(String decimalMark, String groupingSeparator, String format) {
+		super();
+
+		this.decimalFormatSymbols = DecimalFormatSymbols.getInstance();
+		this.decimalFormatSymbols.setDecimalSeparator(decimalMark.charAt(0));
+		this.decimalFormatSymbols.setGroupingSeparator(groupingSeparator.charAt(0));
+		this.format = format;
 	}
-	
+
+	// public void setCurrencyName(String currencyName) {
+	// this.currencyName = currencyName;
+	// }
+
 	@Override
 	public DecimalFormat getNumberFormat(Locale locale) {
-		return new DecimalFormat(getFormatFromLocale(locale), DecimalFormatSymbols.getInstance(locale));
-	}
-	
-	@Override
-	public String print(Number number, Locale locale) {
-		return super.print(number, locale);
-	}
-	
-	@Override
-	public Number parse(String text, Locale locale) throws ParseException {
-		return super.parse(text, locale);
+		return new DecimalFormat(format, decimalFormatSymbols);
 	}
 
-	public String print(String numberStr, Locale locale){
-		BigDecimal number = new BigDecimal(numberStr);
-		return this.print(number, locale);
-	}
-
-	public String getFormatFromLocale(Locale locale) {
-		String format = "";
-		String language = locale.getLanguage();
-		
-		switch (language) {
-		case "en":
-			format = currencyName + "###,###.###";
-			break;
-		case "es":
-			format = "###,###.### " + currencyName;
-			break;
+	public Number parse(String text) {
+		Number result = null;
+		try {
+			result = super.parse(text, LocaleContextHolder.getLocale());
+		} catch (Throwable e) {
+			new RuntimeException(e);
 		}
-
-		return format;
+		return result;
 	}
-	
+
+	public String print(Number number) {
+		String result = null;
+		try {
+			result = super.print(number, LocaleContextHolder.getLocale());
+		} catch (Throwable e) {
+			new RuntimeException(e);
+		}
+		return result;
+	}
+
+	// public String getFormatFromLocale(Locale locale) {
+	// String format = "";
+	// String language = locale.getLanguage();
+	//
+	// switch (language) {
+	// case "en":
+	// format = currencyName + "###,###.##";
+	// break;
+	// case "es":
+	// format = "###,###.## " + currencyName;
+	// break;
+	// }
+	//
+	// return format;
+	// }
+
 	/*
 	 * private static final boolean roundingModeOnDecimalFormat =
 	 * ClassUtils.hasMethod(DecimalFormat.class, "setRoundingMode",
