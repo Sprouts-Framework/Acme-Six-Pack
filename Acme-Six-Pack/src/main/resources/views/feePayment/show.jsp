@@ -8,6 +8,7 @@
  * http://www.tdg-seville.info/License.html
  --%>
 
+<%@page import="org.springframework.web.servlet.tags.form.InputTag"%>
 <%@ include file="../template/libraries.jsp" %>
 
 <tiles:importAttribute name="readOnly" toName="readOnly" />
@@ -22,7 +23,7 @@
 	<acme:protected path="id" />
 	<acme:protected path="version" />
 	<acme:protected path="customer" />
-
+	
 	<div class="fieldset-btm-margin">
 		
 		<fieldset>

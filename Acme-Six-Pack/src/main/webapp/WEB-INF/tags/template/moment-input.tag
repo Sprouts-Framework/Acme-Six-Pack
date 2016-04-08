@@ -27,17 +27,10 @@
 <jstl:set var="genericLocale" value="${pageContext.response.locale.language}" />
 <jstl:set var="lang_es" value="es" />
 <jstl:set var="lang_en" value="en" />
-
+<spring:message code="datepicker.format" var="dateFormatProp"/>
 <jstl:choose>
 	<jstl:when test="${format == null}">
-		<jstl:choose>
-			<jstl:when test="${genericLocale eq  lang_en}">
-				<jstl:set var="format" value="format: 'mm/dd/yy HH:ii p'" />
-			</jstl:when>
-			<jstl:when test="${genericLocale eq  lang_es}">
-				<jstl:set var="format" value="format: 'dd/mm/yy hh:ii'" />
-			</jstl:when>
-		</jstl:choose>
+		<jstl:set var="format" value="format: '${dateFormatProp }'" />
 	</jstl:when>
 	<jstl:otherwise>
 		<jstl:set var="format" value="format: '${format}'" />

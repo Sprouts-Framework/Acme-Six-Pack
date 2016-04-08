@@ -1,7 +1,15 @@
 package es.us.lsi.dp.controllers.core;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -10,6 +18,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.CustomNumberEditor;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,6 +32,8 @@ import es.us.lsi.dp.controllers.Codes;
 import es.us.lsi.dp.controllers.core.contracts.AddsToModel;
 import es.us.lsi.dp.utilities.ContextParser;
 import es.us.lsi.dp.utilities.Response;
+import formatters.CustomCurrencyEditor;
+import formatters.CustomCurrencyFormatter;
 
 public abstract class BaseController {
 
@@ -25,6 +42,9 @@ public abstract class BaseController {
 	protected static final Log LOG = LogFactory.getLog(BaseController.class);
 
 	// Attributes --------------------------------------------------------------
+
+	@Autowired
+	private MessageSource messageSource;
 
 	private String currentViewName;
 
@@ -78,18 +98,18 @@ public abstract class BaseController {
 
 		return result;
 	}
-	
-	protected List<String> getContext(){
+
+	protected List<String> getContext() {
 		return ContextParser.parse(getPathVariables(getRequest()));
 	}
 
 	protected ModelAndView currentView() {
 		ModelAndView result;
 		result = Response.create(currentViewName, Codes.VIEW_NAME, currentViewName);
-		
-		if(this instanceof AddsToModel)
+
+		if (this instanceof AddsToModel)
 			addEntitiesToModel(result, getContext());
-		
+
 		return result;
 	}
 
@@ -135,4 +155,40 @@ public abstract class BaseController {
 	// Template methods ------------------------------------------------------
 
 	protected abstract String view();
+
+	// Binders ----------------------------------------------------------------
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		String dateFormatStr;
+		String decimalMark;
+		String groupingSeparator;
+		String prefix;
+		String suffix;
+		Locale locale;
+		locale = LocaleContextHolder.getLocale();
+
+		dateFormatStr = messageSource.getMessage("date.format", null, locale);
+		decimalMark = messageSource.getMessage("decimal-mark", null, locale);
+		groupingSeparator = messageSource.getMessage("grouping-separator", null, locale);
+		prefix = messageSource.getMessage("currency.prefix", null, locale);
+		suffix = messageSource.getMessage("currency.suffix", null, locale);
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatStr);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+
+//		CustomCurrencyFormatter customCurrencyFormatter = new CustomCurrencyFormatter(decimalMark, groupingSeparator, format);
+//		binder.registerCustomEditor(BigDecimal.class, new CustomCurrencyEditor(customCurrencyFormatter));
+		
+		DecimalFormatSymbols decimalFormatSymbols;
+		decimalFormatSymbols = DecimalFormatSymbols.getInstance();
+		decimalFormatSymbols.setDecimalSeparator(decimalMark.charAt(0));
+		decimalFormatSymbols.setGroupingSeparator(groupingSeparator.charAt(0));
+		//decimalFormatSymbols.setCurrencySymbol(currency);
+		//decimalFormatSymbols.setMonetaryDecimalSeparator(sep)
+
+		DecimalFormat numberFormat = new DecimalFormat("###,###.##", decimalFormatSymbols);
+		numberFormat.setPositivePrefix(prefix);
+		numberFormat.setPositiveSuffix(suffix);
+		binder.registerCustomEditor(BigDecimal.class, "fee", new CustomNumberEditor(BigDecimal.class, numberFormat, true));
+	}
 }
