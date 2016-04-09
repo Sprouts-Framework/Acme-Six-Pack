@@ -16,8 +16,6 @@
 	</util:list>
 
 	<util:list id="formatters">
-		<bean class="formatters.CustomCurrencyAnnotationFormatterFactory"/>
-		<bean class="org.springframework.format.number.NumberFormatter"/>
 	</util:list>
 
 </beans>

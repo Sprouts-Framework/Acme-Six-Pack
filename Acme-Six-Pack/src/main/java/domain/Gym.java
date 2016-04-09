@@ -14,7 +14,6 @@ import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 import org.hibernate.validator.constraints.URL;
 
 import es.us.lsi.dp.domain.DomainEntity;
-import formatters.CurrencyFormatter;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -79,8 +78,7 @@ public class Gym extends DomainEntity {
 	}
 	
 	@Min(0)
-	@CurrencyFormatter(currency="EUR")
-	@Digits(integer=12, fraction=12)
+	@Digits(integer=12, fraction=2)
 	public BigDecimal getFee() {
 		return fee;
 	}

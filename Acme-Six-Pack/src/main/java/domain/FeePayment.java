@@ -17,7 +17,6 @@ import javax.validation.constraints.Past;
 
 import datatypes.CreditCard;
 import es.us.lsi.dp.domain.DomainEntity;
-import formatters.CurrencyFormatter;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -56,8 +55,7 @@ public class FeePayment extends DomainEntity {
 	}
 
 	@Min(0)
-	@Digits(integer=12, fraction=12)
-	@CurrencyFormatter(currency = "EUR")
+	@Digits(integer=12, fraction=2)
 	public BigDecimal getFee() {
 		return fee;
 	}

@@ -28,6 +28,25 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:spring/servlet.xml</param-value>
   </context-param>
+     <filter>
+        <filter-name>encoding-filter</filter-name>
+        <filter-class>
+            org.springframework.web.filter.CharacterEncodingFilter
+        </filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+        <param-name>forceEncoding</param-name>
+        <param-value>true</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>encoding-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
   <filter>
     <filter-name>springSecurityFilterChain</filter-name>
     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -50,9 +69,9 @@
     <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>
       <url-pattern>*.tag</url-pattern>
-      <page-encoding>ISO-8859-1</page-encoding>
+      <page-encoding>UTF-8</page-encoding>
       <trim-directive-whitespaces>true</trim-directive-whitespaces>
-      <default-content-type>text/html; charset=ISO-8859-1</default-content-type>
+      <default-content-type>text/html; charset=UTF-8</default-content-type>
       <error-on-undeclared-namespace>true</error-on-undeclared-namespace>
     </jsp-property-group>
   </jsp-config>

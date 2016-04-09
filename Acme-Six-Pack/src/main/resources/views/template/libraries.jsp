@@ -1,6 +1,6 @@
 <!-- Put here all imports of libraries -->
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java" errorPage="true" import="org.apache.commons.logging.Log,org.apache.commons.logging.LogFactory" %>
 
 
