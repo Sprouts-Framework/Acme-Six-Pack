@@ -87,7 +87,6 @@
 					<path>/${project.artifactId}</path>
 				</configuration>
 			</plugin>
-
 		</plugins>
 	</build>
 
@@ -406,6 +405,35 @@
 		  <version>1.0.0.RELEASE</version>
 		</dependency>	
 		
-	</dependencies>
+		<!-- Drools -->
+		
+			<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-core</artifactId>
+			<version>6.3.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-compiler</artifactId>
+			<version>6.3.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-spring</artifactId>
+			<version>5.6.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-api</artifactId>
+			<version>6.3.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>knowledge-api</artifactId>
+			<version>6.3.0.Final</version>
+		</dependency>
+		
+		</dependencies>
+			
 
 </project> 

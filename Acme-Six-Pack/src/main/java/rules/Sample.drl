@@ -1,0 +1,10 @@
+package rules;
+
+import domain.*;
+
+rule "Initial rule"
+    when
+        gym : Gym();
+    then 
+    	gym.setName("Prueba");
+end

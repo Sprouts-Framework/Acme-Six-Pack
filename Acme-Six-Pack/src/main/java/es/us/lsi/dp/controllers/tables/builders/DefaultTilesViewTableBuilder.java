@@ -371,7 +371,6 @@ public class DefaultTilesViewTableBuilder implements TableBuilder {
 	private void setAttributes(final Column column, final Map<String, String> attributes) {
 		// path attribute already processed
 		attributes.remove(PATH);
-
 		for (final Entry<String, String> pair : attributes.entrySet()) {
 			try {
 				invokeMethod(column, pair);
