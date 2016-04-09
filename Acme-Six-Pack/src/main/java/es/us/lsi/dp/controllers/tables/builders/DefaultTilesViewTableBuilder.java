@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,7 +35,6 @@ import org.springframework.expression.EvaluationException;
 import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
-import org.springframework.format.datetime.DateFormatter;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 
@@ -43,7 +44,6 @@ import es.us.lsi.dp.controllers.tables.builders.contracts.TableBuilder;
 import es.us.lsi.dp.domain.DomainEntity;
 import es.us.lsi.dp.services.SignInService;
 import es.us.lsi.dp.utilities.TilesUtils;
-import formatters.CustomCurrencyFormatter;
 
 @Primary
 @Component
@@ -70,8 +70,6 @@ public class DefaultTilesViewTableBuilder implements TableBuilder {
 	private static final String SECURITY_AUTHORIZE_CLOSING_TAG = "</security:authorize>";
 
 	private static final String ARRAY_DELIMITER = ",";
-
-	private static final String CURRENCY = "EUR";
 	
 	// Public methods ----------------------------------------------------------
 
@@ -151,22 +149,54 @@ public class DefaultTilesViewTableBuilder implements TableBuilder {
 					} else
 						result[i][j] = "<a href='" + result[i][j] + "'>" + result[i][j] + "</a>";
 				} else if (column.getFormat() != null && column.getFormat().equals("date")) {
-					DateFormatter formatter = new DateFormatter();
 
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 					Date dateAux = null;
 					try {
 						dateAux = sdf.parse(result[i][j]);
 					} catch (Throwable oops) {
-						oops.printStackTrace();
+						throw new RuntimeException(oops);
 					}
+					
+					String dateFormatStr;
+					Locale local = LocaleContextHolder.getLocale();
+					
+					if(column.getOutFormat() != null)
+						dateFormatStr = messageSource.getMessage(column.getOutFormat(), null, local);
+					else
+						dateFormatStr = messageSource.getMessage("date.format", null, local);
+					
+					SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatStr);
 
-					result[i][j] = formatter.print(dateAux, LocaleContextHolder.getLocale());
-				} /*else if (column.getFormat() != null && column.getFormat().equals("price")) {
-					CustomCurrencyFormatter formatter = new CustomCurrencyFormatter();
-					formatter.setCurrencyName(CURRENCY);
-					result[i][j] = formatter.print(result[i][j], LocaleContextHolder.getLocale());
-				}*/
+					result[i][j] = dateFormat.format(dateAux);
+				} else if (column.getFormat() != null && column.getFormat().equals("currency")) {
+					String decimalMark;
+					String groupingSeparator;
+					String prefix;
+					String suffix;
+					Locale local;
+					local = LocaleContextHolder.getLocale();
+					
+					decimalMark = messageSource.getMessage("decimal-mark", null, local);
+					groupingSeparator = messageSource.getMessage("grouping-separator", null, local);
+					prefix = messageSource.getMessage("currency.prefix", null, local);
+					suffix = messageSource.getMessage("currency.suffix", null, local);
+					
+					DecimalFormatSymbols decimalFormatSymbols;
+					decimalFormatSymbols = DecimalFormatSymbols.getInstance();
+					decimalFormatSymbols.setDecimalSeparator(decimalMark.charAt(0));
+					decimalFormatSymbols.setGroupingSeparator(groupingSeparator.charAt(0));
+
+					DecimalFormat numberFormat = new DecimalFormat("###,###.##", decimalFormatSymbols);
+					numberFormat.setPositivePrefix(prefix);
+					numberFormat.setPositiveSuffix(suffix);
+					
+					try {
+						result[i][j] = numberFormat.format(Double.valueOf(result[i][j]));
+					} catch (Throwable oops) {
+						throw new RuntimeException(oops);
+					}
+				}
 			}
 
 			entityId = entity.getId();
