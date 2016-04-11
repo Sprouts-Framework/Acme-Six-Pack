@@ -56,6 +56,7 @@ public class FeePayment extends DomainEntity {
 
 	@Min(0)
 	@Digits(integer=12, fraction=2)
+	@NotNull
 	public BigDecimal getFee() {
 		return fee;
 	}

@@ -8,7 +8,7 @@
  * The use of this project is hereby constrained to the conditions of the 
  * TDG Licence, a copy of which you may download from 
  * http://www.tdg-seville.info/License.html 
--->
+--> 
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
@@ -432,6 +432,18 @@
 			<artifactId>knowledge-api</artifactId>
 			<version>6.3.0.Final</version>
 		</dependency>
+		
+		<dependency>
+	<groupId>org.kie</groupId>
+	<artifactId>kie-ci</artifactId>
+	<version>6.3.0.Final</version>
+</dependency>
+		
+		<!-- <dependency>
+			<groupId>Design-and-Testing</groupId>
+			<artifactId>Acme-Six-Pack</artifactId>
+			<version>LATEST</version>
+		</dependency> -->
 		
 		</dependencies>
 			

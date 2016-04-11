@@ -1,6 +1,5 @@
 package services;
 
-import java.math.MathContext;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -65,7 +64,7 @@ public class FeePaymentService extends AbstractService<FeePayment, FeePaymentRep
 	private ActivationDayAfterPaymentMoment activationDayAfterPaymentMoment;
 	@Autowired
 	private KieContainer kieContainer;
-
+	
 	// Create methods --------------------------------
 	@Override
 	public Class<? extends DomainEntity> getEntityClass() {
@@ -107,7 +106,6 @@ public class FeePaymentService extends AbstractService<FeePayment, FeePaymentRep
 		gym = gymService.findById(new Integer(context.get(0)));
 		validable.setGym(gym);
 		validable.setFee(gym.getFee());
-		
 		
 		Customer customer = customerService.findByPrincipal();
 		Long numberOfFeeInAGym = customerService.findNumberOfFeeInAGym(customer.getId(), validable.getGym().getId());

@@ -1,14 +1,44 @@
-//created on: Apr 9, 2016
-package rules
-
-//list any import classes here.
+package rules;
 
 import domain.*;
-import java.util.Date;
+import java.util.Date 
+import java.util.Calendar
+import java.util.Collection;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+rule "Sales day"
+	date-effective "11-APR-2016" 
+    date-expires   "12-APR-2016"
+    when
+		feePayment : FeePayment();
+    then 
+		BigDecimal discount = new BigDecimal(0.8);
+		feePayment.setFee(feePayment.getFee().multiply(discount).setScale(2, RoundingMode.HALF_UP));
+end
 
+
+rule "Cancelled bookings"
+	when
+		customer : Customer();
+		numberOfBookings : Long(intValue > 3);
+		ratioOfCancelledBookings : Double(doubleValue >= 0.5);
+	then
+		customer.getCustomerType().add("sospechoso");
+		
+end
+
+
+
+rule "Veteran user"
+	when
+		$d : Date();
+		$customer : Customer (createdAt < $d);
+		
+	then
+		$customer.getCustomerType().add("veterano");
+			
+end
 
 //declare any global variables here
 
@@ -33,12 +63,9 @@ end
 rule "Discount for five fee payments"
 	when
 		customer: Customer();
-		numberOfFeeInAGym: Long(intValue > 1);
+		numberOfFeeInAGym: Long(intValue > 4);
 		feePayment: FeePayment();
 	then
 		BigDecimal discount = new BigDecimal(0.75);
 		feePayment.setFee(feePayment.getFee().multiply(discount).setScale(2, RoundingMode.HALF_UP));
 end
-
-
-

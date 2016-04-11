@@ -197,7 +197,7 @@ public abstract class BaseController {
 		DecimalFormat numberFormat = new DecimalFormat("##.##", decimalFormatSymbols);
 		numberFormat.setPositivePrefix(prefix);
 		numberFormat.setPositiveSuffix(suffix);
-		binder.registerCustomEditor(BigDecimal.class, "fee", new CustomNumberEditor(BigDecimal.class, numberFormat, true));
+		binder.registerCustomEditor(Double.class, "fee", new CustomNumberEditor(Double.class, numberFormat, true));
 		
 		//CustomCurrencyFormat  customCurrencyFormat = new CustomCurrencyFormat("", BigDecimal.class, "");
 		//binder.registerCustomEditor(customCurrencyFormat.getType(), new CustomNumberEditor(customCurrencyFormat.getType(),customCurrencyFormat.getFormat(), true));
