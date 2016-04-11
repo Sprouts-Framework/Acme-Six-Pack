@@ -55,5 +55,13 @@ public interface CustomerRepository extends PagingAndSortingRepository<Customer,
 	@Query("select count(fp.customer) from FeePayment fp group by fp.customer having count(fp.customer) <= ALL(select count(fp.customer) from FeePayment fp group by fp.customer)")
 	Long quantityCustomersWhoHavePaidLessFees();
 	
-
+	@Query("select count(m) from Message m where m.sender.id = ?1 and m.box.name ='spam box'")
+	Long findNumberOfSpamMessages(int id);
+	
+	@Query("select count(c) from Comment c where c.isDeleted=true and c.actor.id=?1")
+	Long findNumberOfDeletedComments(int id);
+	
+	@Query("select count(f) from FeePayment f where f.gym.id = ?2 and f.customer.id = ?1")
+	Long findNumberOfFeeInAGym(int customerId, int gymId);
+	
 }

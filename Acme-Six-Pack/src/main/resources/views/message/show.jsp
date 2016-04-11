@@ -20,7 +20,7 @@
 	<acme:textbox-input code="message.subject" path="subject"/>
 	<acme:textarea-input code="message.body" path="body"/>
 	<jstl:if test="${crudAction == 'creating'}">
-		<acmeSpecfic:select items="${actors}" itemLabel="userAccount.username" code="message.recipient" path="recipient"/>
+		<acmeSpecific:select items="${actors}" itemLabel="userAccount.username" code="message.recipient" path="recipient"/>
 	</jstl:if>
 	<jstl:if test="${crudAction != 'showing' }">
 		<acme:submit-button code="${action}" name="${action}" />

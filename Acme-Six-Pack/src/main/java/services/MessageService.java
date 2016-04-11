@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,8 +15,10 @@ import org.springframework.util.Assert;
 import org.springframework.validation.Validator;
 
 import repositories.MessageRepository;
+import validation.rules.IsItPenalized;
 import domain.Actor;
 import domain.Box;
+import domain.Customer;
 import domain.Message;
 import domain.SpamTerms;
 import es.us.lsi.dp.domain.DomainEntity;
@@ -29,11 +33,21 @@ import es.us.lsi.dp.validation.contracts.BusinessRule;
 @Transactional
 public class MessageService extends AbstractService<Message, MessageRepository> implements CrudService<Message>, ListService<Message> {
 
+	
+	@Autowired
+	private KieContainer kieContainer;
+	
+	@Autowired
+	private IsItPenalized isItPenalized;
+	
 	@Autowired
 	private ActorService actorService;
 
 	@Autowired
 	private BoxService boxService;
+	
+	@Autowired
+	private CustomerService customerService;
 
 	@Autowired
 	private SpamTermsService spamTermsService;
@@ -44,6 +58,7 @@ public class MessageService extends AbstractService<Message, MessageRepository> 
 	public Class<? extends DomainEntity> getEntityClass() {
 		return Message.class;
 	}
+	
 
 	@Override
 	public void beforeCreating(Message result, List<String> context) {
@@ -70,12 +85,20 @@ public class MessageService extends AbstractService<Message, MessageRepository> 
 
 	@Override
 	public void createBusinessRules(List<BusinessRule<Message>> rules, List<Validator> validators) {
-
+		rules.add(isItPenalized);
 	}
 
 	@Override
 	public void afterCommitingCreate(int id) {
-
+		
+		Customer customer = customerService.findByPrincipal();
+		Long numberOfSpams = customerService.findNumberOfSpamMessages(customer.getId());
+		
+		KieSession kieSession = kieContainer.newKieSession("KSession");
+	    kieSession.insert(customer);
+	    kieSession.insert(numberOfSpams);
+	    kieSession.fireAllRules();
+	    System.out.println(customer.getEndOfPenalty());
 	}
 
 	@Override

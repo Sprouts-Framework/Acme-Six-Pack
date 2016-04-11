@@ -1,0 +1,44 @@
+//created on: Apr 9, 2016
+package rules
+
+//list any import classes here.
+
+import domain.*;
+import java.util.Date;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+
+
+//declare any global variables here
+
+rule "Deleted comments"
+    when
+    	customer : Customer();
+        numberOfDeletedComment : Long(intValue > 5);
+    then 
+    	customer.getCustomerType().add("Troll");
+end
+
+rule "Spam messages"
+    when
+    	customer : Customer();
+    	numberOfSpams : Long(intValue > 10);
+    then 
+    	Date date = new Date(System.currentTimeMillis());
+    	date.setYear(date.getYear()+1);
+    	customer.setEndOfPenalty(date);
+end
+
+rule "Discount for five fee payments"
+	when
+		customer: Customer();
+		numberOfFeeInAGym: Long(intValue > 1);
+		feePayment: FeePayment();
+	then
+		BigDecimal discount = new BigDecimal(0.75);
+		feePayment.setFee(feePayment.getFee().multiply(discount).setScale(2, RoundingMode.HALF_UP));
+end
+
+
+

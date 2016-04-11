@@ -11,9 +11,9 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd		
 	">
 
-<!-- 	<util:list id="converters">
+ 	<util:list id="converters">
 		<bean class="es.us.lsi.dp.converters.DomainEntityConverter" />
-	</util:list> -->
+	</util:list>
 
 	<util:list id="formatters">
 	</util:list>

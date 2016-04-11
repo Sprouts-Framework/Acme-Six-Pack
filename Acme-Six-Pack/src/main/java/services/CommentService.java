@@ -3,6 +3,8 @@ package services;
 import java.util.Collection;
 import java.util.List;
 
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +16,7 @@ import org.springframework.validation.Validator;
 import repositories.CommentRepository;
 import domain.Actor;
 import domain.Comment;
+import domain.Customer;
 import domain.Gym;
 import domain.ServiceOfGym;
 import es.us.lsi.dp.domain.DomainObject;
@@ -34,6 +37,11 @@ public class CommentService extends AbstractService<Comment, CommentRepository> 
 	private ServiceOfGymService serviceOfGymService;
 	@Autowired
 	private ActorService actorService;
+	@Autowired
+	private CustomerService customerService;
+
+	@Autowired
+	private KieContainer kieContainer;
 
 	// Create methods-----------------------------------------
 	@Override
@@ -94,6 +102,15 @@ public class CommentService extends AbstractService<Comment, CommentRepository> 
 
 	@Override
 	public void afterCommitingDelete(int id) {
+		Comment result = findById(id);
+		Long numberOfDeletedComment = customerService.findNumberOfDeletedComments(result.getActor().getId());
+		Customer customer = (Customer) result.getActor();
+		
+		KieSession kieSession = kieContainer.newKieSession("KSession");
+	    kieSession.insert(numberOfDeletedComment);
+	    kieSession.insert(customer);
+	    kieSession.fireAllRules();
+	    System.out.println(customer.getCustomerType());
 	}
 
 	// Comments are not deleted, but they are no shown again

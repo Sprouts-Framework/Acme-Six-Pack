@@ -1,7 +1,12 @@
 package domain;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
@@ -13,6 +18,8 @@ import datatypes.CreditCard;
 public class Customer extends Actor {
 
 	private CreditCard creditCard;
+	private Set<String> customerType;
+	private Date endOfPenalty;
 
 	// Constructors -----------------------------------------------------------
 
@@ -35,6 +42,28 @@ public class Customer extends Actor {
 	public void setCreditCard(CreditCard creditCard) {
 		this.creditCard = creditCard;
 	}
+	
+	@ElementCollection
+	public Set<String> getCustomerType() {
+		return customerType;
+	}
+
+	
+	public void setCustomerType(Set<String> customerType) {
+		this.customerType = customerType;
+	}
+
+	
+	public Date getEndOfPenalty() {
+		return endOfPenalty;
+	}
+
+	
+	public void setEndOfPenalty(Date endOfPenalty) {
+		this.endOfPenalty = endOfPenalty;
+	}
+	
+	
 
 	// Relationships ----------------------------------------------------------
 

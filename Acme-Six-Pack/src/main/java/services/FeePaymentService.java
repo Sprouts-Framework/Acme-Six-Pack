@@ -1,9 +1,12 @@
 package services;
 
+import java.math.MathContext;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -60,6 +63,8 @@ public class FeePaymentService extends AbstractService<FeePayment, FeePaymentRep
 	private IsNotExpiredCreditCardFeePayment isNotExpiredCreditCardFeePayment;
 	@Autowired
 	private ActivationDayAfterPaymentMoment activationDayAfterPaymentMoment;
+	@Autowired
+	private KieContainer kieContainer;
 
 	// Create methods --------------------------------
 	@Override
@@ -102,6 +107,16 @@ public class FeePaymentService extends AbstractService<FeePayment, FeePaymentRep
 		gym = gymService.findById(new Integer(context.get(0)));
 		validable.setGym(gym);
 		validable.setFee(gym.getFee());
+		
+		
+		Customer customer = customerService.findByPrincipal();
+		Long numberOfFeeInAGym = customerService.findNumberOfFeeInAGym(customer.getId(), validable.getGym().getId());
+		
+		KieSession kieSession = kieContainer.newKieSession("KSession");
+	    kieSession.insert(customer);
+	    kieSession.insert(numberOfFeeInAGym);
+	    kieSession.insert(validable);
+	    kieSession.fireAllRules();
 
 	}
 
@@ -122,7 +137,9 @@ public class FeePaymentService extends AbstractService<FeePayment, FeePaymentRep
 		inactivationDay = new Date(validable.getActivationDay().getTime() + 2592000000L);
 
 		validable.setInactivationDay(inactivationDay);
-		validable.setFee(validable.getGym().getFee());
+		//validable.setFee(validable.getGym().getFee());
+		
+		
 	}
 
 	@Override

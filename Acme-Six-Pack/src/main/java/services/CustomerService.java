@@ -124,6 +124,20 @@ public class CustomerService extends AbstractService<Customer, CustomerRepositor
 		
 		return result;
 	}
+	
+	public Long findNumberOfSpamMessages(int id){
+		return repository.findNumberOfSpamMessages(id);
+	}
+	
+	public Long findNumberOfDeletedComments(int id){
+		return repository.findNumberOfDeletedComments(id);
+	}
+	
+	public Long findNumberOfFeeInAGym(int customerId, int gymId){
+		return repository.findNumberOfFeeInAGym(customerId, gymId);
+	}
+	
+	
 
 
 
