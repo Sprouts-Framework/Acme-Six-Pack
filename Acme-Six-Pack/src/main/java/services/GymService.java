@@ -6,8 +6,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
@@ -48,9 +46,6 @@ public class GymService extends AbstractService<Gym, GymRepository> implements C
 
 	@Autowired
 	private CommentService commentService;
-	
-	@Autowired
-	private KieContainer kieContainer;
 
 	// Create methods ------------------------------------
 
@@ -150,15 +145,6 @@ public class GymService extends AbstractService<Gym, GymRepository> implements C
 		Pageable aux = new PageRequest(page.getPageNumber(), page.getPageSize(), sort);
 		result = repository.findGymsByKeywordInAOfferedService(searchCriteria, aux);
 		Assert.notNull(result);
-		
-		Gym prueba = result.getContent().get(0);
-		//Disparador de reglas de negocio
-		 KieSession kieSession = kieContainer.newKieSession("KSession");
-	     kieSession.insert(result.getContent().get(0));
-	     kieSession.fireAllRules();
-	     System.out.println(prueba.getName());
-	     
-	     
 		
 		return result;
 	}

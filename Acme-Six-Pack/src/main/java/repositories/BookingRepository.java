@@ -54,4 +54,11 @@ public interface BookingRepository extends PagingAndSortingRepository<Booking, I
 	//Devuelve los Booking de un gimnasio concreto, cuyo id se pasa por parámetro.
 	@Query("select b from Booking b where b.serviceOfGym.gym.id =?1")
 	Collection<Booking> findBookingsByGymId(int gymId);
+	
+	@Query("select count(b) from Booking b where b.customer.id = ?1 group by b.customer")
+	Long countTotalBookingsByCustomer(int customerId);
+	
+	@Query("select 1.0*count(b)/(select count(b) from Booking b where b.customer.id = ?1) from Booking b where b.customer.id = ?1 and b.hasBeenApproved = false")
+	Double ratioOfCancelledBookings(int customerId);
+	
 }

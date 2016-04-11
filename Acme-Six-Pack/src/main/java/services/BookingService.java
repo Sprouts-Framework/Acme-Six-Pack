@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -42,6 +44,9 @@ public class BookingService extends AbstractService<Booking, BookingRepository> 
 
 	@Autowired
 	private GymService gymService;
+	
+	@Autowired
+	private KieContainer kieContainer;
 
 	@Autowired
 	private HasBeenApprovedNull bookingHasBeenApprovedNull;
@@ -149,6 +154,16 @@ public class BookingService extends AbstractService<Booking, BookingRepository> 
 		Booking result;
 		result = booking;
 		result.setHasBeenApproved(hasBeenApproved);
+		if(hasBeenApproved == false){
+			Customer c = result.getCustomer();
+			Long numberOfBookings = repository.countTotalBookingsByCustomer(c.getId());
+			Double ratioOfCancelledBookings = repository.ratioOfCancelledBookings(c.getId());
+			KieSession kieSession = kieContainer.newKieSession("KSession");
+		    kieSession.insert(c);
+		    kieSession.insert(numberOfBookings);
+		    kieSession.insert(ratioOfCancelledBookings);
+		    kieSession.fireAllRules();
+		}
 		beforeCommitingUpdate(result);
 		update(result);
 		afterCommitingUpdate(result.getId());

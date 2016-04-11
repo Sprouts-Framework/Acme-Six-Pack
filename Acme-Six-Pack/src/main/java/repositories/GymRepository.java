@@ -89,4 +89,7 @@ public interface GymRepository extends PagingAndSortingRepository<Gym, Integer> 
 	@Query("select c.gym from Comment c where c.isDeleted = false group by c.gym having count(c.gym) >= ALL(select count(c.gym) from Comment c where c.isDeleted = false group by c.gym)")
 	Page<Gym> findGymsThatHaveMoreComments(Pageable page);
 
+	@Query("select count(f) from FeePayment f where f.customer = ?1")
+	Long countFeePaymentsByCustomer(int customerId);
+	
 }
