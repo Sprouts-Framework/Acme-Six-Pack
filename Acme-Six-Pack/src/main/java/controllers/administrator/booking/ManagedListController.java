@@ -20,14 +20,14 @@ public class ManagedListController extends AbstractListController<Booking, Booki
 	protected String view() {
 		return "booking/list";
 	}
-	
+
 	@Override
 	protected Page<Booking> getPage(Pageable page, String searchCriteria, List<String> context) {
 		Page<Booking> result;
-		
+
 		result = service.findAllSupervisedByAdministratorId(page);
 		Assert.notNull(result);
-		
+
 		return result;
 	}
 

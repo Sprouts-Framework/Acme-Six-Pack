@@ -14,7 +14,7 @@ import es.us.lsi.dp.domain.UserAccount;
 
 @Controller("boxDeleteAdministrator")
 @RequestMapping("box/administrator")
-public class DeleteController extends AbstractDeleteController<Box, BoxService> implements AddsToModel{
+public class DeleteController extends AbstractDeleteController<Box, BoxService> implements AddsToModel {
 
 	@Override
 	public boolean authorize(Box domainObject, UserAccount principal) {
@@ -25,12 +25,11 @@ public class DeleteController extends AbstractDeleteController<Box, BoxService> 
 	protected String view() {
 		return "box/delete";
 	}
-	
+
 	@Override
 	public void addToModel(final Map<String, Object> objects, List<String> context) {
 		String rol = new String("administrator");
 		objects.put("actor", rol);
 	}
 
-	
 }

@@ -24,9 +24,9 @@
  
 <%@ attribute name="title" required="false" %>
 <%@ attribute name="data" required="false" %>
+<%@ attribute name="path" required="false" %>
 <%@ attribute name="message" required="false" %>
 <%@ attribute name="url" required="false" %>
-<%@ attribute name="formatted" required="false" %>
 
 <jstl:if test="${message == null }">
 	<jstl:set var="message" value=""/>
@@ -54,15 +54,12 @@
 <jstl:if test="${data != null}">
 	<jstl:if test="${url == null}">
 		<div class="row text-center">
-			<jstl:choose>
-				<jstl:when test="${formatted eq true }">
-					<div class="col-xs-12 col-xs-offset-6 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4"><spring:eval expression="${data }"  /> <jstl:out value="${message }"/></div>
-				</jstl:when>
-				<jstl:otherwise>
-					<div class="col-xs-12 col-xs-offset-6 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4"><jstl:out value="${data} ${message}"/></div>
-				</jstl:otherwise>
-			</jstl:choose>
+			<div class="col-xs-12 col-xs-offset-6 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4"><jstl:out value="${data} ${message}"/></div>
 		</div>
 		<br/>
 	</jstl:if>
+</jstl:if>
+
+<jstl:if test="${path != null }">
+	<div class="col-xs-12 col-xs-offset-6 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4"><spring:bind path="${path }">${status.value}</spring:bind></div>
 </jstl:if>

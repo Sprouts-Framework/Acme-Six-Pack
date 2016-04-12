@@ -29,7 +29,7 @@
 		<acmeSpecific:display-image-column src="${gym.picture}" />
 		<acmeSpecific:display-column title="${gym.name}"/>
 		<acmeSpecific:display-column data="${gym.description}"/>
-		<acmeSpecific:display-column title="${feeLabel}" data="gym.fee" formatted="true"/>
+		<acmeSpecific:display-column title="${feeLabel}" path="gym.fee"/>
 		<acmeSpecific:display-column title="${postalAddressLabel}" message="${gym.postalAddress}" url="https://www.google.es/maps/search/${gym.postalAddress}"/>
 		<acmeSpecific:display-column title="${phoneNumberLabel}" data="${gym.phoneNumber}"/>
 		<acmeSpecific:display-column title="${customersTotalNumberLabel}" data="${gym.customersTotalNumber}"/>

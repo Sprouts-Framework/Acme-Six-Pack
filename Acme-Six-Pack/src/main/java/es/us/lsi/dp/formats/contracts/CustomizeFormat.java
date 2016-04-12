@@ -9,6 +9,6 @@ public interface CustomizeFormat {
 	public String getField();
 
 	public Class<?> getType();
-	
+
 	public Format getFormat();
 }

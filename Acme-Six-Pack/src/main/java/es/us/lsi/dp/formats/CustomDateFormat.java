@@ -3,18 +3,16 @@ package es.us.lsi.dp.formats;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-import javax.inject.Inject;
-
-import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 
 public class CustomDateFormat extends CustomFormat {
 
-	@Inject
-	protected MessageSource messageSource;
-
 	public CustomDateFormat(String codePrefix, Class<?> type, String field) {
 		super(codePrefix, type, field);
+	}
+
+	public CustomDateFormat(String codePrefix, Class<?> type) {
+		super(codePrefix, type);
 	}
 
 	@Override

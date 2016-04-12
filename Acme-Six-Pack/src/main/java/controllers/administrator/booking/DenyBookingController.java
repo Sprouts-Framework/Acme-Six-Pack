@@ -19,14 +19,14 @@ public class DenyBookingController extends AbstractPostController<BookingService
 
 	@Override
 	public void beforeCommiting(DomainObject object) {
-		
+
 	}
 
 	@Override
 	protected void action(Map<String, String> pathVariables) {
 		Booking booking;
-		booking = service.findOneToManage(new Integer(getContext().get(0)));		
-		service.edit(booking, false);		
+		booking = service.findOneToManage(new Integer(getContext().get(0)));
+		service.edit(booking, false);
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class DenyBookingController extends AbstractPostController<BookingService
 	protected String view() {
 		return "booking/deny";
 	}
-	
+
 	@Override
 	public DomainObject getObject(Map<String, String> pathVariables, DomainObject entity, List<String> context) {
 		Booking booking;

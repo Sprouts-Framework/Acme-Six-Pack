@@ -14,7 +14,7 @@ import es.us.lsi.dp.domain.UserAccount;
 
 @Controller("boxCreateAdministrator")
 @RequestMapping("box/administrator")
-public class CreateController extends AbstractCreateController<Box, BoxService> implements AddsToModel{
+public class CreateController extends AbstractCreateController<Box, BoxService> implements AddsToModel {
 
 	@Override
 	public boolean authorize(Box domainObject, UserAccount principal) {

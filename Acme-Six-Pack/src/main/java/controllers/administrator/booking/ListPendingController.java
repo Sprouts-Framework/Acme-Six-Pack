@@ -16,28 +16,26 @@ import es.us.lsi.dp.controllers.entities.crud.AbstractListController;
 
 @Controller("listPedingBookingController")
 @RequestMapping("booking/administrator/pending")
-public class ListPendingController extends AbstractListController<Booking, BookingService> implements AddsToModel{
+public class ListPendingController extends AbstractListController<Booking, BookingService> implements AddsToModel {
 
 	@Override
 	protected String view() {
 		return "booking/list";
 	}
-	
+
 	@Override
 	protected Page<Booking> getPage(Pageable page, String searchCriteria, List<String> context) {
 		Page<Booking> result;
-		
+
 		result = service.findAllPendingBookings(page);
 		Assert.notNull(result);
-		
+
 		return result;
 	}
 
 	@Override
 	public void addToModel(Map<String, Object> objects, List<String> context) {
-		objects.put("requestURI", "booking/administrator/pending/list.do");		
+		objects.put("requestURI", "booking/administrator/pending/list.do");
 	}
-	
-	
 
 }

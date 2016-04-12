@@ -1,13 +1,7 @@
 package es.us.lsi.dp.controllers.core;
 
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -17,12 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -152,54 +141,4 @@ public abstract class BaseController {
 
 	protected abstract String view();
 
-	// Binders ----------------------------------------------------------------
-	
-	
-	
-	@InitBinder
-	protected void initBinder(WebDataBinder binder) {
-		
-//		Map<String, CustomInternationalization> internationalizations = new HashMap<>();
-		String dateFormatStr, decimalMark, groupingSeparator, prefix, suffix;
-//		String codeDateFormatStr, codeDecimalMark, codeGroupingSeparator, codePrefix, codeSuffix;
-		Locale locale;
-		
-//		if(this instanceof AddCustomInternationalization){
-//			AddCustomInternationalization addCustomInternationalization = (AddCustomInternationalization) this;
-//			addCustomInternationalization.addCustomInternacionalization(internationalizations);
-//		}
-		
-		
-		
-		locale = LocaleContextHolder.getLocale();
-
-		dateFormatStr = messageSource.getMessage("date.format", null, locale);
-		decimalMark = messageSource.getMessage("decimal-mark", null, locale);
-		groupingSeparator = messageSource.getMessage("grouping-separator", null, locale);
-		prefix = messageSource.getMessage("currency.prefix", null, locale);
-		suffix = messageSource.getMessage("currency.suffix", null, locale);
-		
-		SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatStr);
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
-//		CustomDateFormat  customDateFormat= new CustomDateFormat("", Date.class, "");
-//		binder.registerCustomEditor(customDateFormat.getType(), new CustomDateEditor(customDateFormat.getFormat(), false));
-
-//		CustomCurrencyFormatter customCurrencyFormatter = new CustomCurrencyFormatter(decimalMark, groupingSeparator, format);
-//		binder.registerCustomEditor(BigDecimal.class, new CustomCurrencyEditor(customCurrencyFormatter));
-		
-		DecimalFormatSymbols decimalFormatSymbols;
-		decimalFormatSymbols = DecimalFormatSymbols.getInstance();
-		decimalFormatSymbols.setDecimalSeparator(decimalMark.charAt(0));
-		decimalFormatSymbols.setGroupingSeparator(groupingSeparator.charAt(0));
-		//decimalFormatSymbols.setCurrencySymbol(currency);
-		//decimalFormatSymbols.setMonetaryDecimalSeparator(sep)
-
-		DecimalFormat numberFormat = new DecimalFormat("##.##", decimalFormatSymbols);
-		numberFormat.setPositivePrefix(prefix);
-		numberFormat.setPositiveSuffix(suffix);
-		binder.registerCustomEditor(Double.class, "fee", new CustomNumberEditor(Double.class, numberFormat, true));
-		
-		//CustomCurrencyFormat  customCurrencyFormat = new CustomCurrencyFormat("", BigDecimal.class, "");
-		//binder.registerCustomEditor(customCurrencyFormat.getType(), new CustomNumberEditor(customCurrencyFormat.getType(),customCurrencyFormat.getFormat(), true));
-	}
 }

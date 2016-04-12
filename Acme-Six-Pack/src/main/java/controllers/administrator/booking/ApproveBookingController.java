@@ -19,14 +19,14 @@ public class ApproveBookingController extends AbstractPostController<BookingServ
 
 	@Override
 	public void beforeCommiting(DomainObject object) {
-		
+
 	}
 
 	@Override
 	protected void action(Map<String, String> pathVariables) {
 		Booking booking;
-		booking = service.findOneToManage(new Integer(getContext().get(0)));		
-		service.edit(booking, true);		
+		booking = service.findOneToManage(new Integer(getContext().get(0)));
+		service.edit(booking, true);
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class ApproveBookingController extends AbstractPostController<BookingServ
 	protected String view() {
 		return "booking/approve";
 	}
-	
+
 	@Override
 	public DomainObject getObject(Map<String, String> pathVariables, DomainObject entity, List<String> context) {
 		Booking booking;

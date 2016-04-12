@@ -19,23 +19,22 @@ import es.us.lsi.dp.services.SignInService;
 
 @Controller("boxListAdministrator")
 @RequestMapping("box/administrator")
-public class ListController extends AbstractListController<Box, BoxService> implements AddsToModel{
+public class ListController extends AbstractListController<Box, BoxService> implements AddsToModel {
 
 	@Autowired
 	private ActorService actorService;
-	
+
 	@Override
 	protected Page<Box> getPage(Pageable page, String searchCriteria, List<String> context) {
 		Actor thisActor;
 		thisActor = actorService.findActorByUserAccount(SignInService.getPrincipal().getUsername());
 		return service.findBoxes(thisActor.getId(), page);
 	}
-	
+
 	@Override
 	protected String view() {
 		return "box/list";
 	}
-
 
 	@Override
 	public void addToModel(final Map<String, Object> objects, List<String> context) {
