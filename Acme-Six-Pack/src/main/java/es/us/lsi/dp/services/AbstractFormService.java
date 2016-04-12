@@ -31,9 +31,9 @@ public abstract class AbstractFormService<E extends DomainEntity, F extends Doma
 			CreateService createService = (CreateService) this;
 			try {
 				result = (F) createService.getEntityClass().newInstance();
-			} catch (InstantiationException | IllegalAccessException e) {
+			} catch (Throwable e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException();
 			}
 		}
 

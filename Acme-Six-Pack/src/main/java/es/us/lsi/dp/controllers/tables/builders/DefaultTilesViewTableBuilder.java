@@ -336,8 +336,8 @@ public class DefaultTilesViewTableBuilder implements TableBuilder {
 
 			result = resultAux;
 
-		} catch (final IOException e) {
-			e.printStackTrace();
+		} catch (Throwable e) {
+			throw new RuntimeException();
 		}
 
 		return result;
@@ -370,13 +370,13 @@ public class DefaultTilesViewTableBuilder implements TableBuilder {
 
 	private void setAttributes(final Column column, final Map<String, String> attributes) {
 		// path attribute already processed
-		attributes.remove(PATH);
-		for (final Entry<String, String> pair : attributes.entrySet()) {
-			try {
+		try {
+			attributes.remove(PATH);
+			for (final Entry<String, String> pair : attributes.entrySet()) {
 				invokeMethod(column, pair);
-			} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-				e.printStackTrace();
 			}
+		} catch (Throwable e) {
+			throw new RuntimeException();
 		}
 	}
 

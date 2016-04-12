@@ -94,8 +94,8 @@ public class TilesUtils {
 
 		try {
 			result = URLDecoder.decode(fullPath, "UTF-8");
-		} catch (final UnsupportedEncodingException e) {
-			e.printStackTrace();
+		} catch (Throwable e) {
+			throw new RuntimeException();
 		}
 
 		return result;

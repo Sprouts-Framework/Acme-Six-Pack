@@ -29,9 +29,9 @@ public abstract class AbstractService<E extends DomainEntity, R extends PagingAn
 			CreateService createService = (CreateService) this;
 			try {
 				result = (E) createService.getEntityClass().newInstance();
-			} catch (InstantiationException | IllegalAccessException e) {
+			} catch (Throwable e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException();
 			}
 		}
 
