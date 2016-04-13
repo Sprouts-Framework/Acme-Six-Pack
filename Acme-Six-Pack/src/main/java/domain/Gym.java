@@ -8,6 +8,11 @@ import javax.persistence.Entity;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
@@ -17,7 +22,15 @@ import es.us.lsi.dp.domain.DomainEntity;
 
 @Entity
 @Access(AccessType.PROPERTY)
-
+@Indexed
+//@AnalyzerDef(name = "customanalyzer",
+//tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class),
+//filters = {
+//  @TokenFilterDef(factory = LowerCaseFilterFactory.class),
+//  @TokenFilterDef(factory = SnowballPorterFilterFactory.class, params = {
+//    @Parameter(name = "language", value = "English")
+//  })
+//})
 public class Gym extends DomainEntity {
 
 	/**
@@ -41,6 +54,8 @@ public class Gym extends DomainEntity {
 	private String picture;
 	private int customersTotalNumber;
 	
+//	@Analyzer(definition = "customanalyzer")
+	@Field(index=Index.YES, analyze = Analyze.YES, store = Store.NO)
 	@NotBlank
 	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getName() {
@@ -50,6 +65,8 @@ public class Gym extends DomainEntity {
 		this.name = name;
 	}
 	
+//	@Analyzer(definition = "customanalyzer")
+//	@Field
 	@NotBlank
 	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getDescription() {
@@ -59,6 +76,8 @@ public class Gym extends DomainEntity {
 		this.description = description;
 	}
 	
+//	@Analyzer(definition = "customanalyzer")
+//	@Field
 	@NotBlank
 	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getPostalAddress() {
