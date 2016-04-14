@@ -6,6 +6,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
@@ -137,6 +142,10 @@ public class GymService extends AbstractService<Gym, GymRepository> implements C
 
 	}
 
+	  @PersistenceContext
+	  private EntityManager em;
+	
+	
 	// Find methods ----------------------------
 	@Override
 	public Page<Gym> findPage(final Pageable page, final String searchCriteria) {
@@ -145,6 +154,30 @@ public class GymService extends AbstractService<Gym, GymRepository> implements C
 		Pageable aux = new PageRequest(page.getPageNumber(), page.getPageSize(), sort);
 		result = repository.findGymsByKeywordInAOfferedService(searchCriteria, aux);
 		Assert.notNull(result);
+		
+		FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search
+				.getFullTextEntityManager(em);
+		QueryBuilder qb = fullTextEntityManager.getSearchFactory()
+				.buildQueryBuilder().forEntity(Gym.class).get();
+		org.apache.lucene.search.Query luceneQuery = qb.keyword()
+				.onFields("name").matching("fight")
+				.createQuery();
+
+		// wrap Lucene query in a javax.persistence.Query
+		javax.persistence.Query jpaQuery = fullTextEntityManager
+				.createFullTextQuery(luceneQuery, Gym.class);
+
+		// execute search
+		@SuppressWarnings("unchecked")
+		List<Gym> toshow = jpaQuery.getResultList();
+
+		System.out.println("**************");
+		for (Object o : toshow)
+			if (o instanceof Gym) {
+				Gym i = (Gym) o;
+				System.out.println("name: "+i.getName()+", postalAddress: "+i.getPostalAddress()+", description: "+i.getDescription());
+			}
+		System.out.println("**************");
 		
 		return result;
 	}

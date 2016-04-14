@@ -304,6 +304,11 @@
 			<version>4.3.10.Final</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-analyzers-phonetic</artifactId>
+			<version>4.10.4</version>
+		</dependency>
 
 
 		<!-- Provided by Tomcat -->

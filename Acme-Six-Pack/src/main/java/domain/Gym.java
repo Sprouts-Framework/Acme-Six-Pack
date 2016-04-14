@@ -8,11 +8,21 @@ import javax.persistence.Entity;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 
-import org.hibernate.search.annotations.Analyze;
+import org.apache.lucene.analysis.charfilter.MappingCharFilterFactory;
+import org.apache.lucene.analysis.core.LowerCaseFilterFactory;
+import org.apache.lucene.analysis.miscellaneous.TruncateTokenFilterFactory;
+import org.apache.lucene.analysis.phonetic.PhoneticFilterFactory;
+import org.apache.lucene.analysis.snowball.SnowballPorterFilterFactory;
+import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
+import org.hibernate.search.annotations.Analyzer;
+import org.hibernate.search.annotations.AnalyzerDef;
+import org.hibernate.search.annotations.Boost;
+import org.hibernate.search.annotations.CharFilterDef;
 import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.Store;
+import org.hibernate.search.annotations.Parameter;
+import org.hibernate.search.annotations.TokenFilterDef;
+import org.hibernate.search.annotations.TokenizerDef;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
@@ -23,14 +33,26 @@ import es.us.lsi.dp.domain.DomainEntity;
 @Entity
 @Access(AccessType.PROPERTY)
 @Indexed
-//@AnalyzerDef(name = "customanalyzer",
-//tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class),
-//filters = {
-//  @TokenFilterDef(factory = LowerCaseFilterFactory.class),
-//  @TokenFilterDef(factory = SnowballPorterFilterFactory.class, params = {
-//    @Parameter(name = "language", value = "English")
-//  })
-//})
+@AnalyzerDef(name = "customanalyzer",
+tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class),
+filters = {
+  @TokenFilterDef(factory = LowerCaseFilterFactory.class),
+  @TokenFilterDef(factory = SnowballPorterFilterFactory.class, params = {
+    @Parameter(name = "language", value = "English")
+  }),
+  @TokenFilterDef(factory = SnowballPorterFilterFactory.class, params = {
+	    @Parameter(name = "language", value = "Spanish")
+  }),
+  @TokenFilterDef(factory = TruncateTokenFilterFactory.class, params = {
+	  	@Parameter(name = "prefixLength", value = "3")
+  }),
+  @TokenFilterDef(factory = PhoneticFilterFactory.class, params = {
+	  	@Parameter(name = "encoder", value = "DoubleMetaphone"),
+	  	@Parameter(name = "inject", value = "false"),
+	  	@Parameter(name = "maxCodeLength", value = "4")
+  })
+}
+)
 public class Gym extends DomainEntity {
 
 	/**
@@ -54,8 +76,9 @@ public class Gym extends DomainEntity {
 	private String picture;
 	private int customersTotalNumber;
 	
-//	@Analyzer(definition = "customanalyzer")
-	@Field(index=Index.YES, analyze = Analyze.YES, store = Store.NO)
+	@Boost(value=2.0f)
+	@Analyzer(definition = "customanalyzer")
+	@Field
 	@NotBlank
 	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getName() {
@@ -65,8 +88,9 @@ public class Gym extends DomainEntity {
 		this.name = name;
 	}
 	
-//	@Analyzer(definition = "customanalyzer")
-//	@Field
+	@Boost(value=1.9f)
+	@Analyzer(definition = "customanalyzer")
+	@Field
 	@NotBlank
 	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getDescription() {
@@ -76,8 +100,9 @@ public class Gym extends DomainEntity {
 		this.description = description;
 	}
 	
-//	@Analyzer(definition = "customanalyzer")
-//	@Field
+	@Boost(value=1.5f)
+	@Analyzer(definition = "customanalyzer")
+	@Field
 	@NotBlank
 	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getPostalAddress() {
@@ -87,6 +112,9 @@ public class Gym extends DomainEntity {
 		this.postalAddress = postalAddress;
 	}
 	
+	@Boost(value=1.0f)
+	@Analyzer(definition = "customanalyzer")
+	@Field
 	@NotBlank
 	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getPhoneNumber() {
