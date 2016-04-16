@@ -61,9 +61,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import services.ActorService;
 import services.CustomerService;
-import domain.Actor;
 import domain.Customer;
-import es.us.lsi.dp.domain.BaseActor;
 import es.us.lsi.dp.domain.SocialAccount;
 import es.us.lsi.dp.domain.UserAccount;
 import es.us.lsi.dp.services.SignInService;
@@ -78,6 +76,8 @@ import es.us.lsi.dp.services.UserAccountService;
  * </ul>
  * @author Keith Donald
  */
+
+@SuppressWarnings("unused")
 @Controller
 @RequestMapping("/signin")
 public class ProviderSignInController implements InitializingBean {

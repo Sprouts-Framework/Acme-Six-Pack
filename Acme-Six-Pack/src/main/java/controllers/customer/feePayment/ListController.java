@@ -1,7 +1,6 @@
 package controllers.customer.feePayment;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,13 +14,13 @@ import es.us.lsi.dp.controllers.entities.crud.AbstractListController;
 
 @Controller("feePaymentCustomerControllerList")
 @RequestMapping("feePayment/customer")
-public class ListController extends AbstractListController<FeePayment, FeePaymentService>{
+public class ListController extends AbstractListController<FeePayment, FeePaymentService> {
 
 	@Override
 	protected String view() {
 		return "feePayment/list";
 	}
-	
+
 	@Override
 	protected Page<FeePayment> getPage(Pageable page, String searchCriteria, List<String> context) {
 		Page<FeePayment> result;

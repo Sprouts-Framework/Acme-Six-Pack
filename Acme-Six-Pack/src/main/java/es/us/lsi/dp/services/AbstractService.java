@@ -1,8 +1,18 @@
 package es.us.lsi.dp.services;
 
 import java.util.Collection;
+import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.jpa.FullTextQuery;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.util.Assert;
 
@@ -14,18 +24,21 @@ import es.us.lsi.dp.utilities.Moment;
 public abstract class AbstractService<E extends DomainEntity, R extends PagingAndSortingRepository<E, Integer>> implements EntityService<E> {
 
 	protected R repository;
-	
+
+	@PersistenceContext
+	protected EntityManager em;
+
 	@Autowired
 	public void setRepository(final R repository) {
 		this.repository = repository;
 	}
-	
+
 	@SuppressWarnings({
 			"unchecked", "rawtypes"
 	})
-	public E create(){
+	public E create() {
 		E result = null;
-		if (this instanceof CreateService){
+		if (this instanceof CreateService) {
 			CreateService createService = (CreateService) this;
 			try {
 				result = (E) createService.getEntityClass().newInstance();
@@ -37,7 +50,7 @@ public abstract class AbstractService<E extends DomainEntity, R extends PagingAn
 
 		return result;
 	}
-	
+
 	@Override
 	public int save(final E domainObject) {
 		Assert.notNull(domainObject);
@@ -92,6 +105,41 @@ public abstract class AbstractService<E extends DomainEntity, R extends PagingAn
 	@Override
 	public long count() {
 		return repository.count();
+	}
+
+	// Auxiliar methods ----------------------------------------------
+
+	public Page<E> fullTextSearch(Class<?> clazz, Pageable pageable, String searchCriteria, String... fields) {
+		Page<E> result = null;
+		try {
+			if (!searchCriteria.equals("")) {
+				FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search.getFullTextEntityManager(em);
+
+				fullTextEntityManager.createIndexer().startAndWait();
+
+				QueryBuilder qb = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(clazz).get();
+				org.apache.lucene.search.Query luceneQuery = qb.keyword().onFields(fields).matching(searchCriteria).createQuery();
+
+				FullTextQuery fullTextQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, clazz);
+
+				int totalNumber = fullTextQuery.getResultSize();
+				fullTextQuery.setFirstResult(pageable.getOffset());
+				fullTextQuery.setMaxResults(pageable.getPageSize());
+
+				@SuppressWarnings("unchecked")
+				List<E> resultList = fullTextQuery.getResultList();
+				result = new PageImpl<E>(resultList, pageable, new Long(totalNumber));
+				Assert.notNull(result);
+			} else {
+				result = repository.findAll(pageable);
+				Assert.notNull(result);
+			}
+
+		} catch (Throwable oops) {
+			new RuntimeException(oops);
+		}
+
+		return result;
 	}
 
 }

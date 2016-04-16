@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Access;
@@ -42,28 +41,23 @@ public class Customer extends Actor {
 	public void setCreditCard(CreditCard creditCard) {
 		this.creditCard = creditCard;
 	}
-	
+
 	@ElementCollection
 	public Set<String> getCustomerType() {
 		return customerType;
 	}
 
-	
 	public void setCustomerType(Set<String> customerType) {
 		this.customerType = customerType;
 	}
 
-	
 	public Date getEndOfPenalty() {
 		return endOfPenalty;
 	}
 
-	
 	public void setEndOfPenalty(Date endOfPenalty) {
 		this.endOfPenalty = endOfPenalty;
 	}
-	
-	
 
 	// Relationships ----------------------------------------------------------
 

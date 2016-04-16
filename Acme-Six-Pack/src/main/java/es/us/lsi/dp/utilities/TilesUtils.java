@@ -1,6 +1,5 @@
 package es.us.lsi.dp.utilities;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +26,7 @@ public class TilesUtils {
 		readOnlyAttr = definition.getAttribute("readOnly");
 
 		readOnly = "false";
-		
+
 		if (null != readOnlyAttr)
 			readOnly = (String) readOnlyAttr.getValue();
 
@@ -57,10 +56,10 @@ public class TilesUtils {
 
 		definition = TilesUtils.getTemplateDefinition(viewName, request, response);
 		result = TilesUtils.getJspPath(definition, request, response);
-		
+
 		return result;
 	}
-	
+
 	public static String getJspPath(final Definition definition, final HttpServletRequest request, final HttpServletResponse response) {
 		String result;
 		ClassLoader classLoader;

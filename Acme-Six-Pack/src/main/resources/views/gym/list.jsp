@@ -11,7 +11,7 @@
 <%@ include file="../template/libraries.jsp"%>
 
 
-<acme:data-table i18n="datatables.language">
+<acme:data-table i18n="datatables.language" >
 
 	<security:authorize access="hasRole('Administrator')">
 		<acme:action-button code="update.button"
