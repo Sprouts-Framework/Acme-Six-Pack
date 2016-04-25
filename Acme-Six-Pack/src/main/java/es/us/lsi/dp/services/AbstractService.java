@@ -1,5 +1,6 @@
 package es.us.lsi.dp.services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -20,6 +21,8 @@ import es.us.lsi.dp.domain.DomainEntity;
 import es.us.lsi.dp.services.contracts.CreateService;
 import es.us.lsi.dp.services.contracts.EntityService;
 import es.us.lsi.dp.utilities.Moment;
+import fulltext.FullTextConstraint;
+import fulltext.FullTextCustomQuery;
 
 public abstract class AbstractService<E extends DomainEntity, R extends PagingAndSortingRepository<E, Integer>> implements EntityService<E> {
 
@@ -109,7 +112,7 @@ public abstract class AbstractService<E extends DomainEntity, R extends PagingAn
 
 	// Auxiliar methods ----------------------------------------------
 
-	public Page<E> fullTextSearch(Class<?> clazz, Pageable pageable, String searchCriteria, String... fields) {
+	public Page<E> fullTextSearch(Class<?> clazz, Pageable pageable, String searchCriteria, List<FullTextCustomQuery> customQueries, String... fields) {
 		Page<E> result = null;
 		try {
 			if (!searchCriteria.equals("")) {
@@ -118,7 +121,12 @@ public abstract class AbstractService<E extends DomainEntity, R extends PagingAn
 				fullTextEntityManager.createIndexer().startAndWait();
 
 				QueryBuilder qb = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(clazz).get();
+
 				org.apache.lucene.search.Query luceneQuery = qb.keyword().onFields(fields).matching(searchCriteria).createQuery();
+
+				for (FullTextCustomQuery customQuery : customQueries) {
+					luceneQuery = fullTextCustomQueryBuilder(customQuery, luceneQuery, qb);
+				}
 
 				FullTextQuery fullTextQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, clazz);
 
@@ -139,6 +147,34 @@ public abstract class AbstractService<E extends DomainEntity, R extends PagingAn
 			new RuntimeException(oops);
 		}
 
+		return result;
+	}
+
+	public Page<E> fullTextSearch(Class<?> clazz, Pageable pageable, String searchCriteria, String... fields) {
+		return fullTextSearch(clazz, pageable, searchCriteria, new ArrayList<FullTextCustomQuery>(), fields);
+	}
+
+	private org.apache.lucene.search.Query fullTextCustomQueryBuilder(FullTextCustomQuery customQuery, org.apache.lucene.search.Query query, QueryBuilder qb) {
+		org.apache.lucene.search.Query result;
+		result = query;
+		if (customQuery.getConstraint().equals(FullTextConstraint.EQUALS)) {
+			result = qb.bool().must(result).must(qb.keyword().onField(customQuery.getField()).ignoreAnalyzer().matching(customQuery.getObject()).createQuery())
+					.createQuery();
+
+		} else if (customQuery.getConstraint().equals(FullTextConstraint.GREATER_OR_EQUALS_THAN)) {
+			result = qb.bool().must(result).must(qb.range().onField(customQuery.getField()).above(customQuery.getObject()).createQuery()).createQuery();
+
+		} else if (customQuery.getConstraint().equals(FullTextConstraint.GREATER_THAN)) {
+			result = qb.bool().must(result).must(qb.range().onField(customQuery.getField()).above(customQuery.getObject()).excludeLimit().createQuery())
+					.createQuery();
+
+		} else if (customQuery.getConstraint().equals(FullTextConstraint.LOWER_THAN)) {
+			result = qb.bool().must(result).must(qb.range().onField(customQuery.getField()).below(customQuery.getObject()).excludeLimit().createQuery())
+					.createQuery();
+
+		} else if (customQuery.getConstraint().equals(FullTextConstraint.LOWER_OR_EQUALS_THAN)) {
+			result = qb.bool().must(result).must(qb.range().onField(customQuery.getField()).below(customQuery.getObject()).createQuery()).createQuery();
+		}
 		return result;
 	}
 
