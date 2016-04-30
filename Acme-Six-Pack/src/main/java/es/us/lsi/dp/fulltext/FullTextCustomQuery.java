@@ -1,4 +1,4 @@
-package fulltext;
+package es.us.lsi.dp.fulltext;
 
 public class FullTextCustomQuery {
 

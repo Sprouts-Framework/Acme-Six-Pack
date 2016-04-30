@@ -13,8 +13,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import domain.Gym;
-import fulltext.FullTextConstraint;
-import fulltext.FullTextCustomQuery;
+import es.us.lsi.dp.fulltext.FullTextConstraint;
+import es.us.lsi.dp.fulltext.FullTextCustomQuery;
 
 public class Search {
 

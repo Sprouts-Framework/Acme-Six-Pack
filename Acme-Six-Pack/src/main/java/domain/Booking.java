@@ -47,7 +47,6 @@ public class Booking extends DomainEntity {
 	@NotNull
 	@Past
 	@Temporal(TemporalType.TIMESTAMP) //Obligatorio
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm") //Formato de la fecha
 	public Date getCreationMoment() {
 		return creationMoment;
 	}
@@ -57,7 +56,6 @@ public class Booking extends DomainEntity {
 	
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP) //Obligatorio
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm") //Formato de la fecha
 	public Date getRequestedMoment() {
 		return requestedMoment;
 	}
@@ -76,7 +74,6 @@ public class Booking extends DomainEntity {
 	
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP) //Obligatorio
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm") //Formato de la fecha
 	public Date getEndMoment() {
 		return endMoment;
 	}

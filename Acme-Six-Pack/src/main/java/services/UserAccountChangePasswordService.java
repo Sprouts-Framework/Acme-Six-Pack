@@ -61,7 +61,7 @@ public class UserAccountChangePasswordService extends AbstractFormService<UserAc
 		Assert.notNull(userAccount);
 
 		// Hasheo de la contraseña
-		hashedPassword = PasswordEncoder.encode(form.getOldPassword());
+		hashedPassword = PasswordEncoder.encode(form.getPassword());
 		Assert.notNull(hashedPassword);
 
 		userAccount.setUsername(form.getUsername());

@@ -18,11 +18,11 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.util.Assert;
 
 import es.us.lsi.dp.domain.DomainEntity;
+import es.us.lsi.dp.fulltext.FullTextConstraint;
+import es.us.lsi.dp.fulltext.FullTextCustomQuery;
 import es.us.lsi.dp.services.contracts.CreateService;
 import es.us.lsi.dp.services.contracts.EntityService;
 import es.us.lsi.dp.utilities.Moment;
-import fulltext.FullTextConstraint;
-import fulltext.FullTextCustomQuery;
 
 public abstract class AbstractService<E extends DomainEntity, R extends PagingAndSortingRepository<E, Integer>> implements EntityService<E> {
 
