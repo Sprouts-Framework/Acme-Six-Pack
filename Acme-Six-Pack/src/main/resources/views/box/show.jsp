@@ -7,9 +7,15 @@
 
 	<acme:hidden-field path="id" />
 	<acme:hidden-field path="version" />
+	<acme:hidden-field path="actor"/>
+	<acme:hidden-field path="createdAt"/>
+	<acme:hidden-field path="updatedAt"/>
+	
 	<acme:protected path="id"/>
 	<acme:protected path="version"/>
-	
+	<acme:protected path="actor"/>
+	<acme:protected path="createdAt"/>
+	<acme:protected path="updatedAt"/>
 	
 	<acme:textbox-input code="box.name" path="name"/>
 
