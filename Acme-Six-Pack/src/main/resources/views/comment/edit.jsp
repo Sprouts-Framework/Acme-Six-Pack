@@ -13,22 +13,22 @@
 <tiles:importAttribute name="readOnly" toName="readOnly" />
 <tiles:importAttribute name="action" toName="action" />
 
-<acme:form modelAttribute="modelObject" readOnly="${readOnly}">
+<sprouts:form modelAttribute="modelObject" readOnly="${readOnly}">
 
-	<acme:hidden-field path="id" />
-	<acme:hidden-field path="version" />
-	<acme:hidden-field path="actor" />
-	<acme:hidden-field path="isDeleted" />
-	<acme:hidden-field path="moment" />
+	<sprouts:hidden-field path="id" />
+	<sprouts:hidden-field path="version" />
+	<sprouts:hidden-field path="actor" />
+	<sprouts:hidden-field path="isDeleted" />
+	<sprouts:hidden-field path="moment" />
 	
-	<acme:protected path="id" />
-	<acme:protected path="version" />
-	<acme:protected path="actor" />
-	<acme:protected path="isDeleted" />
-	<acme:protected path="moment" />
+	<sprouts:protected path="id" />
+	<sprouts:protected path="version" />
+	<sprouts:protected path="actor" />
+	<sprouts:protected path="isDeleted" />
+	<sprouts:protected path="moment" />
 	
-	<acme:textbox-input code="comment.author.info" path="actor.userAccount.username" readonly="true"/>
-	<acme:textarea-input code="comment.text" path="text"/>
+	<sprouts:textbox-input code="comment.author.info" path="actor.userAccount.username" readonly="true"/>
+	<sprouts:textarea-input code="comment.text" path="text"/>
 	<div class="form-group">
 		<div class="row">
 			<form:label class="col-md-12" path="starRating">
@@ -50,18 +50,18 @@
 	<br />
 	<br />
 	<br />
-	<acme:submit-button code="${action}" name="${action}" />
+	<sprouts:submit-button code="${action}" name="${action}" />
 	
 	<jstl:choose>
 		<jstl:when test="${gymId!=0 }">
-				<acme:cancel-button code="return.button" url="home/gym/${gymId}/show.do" />
+				<sprouts:cancel-button code="return.button" url="home/gym/${gymId}/show.do" />
 		</jstl:when>
 		<jstl:otherwise>
-			<acme:cancel-button code="return.button" url="home/serviceOfGym/${serviceOfGymId}/show.do" />
+			<sprouts:cancel-button code="return.button" url="home/serviceOfGym/${serviceOfGymId}/show.do" />
 		</jstl:otherwise>
 	</jstl:choose>
 	
 
 
-</acme:form>
+</sprouts:form>
 

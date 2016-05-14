@@ -46,7 +46,6 @@ public abstract class AbstractService<E extends DomainEntity, R extends PagingAn
 			try {
 				result = (E) createService.getEntityClass().newInstance();
 			} catch (Throwable e) {
-				// TODO Auto-generated catch block
 				throw new RuntimeException();
 			}
 		}
@@ -114,8 +113,9 @@ public abstract class AbstractService<E extends DomainEntity, R extends PagingAn
 
 	public Page<E> fullTextSearch(Class<?> clazz, Pageable pageable, String searchCriteria, List<FullTextCustomQuery> customQueries, String... fields) {
 		Page<E> result = null;
+		String trim = searchCriteria.trim();
 		try {
-			if (!searchCriteria.equals("")) {
+			if (!trim.equals("")) {
 				FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search.getFullTextEntityManager(em);
 
 				fullTextEntityManager.createIndexer().startAndWait();
@@ -139,7 +139,7 @@ public abstract class AbstractService<E extends DomainEntity, R extends PagingAn
 				result = new PageImpl<E>(resultList, pageable, new Long(totalNumber));
 				Assert.notNull(result);
 			} else {
-				result = repository.findAll(pageable);
+				result = this.findAllDefaultFullText(pageable);
 				Assert.notNull(result);
 			}
 
@@ -152,6 +152,10 @@ public abstract class AbstractService<E extends DomainEntity, R extends PagingAn
 
 	public Page<E> fullTextSearch(Class<?> clazz, Pageable pageable, String searchCriteria, String... fields) {
 		return fullTextSearch(clazz, pageable, searchCriteria, new ArrayList<FullTextCustomQuery>(), fields);
+	}
+
+	public Page<E> findAllDefaultFullText(Pageable page) {
+		return repository.findAll(page);
 	}
 
 	private org.apache.lucene.search.Query fullTextCustomQueryBuilder(FullTextCustomQuery customQuery, org.apache.lucene.search.Query query, QueryBuilder qb) {

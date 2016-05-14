@@ -3,22 +3,22 @@
 <tiles:importAttribute name="readOnly" toName="readOnly" />
 <tiles:importAttribute name="action" toName="action" />
 
-<acme:form modelAttribute="modelObject" readOnly="${readOnly}">
+<sprouts:form modelAttribute="modelObject" readOnly="${readOnly}">
 
-	<acme:hidden-field path="id" />
-	<acme:hidden-field path="version" />
+	<sprouts:hidden-field path="id" />
+	<sprouts:hidden-field path="version" />
 	
-	<acme:protected path="id" />
-	<acme:protected path="version" />
+	<sprouts:protected path="id" />
+	<sprouts:protected path="version" />
 	
-	<acme:textbox-input code="gym.name" path="name"/>
-	<acme:textarea-input code="gym.description" path="description"/>
-	<acme:textbox-input code="gym.postalAddress" path="postalAddress"/>
-	<acme:textbox-input code="gym.phoneNumber" path="phoneNumber"/>
-	<acme:textbox-input code="gym.fee" path="fee"/>
-	<acme:textbox-input code="gym.picture" path="picture"/>
+	<sprouts:textbox-input code="gym.name" path="name"/>
+	<sprouts:textarea-input code="gym.description" path="description"/>
+	<sprouts:textbox-input code="gym.postalAddress" path="postalAddress"/>
+	<sprouts:textbox-input code="gym.phoneNumber" path="phoneNumber"/>
+	<sprouts:textbox-input code="gym.fee" path="fee"/>
+	<sprouts:textbox-input code="gym.picture" path="picture"/>
 
-	<acme:submit-button code="${action}" name="${action}" />
-	<acme:cancel-button code="return.button" url="home/gym/list.do" />
+	<sprouts:submit-button code="${action}" name="${action}" />
+	<sprouts:cancel-button code="return.button" url="home/gym/list.do" />
 
-</acme:form>
+</sprouts:form>

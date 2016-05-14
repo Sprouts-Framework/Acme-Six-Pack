@@ -26,13 +26,13 @@
 	<spring:message code="gym.feePayment.innactivationDay" var="innactivationDayLabel"/>
 	
 	<div class="text-center">
-		<acmeSpecific:display-image-column src="${gym.picture}" />
-		<acmeSpecific:display-column title="${gym.name}"/>
-		<acmeSpecific:display-column data="${gym.description}"/>
-		<acmeSpecific:display-column title="${feeLabel}" path="gym.fee"/>
-		<acmeSpecific:display-column title="${postalAddressLabel}" message="${gym.postalAddress}" url="https://www.google.es/maps/search/${gym.postalAddress}"/>
-		<acmeSpecific:display-column title="${phoneNumberLabel}" data="${gym.phoneNumber}"/>
-		<acmeSpecific:display-column title="${customersTotalNumberLabel}" data="${gym.customersTotalNumber}"/>
+		<sproutsSpecific:display-image-column src="${gym.picture}" />
+		<sproutsSpecific:display-column title="${gym.name}"/>
+		<sproutsSpecific:display-column data="${gym.description}"/>
+		<sproutsSpecific:display-column title="${feeLabel}" path="gym.fee"/>
+		<sproutsSpecific:display-column title="${postalAddressLabel}" message="${gym.postalAddress}" url="https://www.google.es/maps/search/${gym.postalAddress}"/>
+		<sproutsSpecific:display-column title="${phoneNumberLabel}" data="${gym.phoneNumber}"/>
+		<sproutsSpecific:display-column title="${customersTotalNumberLabel}" data="${gym.customersTotalNumber}"/>
 	</div>
 	
 <br />
@@ -43,23 +43,23 @@
 
 		<h1><jstl:out value="${servicesLabel}"/></h1>
 		<br/>
-		<acme:data-table i18n="datatables.language" source="home/gym/serviceOfGym/${gym.id}/list/data.do">
+		<sprouts:data-table i18n="datatables.language" source="home/gym/serviceOfGym/${gym.id}/list/data.do">
 
-			<acme:action-button url="home/serviceOfGym/{0}/show.do" code="gym.display"/>
+			<sprouts:action-button url="home/serviceOfGym/{0}/show.do" code="gym.display"/>
 			<security:authorize access="hasRole('Administrator')">
-				<acme:action-button url="serviceOfGym/administrator/{0}/update.do" code="update.button"/>
-				<acme:action-button url="serviceOfGym/administrator/{0}/delete.do" code="delete.button"/>
+				<sprouts:action-button url="serviceOfGym/administrator/{0}/update.do" code="update.button"/>
+				<sprouts:action-button url="serviceOfGym/administrator/{0}/delete.do" code="delete.button"/>
 			</security:authorize>
 			<security:authorize access="hasRole('Customer')">
 				<jstl:if test="${hasFeePayment == true}">
-					<acme:action-button url="booking/customer/{0}/create.do" code="gym.service.book"/>
+					<sprouts:action-button url="booking/customer/{0}/create.do" code="gym.service.book"/>
 				</jstl:if>
 			</security:authorize>
 			
-			<acme:data-column code="gym.name" path="serviceEntity.name" width="20%"/>
-			<acme:data-column code="gym.description" path="description" width="60%"/>
-			<acme:data-column code="gym.service.customersTotalNumber" path="customersTotalNumber" width="20"/>		
-		</acme:data-table>
+			<sprouts:data-column code="gym.name" path="serviceEntity.name" width="20%"/>
+			<sprouts:data-column code="gym.description" path="description" width="60%"/>
+			<sprouts:data-column code="gym.service.customersTotalNumber" path="customersTotalNumber" width="20"/>		
+		</sprouts:data-table>
 		
 		<br/>
 		<security:authorize access="hasRole('Administrator')">
@@ -90,13 +90,13 @@
 			<br/>
 		</security:authorize>
 		<br/>
-		<acme:data-table i18n="datatables.language" source="home/comment/gym/${gym.id}/list/data.do">
+		<sprouts:data-table i18n="datatables.language" source="home/comment/gym/${gym.id}/list/data.do">
 			<security:authorize access="hasRole('Administrator')">
-				<acme:action-button url="comment/administrator/{0}/delete.do" code="gym.comment.delete"/>
+				<sprouts:action-button url="comment/administrator/{0}/delete.do" code="gym.comment.delete"/>
 			</security:authorize>
-			<acme:data-column code="gym.comment.starRating" format="image" path="starRating" outFormat="/Acme-Six-Pack/images/starRatings/+PATHde3.png" imgSize="85x30" width="90px"/>
-			<acme:data-column code="gym.comment.author" path="actor.userAccount.username"/>
-			<acme:data-column code="gym.comment.moment" path="moment" format="date"/>
-			<acme:data-column code="gym.comment.text" path="text"/>
+			<sprouts:data-column code="gym.comment.starRating" format="image" path="starRating" outFormat="/Acme-Six-Pack/images/starRatings/+PATHde3.png" imgSize="85x30" width="90px"/>
+			<sprouts:data-column code="gym.comment.author" path="actor.userAccount.username"/>
+			<sprouts:data-column code="gym.comment.moment" path="moment" format="date"/>
+			<sprouts:data-column code="gym.comment.text" path="text"/>
 			
-		</acme:data-table>
+		</sprouts:data-table>

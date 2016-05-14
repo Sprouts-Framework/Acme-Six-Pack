@@ -61,6 +61,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import services.ActorService;
 import services.CustomerService;
+import social.SocialConfig;
 import domain.Customer;
 import es.us.lsi.dp.domain.SocialAccount;
 import es.us.lsi.dp.domain.UserAccount;
@@ -109,9 +110,9 @@ public class ProviderSignInController implements InitializingBean {
 
     private String applicationUrl;
 
-	private String signInUrl = "/profile/customer/";
+	private String signInUrl = SocialConfig.signInUrl;
 	
-	private String signInUrlAction = "/show.do";
+	private String signInUrlAction = SocialConfig.signInUrlAction;
 
 	private String signUpUrl = "/signup";
 

@@ -10,8 +10,6 @@
 
 <%@ include file="../template/libraries.jsp" %>
 
-<%@ taglib prefix="acme" tagdir="/WEB-INF/tags/template"%>
-
 <h4><spring:message code="administrator.select"/></h4>
 
 <h4>

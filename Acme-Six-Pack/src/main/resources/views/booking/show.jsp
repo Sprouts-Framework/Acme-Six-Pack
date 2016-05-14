@@ -13,19 +13,19 @@
 <tiles:importAttribute name="readOnly" toName="readOnly" />
 <tiles:importAttribute name="action" toName="action" />
 
-<acme:form modelAttribute="modelObject" readOnly="${readOnly}">
+<sprouts:form modelAttribute="modelObject" readOnly="${readOnly}">
 
 		<jstl:if test="${crudAction == 'creating'}">
 			<form:hidden path="serviceOfGymId"/>
 			
-			<acme:protected path="serviceOfGymId"/>
+			<sprouts:protected path="serviceOfGymId"/>
 		</jstl:if>
 		<jstl:if test="${crudAction == 'deleting' }">
 			<form:hidden path="id"/>
 			<form:hidden path="version"/>
 		</jstl:if>
 		
-		<acme:moment-input code="booking.requestedMoment" path="requestedMoment"/>
+		<sprouts:moment-input code="booking.requestedMoment" path="requestedMoment"/>
 		
 		<div class="form-group">
 			<div class="row">
@@ -50,9 +50,9 @@
 		</div>
 
 	<jstl:if test="${crudAction != 'showing'}">
-		<acme:submit-button code="${action}" name="${action}" />
+		<sprouts:submit-button code="${action}" name="${action}" />
 	</jstl:if>
-	<acme:cancel-button code="return.button" url="booking/customer/list.do"/>
+	<sprouts:cancel-button code="return.button" url="booking/customer/list.do"/>
 
-</acme:form>
+</sprouts:form>
 

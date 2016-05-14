@@ -1,18 +1,18 @@
 <%@ include file="../template/libraries.jsp" %>
 
-<acme:data-table i18n="datatables.language">
+<sprouts:data-table i18n="datatables.language">
 
-	<acme:data-column code="serviceOfGym.name" path="name" sortable="true"/>
+	<sprouts:data-column code="serviceOfGym.name" path="name" sortable="true"/>
 	
-	<acme:data-column code="serviceOfGym.totalNumber" path="customersTotalNumber" sortable="true"/>
+	<sprouts:data-column code="serviceOfGym.totalNumber" path="customersTotalNumber" sortable="true"/>
 	
-	<acme:action-button url="home/gym/services/{0}/list.do" code="serviceOfGym.displayGym"/>
+	<sprouts:action-button url="home/gym/services/{0}/list.do" code="serviceOfGym.displayGym"/>
 	
 	<security:authorize access="hasRole('Administrator')">
-		<acme:action-button url="serviceEntity/administrator/{0}/delete.do" code="serviceOfGym.delete"/>
+		<sprouts:action-button url="serviceEntity/administrator/{0}/delete.do" code="serviceOfGym.delete"/>
 	</security:authorize>
 
-</acme:data-table>
+</sprouts:data-table>
 
 	<security:authorize access="hasRole('Administrator')">
 		<br/>

@@ -11,11 +11,12 @@ import domain.Booking;
 
 import services.BookingService;
 import es.us.lsi.dp.controllers.common.AbstractPostController;
+import es.us.lsi.dp.controllers.core.contracts.AddsToModel;
 import es.us.lsi.dp.domain.DomainObject;
 
 @Controller("bookingDenyController")
 @RequestMapping("booking/administrator/{context}/deny")
-public class DenyBookingController extends AbstractPostController<BookingService> {
+public class DenyBookingController extends AbstractPostController<BookingService> implements AddsToModel{
 
 	@Override
 	public void beforeCommiting(DomainObject object) {
@@ -23,9 +24,9 @@ public class DenyBookingController extends AbstractPostController<BookingService
 	}
 
 	@Override
-	protected void action(Map<String, String> pathVariables) {
+	protected void action(List<String> context) {
 		Booking booking;
-		booking = service.findOneToManage(new Integer(getContext().get(0)));
+		booking = service.findOneToManage(new Integer(context.get(0)));
 		service.edit(booking, false);
 	}
 
@@ -40,11 +41,13 @@ public class DenyBookingController extends AbstractPostController<BookingService
 	}
 
 	@Override
-	public DomainObject getObject(Map<String, String> pathVariables, DomainObject entity, List<String> context) {
+	public void addToModel(Map<String, Object> objects, List<String> context) {
 		Booking booking;
-		booking = service.findOneToManage(new Integer(getContext().get(0)));
+		booking = service.findOneToManage(new Integer(context.get(0)));
 		Assert.notNull(booking);
-		return booking;
+		
+		objects.put("modelObject", booking);
+		
 	}
 
 }

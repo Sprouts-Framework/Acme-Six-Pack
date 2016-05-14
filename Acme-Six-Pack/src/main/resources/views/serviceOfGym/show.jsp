@@ -13,33 +13,33 @@
 <tiles:importAttribute name="readOnly" toName="readOnly" />
 <tiles:importAttribute name="action" toName="action" />
 
-<acme:form modelAttribute="modelObject" readOnly="${readOnly}">
+<sprouts:form modelAttribute="modelObject" readOnly="${readOnly}">
 
 		<form:hidden path="id" />
 		<form:hidden path="version" />
 		<form:hidden path="customersTotalNumber"/>
 		
-		<acme:protected path="customersTotalNumber"/>
+		<sprouts:protected path="customersTotalNumber"/>
 		
 		<jstl:if test="${modelObject.id != 0}">
 			<form:hidden path="serviceEntity"/>
 			<form:hidden path="gym"/>
-			<acme:protected path="serviceEntity"/>
-			<acme:protected path="gym"/>
+			<sprouts:protected path="serviceEntity"/>
+			<sprouts:protected path="gym"/>
 		</jstl:if>
 	
 		<jstl:if test="${modelObject.id == 0}">
-			<acmeSpecific:select items="${serviceEntities}" itemLabel="name" code="serviceOfGym.serviceEntity" path="serviceEntity"/>
+			<sproutsSpecific:select items="${serviceEntities}" itemLabel="name" code="serviceOfGym.serviceEntity" path="serviceEntity"/>
 			
-			<acmeSpecific:select items="${gyms}" itemLabel="name" code="serviceOfGym.gym" path="gym"/>
+			<sproutsSpecific:select items="${gyms}" itemLabel="name" code="serviceOfGym.gym" path="gym"/>
 		</jstl:if>
 		
-		<acme:textarea-input code="serviceOfGym.description" path="description"/>
+		<sprouts:textarea-input code="serviceOfGym.description" path="description"/>
 
 	<jstl:if test="${crudAction != 'showing'}">
-		<acme:submit-button code="${action}" name="${action}" />
+		<sprouts:submit-button code="${action}" name="${action}" />
 	</jstl:if>
-	<acme:cancel-button code="return.button" url="./"/>
+	<sprouts:cancel-button code="return.button" url="./"/>
 
-</acme:form>
+</sprouts:form>
 

@@ -7,7 +7,7 @@
 	<spring:message code='booking.confirm.approve' var="approve"/>
 	<jstl:out value="${approve}"/>
 	<br/>
-	<acme:submit-button code="${action}" name="${action}" />
-	<acme:cancel-button code="return.button" url="booking/administrator/pending/list.do"/>
+	<sprouts:submit-button code="${action}" name="${action}" />
+	<sprouts:cancel-button code="return.button" url="booking/administrator/pending/list.do"/>
 </form:form>
 

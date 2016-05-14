@@ -13,22 +13,22 @@
 <tiles:importAttribute name="readOnly" toName="readOnly" />
 <tiles:importAttribute name="action" toName="action" />
 
-<acme:form modelAttribute="modelObject" readOnly="${readOnly}">
+<sprouts:form modelAttribute="modelObject" readOnly="${readOnly}">
 
 
 	<div class="fieldset-btm-margin">
-			<acme:textbox-input code="customer.creditCard.holderName" path="holderName" />
-			<acme:textbox-input code="customer.creditCard.brandName" path="brandName" />
-			<acme:textbox-input code="customer.creditCard.number" path="number" />
-			<acme:textbox-input code="customer.creditCard.expirationMonth" path="expirationMonth" />
-			<acme:textbox-input code="customer.creditCard.expirationYear" path="expirationYear" />
-			<acme:textbox-input code="customer.creditCard.cvvCode" path="cvvCode" />
+			<sprouts:textbox-input code="customer.creditCard.holderName" path="holderName" />
+			<sprouts:textbox-input code="customer.creditCard.brandName" path="brandName" />
+			<sprouts:textbox-input code="customer.creditCard.number" path="number" />
+			<sprouts:textbox-input code="customer.creditCard.expirationMonth" path="expirationMonth" />
+			<sprouts:textbox-input code="customer.creditCard.expirationYear" path="expirationYear" />
+			<sprouts:textbox-input code="customer.creditCard.cvvCode" path="cvvCode" />
 	</div>
 
 	<jstl:if test="${crudAction != 'showing'}">
-		<acme:submit-button code="${action}" name="${action}" />
+		<sprouts:submit-button code="${action}" name="${action}" />
 	</jstl:if>
-	<acme:cancel-button code="return.button" url="profile/customer/show.do" />
+	<sprouts:cancel-button code="return.button" url="profile/customer/show.do" />
 
-</acme:form>
+</sprouts:form>
 

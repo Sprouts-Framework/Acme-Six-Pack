@@ -12,15 +12,15 @@
 
 
  
-<acme:data-table i18n="datatables.language" >
+<sprouts:data-table i18n="datatables.language" >
 	<jstl:if test="${option=='7' }">
-		<acme:action-button url="dashboard/administrator/actor/${option},{0}/list.do" code="actor.displayAverage"/>
+		<sprouts:action-button url="dashboard/administrator/actor/${option},{0}/list.do" code="actor.displayAverage"/>
 	</jstl:if>
-	<acme:data-column code="actor.name" path="name" sortable="true"/>
-	<acme:data-column code="actor.surname" path="surname" sortable="true"/>
-	<acme:data-column code="actor.username" path="userAccount.username" sortable="true"/>
-	<acme:data-column code="actor.contactPhone" path="contactPhone" sortable="true"/>
-</acme:data-table>
+	<sprouts:data-column code="actor.name" path="name" sortable="true"/>
+	<sprouts:data-column code="actor.surname" path="surname" sortable="true"/>
+	<sprouts:data-column code="actor.username" path="userAccount.username" sortable="true"/>
+	<sprouts:data-column code="actor.contactPhone" path="contactPhone" sortable="true"/>
+</sprouts:data-table>
 
 <br />
 <br />

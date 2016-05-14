@@ -13,20 +13,20 @@
 <tiles:importAttribute name="readOnly" toName="readOnly" />
 <tiles:importAttribute name="action" toName="action" />
 
-<acme:form modelAttribute="modelObject" readOnly="${readOnly}">
+<sprouts:form modelAttribute="modelObject" readOnly="${readOnly}">
 
-	<acme:hidden-field path="id" />
-	<acme:hidden-field path="version" />
-	<acme:hidden-field path="customersTotalNumber" />
+	<sprouts:hidden-field path="id" />
+	<sprouts:hidden-field path="version" />
+	<sprouts:hidden-field path="customersTotalNumber" />
 	
-	<acme:protected path="customersTotalNumber"/>
+	<sprouts:protected path="customersTotalNumber"/>
 	
-	<acme:textbox-input code="serviceOfGym.name" path="name"/>	
+	<sprouts:textbox-input code="serviceOfGym.name" path="name"/>	
 
 	<jstl:if test="${crudAction != 'showing'}">
-		<acme:submit-button code="${action}" name="${action}" />
+		<sprouts:submit-button code="${action}" name="${action}" />
 	</jstl:if>
-	<acme:cancel-button code="return.button" url="home/serviceEntity/list.do"/>
+	<sprouts:cancel-button code="return.button" url="home/serviceEntity/list.do"/>
 
-</acme:form>
+</sprouts:form>
 

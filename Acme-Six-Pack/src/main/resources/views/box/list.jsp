@@ -11,17 +11,17 @@
 <%@ include file="../template/libraries.jsp" %>
 
 
-<acmeSpecific:button code="createMessage.button" url="message/${actor}/create.do"/>
-<acmeSpecific:button code="box.create" url="box/${actor}/create.do"/>
+<sproutsSpecific:button code="createMessage.button" url="message/${actor}/create.do"/>
+<sproutsSpecific:button code="box.create" url="box/${actor}/create.do"/>
 <br />
 <br />
 
-<acme:data-table i18n="datatables.language">
-		<acme:action-button code="update.button" url="box/${actor}/{0}/update.do" />
-		<acme:action-button code="delete.button" url="box/${actor}/{0}/delete.do" />
-		<acme:action-button code="details.button" url="message/${actor}/{0}/list.do" />
+<sprouts:data-table i18n="datatables.language">
+		<sprouts:action-button code="update.button" url="box/${actor}/{0}/update.do" />
+		<sprouts:action-button code="delete.button" url="box/${actor}/{0}/delete.do" />
+		<sprouts:action-button code="details.button" url="message/${actor}/{0}/list.do" />
 	
-	<acme:data-column code="box.name" path="name" sortable="true"/>
+	<sprouts:data-column code="box.name" path="name" sortable="true"/>
 
-</acme:data-table>
+</sprouts:data-table>
 

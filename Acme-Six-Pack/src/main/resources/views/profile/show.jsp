@@ -25,23 +25,23 @@
 	</div>
 </jstl:if>
 
-<acme:form modelAttribute="modelObject" readOnly="${readOnly}">
+<sprouts:form modelAttribute="modelObject" readOnly="${readOnly}">
 
-	<acme:hidden-field path="id" />
-	<acme:hidden-field path="version" />
+	<sprouts:hidden-field path="id" />
+	<sprouts:hidden-field path="version" />
 	
-	<acme:protected path="id" />
-	<acme:protected path="version" />
+	<sprouts:protected path="id" />
+	<sprouts:protected path="version" />
 	
 	<div class="fieldset-btm-margin">
 		<fieldset>
 			<legend>
 				<spring:message code="customer.account-info" />
 			</legend>
-			<acme:textbox-input code="customer.name" path="name" />
-			<acme:textbox-input code="customer.surname" path="surname" />
-			<acme:textbox-input code="customer.contactPhone" path="contactPhone" />
-			<acme:textbox-input code="customer.userAccount.username" path="userAccount.username" />
+			<sprouts:textbox-input code="customer.name" path="name" />
+			<sprouts:textbox-input code="customer.surname" path="surname" />
+			<sprouts:textbox-input code="customer.contactPhone" path="contactPhone" />
+			<sprouts:textbox-input code="customer.userAccount.username" path="userAccount.username" />
 			
 			<jstl:if test="${modelObject.userAccount.socialAccounts == null}">
 				<a class="btn btn-default" href="profile/userAccount/update.do"><spring:message code="customer.userAccount-update" /></a>
@@ -59,11 +59,11 @@
 			<legend>
 				<spring:message code="customer.creditCard-info" />
 			</legend>
-			<acme:textbox-input code="customer.creditCard.holderName" path="creditCard.holderName" />
-			<acme:textbox-input code="customer.creditCard.brandName" path="creditCard.brandName" />
-			<acme:textbox-input code="customer.creditCard.number" path="creditCard.number" />
-			<acme:textbox-input code="customer.creditCard.expirationMonth" path="creditCard.expirationMonth" />
-			<acme:textbox-input code="customer.creditCard.expirationYear" path="creditCard.expirationYear" />
+			<sprouts:textbox-input code="customer.creditCard.holderName" path="creditCard.holderName" />
+			<sprouts:textbox-input code="customer.creditCard.brandName" path="creditCard.brandName" />
+			<sprouts:textbox-input code="customer.creditCard.number" path="creditCard.number" />
+			<sprouts:textbox-input code="customer.creditCard.expirationMonth" path="creditCard.expirationMonth" />
+			<sprouts:textbox-input code="customer.creditCard.expirationYear" path="creditCard.expirationYear" />
 			
 			<jstl:choose>
 				<jstl:when test="${modelObject.creditCard.number == null}">
@@ -86,15 +86,15 @@
 			</legend>
 			
 			<jstl:if test="${crudAction == 'showing' && modelObject.socialIdentity != null}">
-				<acmeSpecific:display-image-column src="${modelObject.socialIdentity.picture}"/>
+				<sproutsSpecific:display-image-column src="${modelObject.socialIdentity.picture}"/>
 			</jstl:if>
 			
 			<jstl:if test="${crudAction == 'showing' && modelObject.socialIdentity != null}">
-				<acmeSpecific:display-column url="${modelObject.socialIdentity.homePage}" title="${homePage}" message="${modelObject.socialIdentity.homePage}"/>
+				<sproutsSpecific:display-column url="${modelObject.socialIdentity.homePage}" title="${homePage}" message="${modelObject.socialIdentity.homePage}"/>
 			</jstl:if>
 			
-			<acme:textbox-input code="customer.socialIdentity.nick" path="socialIdentity.nick" />
-			<acme:textbox-input code="customer.socialIdentity.socialNetwork" path="socialIdentity.socialNetwork" />
+			<sprouts:textbox-input code="customer.socialIdentity.nick" path="socialIdentity.nick" />
+			<sprouts:textbox-input code="customer.socialIdentity.socialNetwork" path="socialIdentity.socialNetwork" />
 			
 			<spring:message code="customer.socialIdentity.homePage" var="homePage"/>
 			
@@ -112,29 +112,12 @@
 	</div>
 
 	<jstl:if test="${crudAction != 'showing'}">
-		<acme:submit-button code="${action}" name="${action}" />
+		<sprouts:submit-button code="${action}" name="${action}" />
 	</jstl:if>
-	<acme:cancel-button code="return.button" url="" />
+	<sprouts:cancel-button code="return.button" url="" />
 
-</acme:form>
+</sprouts:form>
 <br/>
-<div class="row">
-<div class="col-xs-12 col-md-3 col-sm-4">
-<spring:message code="authorize.twitter.add" var="twitter"/>
-	<form id="tw_signin" action="<jstl:url value="/signin/twitter.do"/>" method="POST">
-		  <button type="submit" class="btn btn-twitter">
-		    <i class="fa fa-twitter"></i> | <jstl:out value="${twitter}"/>
-		  </button>
-	</form>
-</div>
 
-<div class="col-xs-12 col-md-3 col-sm-4">
-	<spring:message code="authorize.google.add" var="google"/>
-	<form id="google_signin" action="<jstl:url value="/signin/google.do"/>" method="POST">
-		  <button type="submit" class="btn btn-google-plus">
-		    <i class="fa fa-google"></i> | <jstl:out value="${google}"/>
-		  </button>
-	</form>
-</div>
-</div>
+<sprouts:social-account-sign-in isSignIn="false"/>
 

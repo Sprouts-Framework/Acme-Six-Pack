@@ -95,6 +95,11 @@ public abstract class PostController<D extends Validable, E extends Validable> e
 		E entityToAuthorize;
 
 		beforeAuthorization(entity, ContextParser.parse(pathVariables));
+		
+		beforeCommiting(entity);
+		// This method if defined in this class and does nothing. It is needed
+		// to redefine if we are dealing with datatypes
+		beforeCommiting(entityOrDatatype, entity);
 
 		safeObject = getSafeObject(entityOrDatatype, entity);
 
@@ -108,11 +113,6 @@ public abstract class PostController<D extends Validable, E extends Validable> e
 		// the user didn't fill in.
 		if (ValidationHandler.validationFailed(bindingResult))
 			return errors(entityOrDatatype, ContextParser.parse(pathVariables));
-
-		beforeCommiting(entity);
-		// This method if defined in this class and does nothing. It is needed
-		// to redefine if we are dealing with datatypes
-		beforeCommiting(entityOrDatatype, entity);
 
 		try {
 			newOrReconstructed = getNewOrReconstructed(safeObject, entity);

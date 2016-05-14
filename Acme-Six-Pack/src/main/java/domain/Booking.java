@@ -15,7 +15,6 @@ import javax.validation.constraints.Past;
 
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Range;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import es.us.lsi.dp.domain.DomainEntity;
 

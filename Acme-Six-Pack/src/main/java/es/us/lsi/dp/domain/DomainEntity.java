@@ -22,8 +22,6 @@ import javax.persistence.Version;
 import javax.validation.constraints.Past;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.NumericField;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.expression.Expression;
