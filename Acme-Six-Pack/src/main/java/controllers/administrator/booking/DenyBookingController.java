@@ -19,7 +19,7 @@ import es.us.lsi.dp.domain.DomainObject;
 public class DenyBookingController extends AbstractPostController<BookingService> implements AddsToModel{
 
 	@Override
-	public void beforeCommiting(DomainObject object) {
+	public void beforeCommiting(DomainObject object, List<String> context) {
 
 	}
 

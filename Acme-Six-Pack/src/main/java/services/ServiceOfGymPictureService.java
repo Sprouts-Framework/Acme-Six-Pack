@@ -41,7 +41,7 @@ public class ServiceOfGymPictureService extends AbstractFormService<ServiceOfGym
 	}
 
 	@Override
-	public void beforeCommitingCreate(PicturesOfServiceOfGym validable) {
+	public void beforeCommitingCreate(PicturesOfServiceOfGym validable, List<String> context) {
 
 	}
 
@@ -75,7 +75,7 @@ public class ServiceOfGymPictureService extends AbstractFormService<ServiceOfGym
 	}
 
 	@Override
-	public void beforeCommitingUpdate(PicturesOfServiceOfGym validable) {
+	public void beforeCommitingUpdate(PicturesOfServiceOfGym validable, List<String> context) {
 
 	}
 

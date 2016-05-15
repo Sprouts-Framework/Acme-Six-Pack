@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -62,7 +63,7 @@ public class BookingService extends AbstractService<Booking, BookingRepository> 
 	}
 
 	@Override
-	public void beforeCommitingUpdate(Booking validable) {
+	public void beforeCommitingUpdate(Booking validable, List<String> context) {
 		Administrator administrator;
 		administrator = administratorService.findByPrincipal();
 		Assert.notNull(administrator);
@@ -123,7 +124,7 @@ public class BookingService extends AbstractService<Booking, BookingRepository> 
 	}
 
 	@Override
-	public void beforeCommitingDelete(Booking validable) {
+	public void beforeCommitingDelete(Booking validable, List<String> context) {
 
 	}
 
@@ -164,7 +165,7 @@ public class BookingService extends AbstractService<Booking, BookingRepository> 
 		    kieSession.insert(ratioOfCancelledBookings);
 		    kieSession.fireAllRules();
 		}
-		beforeCommitingUpdate(result);
+		beforeCommitingUpdate(result, new ArrayList<String>());
 		update(result);
 		afterCommitingUpdate(result.getId());
 	}

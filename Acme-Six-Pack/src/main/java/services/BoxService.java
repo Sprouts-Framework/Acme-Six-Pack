@@ -70,7 +70,7 @@ public class BoxService extends AbstractService<Box, BoxRepository> implements C
 	}
 
 	@Override
-	public void beforeCommitingCreate(Box validable) {
+	public void beforeCommitingCreate(Box validable, List<String> context) {
 
 	}
 
@@ -92,7 +92,7 @@ public class BoxService extends AbstractService<Box, BoxRepository> implements C
 	}
 
 	@Override
-	public void beforeCommitingUpdate(Box validable) {
+	public void beforeCommitingUpdate(Box validable, List<String> context) {
 
 	}
 
@@ -114,7 +114,7 @@ public class BoxService extends AbstractService<Box, BoxRepository> implements C
 	}
 
 	@Override
-	public void beforeCommitingDelete(Box validable) {
+	public void beforeCommitingDelete(Box validable, List<String> context) {
 		// checkIsAuthorised(box.getActor().getId());
 		Collection<Message> messages;
 		messages = messageService.findMessagesInBox(validable.getId());

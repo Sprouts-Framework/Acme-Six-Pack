@@ -49,7 +49,7 @@ public class CustomerRegistrationService extends AbstractFormService<Customer, B
 	}
 
 	@Override
-	public void beforeCommitingCreate(BaseRegistrationForm validable) {
+	public void beforeCommitingCreate(BaseRegistrationForm validable, List<String> context) {
 	}
 
 	@Override

@@ -96,10 +96,10 @@ public abstract class PostController<D extends Validable, E extends Validable> e
 
 		beforeAuthorization(entity, ContextParser.parse(pathVariables));
 		
-		beforeCommiting(entity);
+		beforeCommiting(entity, ContextParser.parse(pathVariables));
 		// This method if defined in this class and does nothing. It is needed
 		// to redefine if we are dealing with datatypes
-		beforeCommiting(entityOrDatatype, entity);
+		beforeCommiting(entityOrDatatype, entity, ContextParser.parse(pathVariables));
 
 		safeObject = getSafeObject(entityOrDatatype, entity);
 
@@ -183,7 +183,13 @@ public abstract class PostController<D extends Validable, E extends Validable> e
 
 	// Default definitions -----------------------------------------------------
 	@Override
-	public void beforeCommiting(D datatype, E entity) {
+	public void beforeCommiting(D datatype, E entity, List<String> context) {
 
 	}
+	
+	@Override
+	public void beforeCommiting(E entity, List<String> context) {
+
+	}
+	
 }

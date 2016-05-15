@@ -62,8 +62,8 @@ public abstract class AbstractDeleteController<E extends DomainEntity, S extends
 	}
 	
 	@Override
-	public void beforeCommiting(E domainObject){
-		service.beforeCommitingDelete(domainObject);
+	public void beforeCommiting(E domainObject, List<String> context){
+		service.beforeCommitingDelete(domainObject, context);
 	}
 	
 	@Override

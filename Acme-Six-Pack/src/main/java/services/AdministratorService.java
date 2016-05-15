@@ -40,7 +40,7 @@ public class AdministratorService extends AbstractService<Administrator, Adminis
 	}
 
 	@Override
-	public void beforeCommitingUpdate(Administrator validable) {
+	public void beforeCommitingUpdate(Administrator validable, List<String> context) {
 
 	}
 

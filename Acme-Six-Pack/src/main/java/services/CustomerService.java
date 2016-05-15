@@ -63,7 +63,7 @@ public class CustomerService extends AbstractService<Customer, CustomerRepositor
 	}
 
 	@Override
-	public void beforeCommitingUpdate(Customer validable) {
+	public void beforeCommitingUpdate(Customer validable, List<String> context) {
 
 	}
 

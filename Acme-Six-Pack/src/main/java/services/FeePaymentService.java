@@ -119,7 +119,7 @@ public class FeePaymentService extends AbstractService<FeePayment, FeePaymentRep
 	}
 
 	@Override
-	public void beforeCommitingCreate(FeePayment validable) {
+	public void beforeCommitingCreate(FeePayment validable, List<String> context) {
 		Assert.notNull(validable);
 
 		validable.setPaymentMoment(Moment.now());
@@ -158,7 +158,7 @@ public class FeePaymentService extends AbstractService<FeePayment, FeePaymentRep
 	}
 
 	@Override
-	public void beforeCommitingUpdate(FeePayment validable) {
+	public void beforeCommitingUpdate(FeePayment validable, List<String> context) {
 
 	}
 

@@ -68,7 +68,7 @@ public class UpdateController extends AbstractPostController<CreditCard, Custome
 	}
 
 	@Override
-	public void beforeCommiting(CreditCard entityOrDatatype, Customer entity) {
+	public void beforeCommiting(CreditCard entityOrDatatype, Customer entity, List<String> context) {
 		entity.setCreditCard(entityOrDatatype);
 	}
 }

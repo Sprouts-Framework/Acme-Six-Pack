@@ -55,7 +55,7 @@ public class ServiceOfGymService extends AbstractService<ServiceOfGym, ServiceOf
 	}
 
 	@Override
-	public void beforeCommitingCreate(ServiceOfGym validable) {
+	public void beforeCommitingCreate(ServiceOfGym validable, List<String> context) {
 
 	}
 
@@ -77,7 +77,7 @@ public class ServiceOfGymService extends AbstractService<ServiceOfGym, ServiceOf
 	}
 
 	@Override
-	public void beforeCommitingUpdate(ServiceOfGym validable) {
+	public void beforeCommitingUpdate(ServiceOfGym validable, List<String> context) {
 
 	}
 
@@ -98,7 +98,7 @@ public class ServiceOfGymService extends AbstractService<ServiceOfGym, ServiceOf
 	}
 
 	@Override
-	public void beforeCommitingDelete(ServiceOfGym validable) {
+	public void beforeCommitingDelete(ServiceOfGym validable, List<String> context) {
 		Collection<Booking> bookings;
 
 		// Se eliminan las reservas que estuvieran asociadas al servicio que se

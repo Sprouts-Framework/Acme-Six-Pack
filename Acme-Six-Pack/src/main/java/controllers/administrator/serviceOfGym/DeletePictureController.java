@@ -10,17 +10,11 @@ import services.ServiceOfGymService;
 import es.us.lsi.dp.controllers.Codes;
 import es.us.lsi.dp.controllers.common.AbstractPostController;
 import es.us.lsi.dp.controllers.core.contracts.AddsToModel;
-import es.us.lsi.dp.domain.DomainObject;
 import forms.PicturesOfServiceOfGym;
 
 @Controller("deletePictureOfServiceOfGymController")
 @RequestMapping("serviceOfGym/administrator/picture/"+Codes.DELETE_MAPPING_VALUE_PARAMS)
 public class DeletePictureController extends AbstractPostController<ServiceOfGymService> implements AddsToModel{
-
-	@Override
-	public void beforeCommiting(DomainObject object) {
-		
-	}
 
 	@Override
 	protected void action(List<String> context) {

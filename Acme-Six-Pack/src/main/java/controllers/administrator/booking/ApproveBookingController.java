@@ -18,11 +18,6 @@ import es.us.lsi.dp.domain.DomainObject;
 public class ApproveBookingController extends AbstractPostController<BookingService> implements AddsToModel{
 
 	@Override
-	public void beforeCommiting(DomainObject object) {
-
-	}
-
-	@Override
 	protected void action(List<String> context) {
 		Booking booking;
 		booking = service.findOneToManage(new Integer(context.get(0)));
@@ -46,6 +41,11 @@ public class ApproveBookingController extends AbstractPostController<BookingServ
 		Assert.notNull(booking);
 		
 		objects.put("modelObject", booking);
+		
+	}
+
+	@Override
+	public void beforeCommiting(DomainObject object, List<String> context) {
 		
 	}
 

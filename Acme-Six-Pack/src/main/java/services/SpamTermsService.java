@@ -25,7 +25,7 @@ public class SpamTermsService extends AbstractService<SpamTerms, SpamTermsReposi
 	}
 
 	@Override
-	public void beforeCommitingUpdate(SpamTerms validable) {
+	public void beforeCommitingUpdate(SpamTerms validable, List<String> context) {
 
 	}
 

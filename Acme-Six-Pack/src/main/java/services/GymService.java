@@ -58,7 +58,7 @@ public class GymService extends AbstractService<Gym, GymRepository> implements C
 	}
 
 	@Override
-	public void beforeCommitingCreate(Gym gym) {
+	public void beforeCommitingCreate(Gym gym, List<String> context) {
 		Assert.notNull(gym);
 		gym.setCustomersTotalNumber(0);
 	}
@@ -96,7 +96,7 @@ public class GymService extends AbstractService<Gym, GymRepository> implements C
 	}
 
 	@Override
-	public void beforeCommitingUpdate(Gym validable) {
+	public void beforeCommitingUpdate(Gym validable, List<String> context) {
 
 	}
 
@@ -117,7 +117,7 @@ public class GymService extends AbstractService<Gym, GymRepository> implements C
 	}
 
 	@Override
-	public void beforeCommitingDelete(Gym validable) {
+	public void beforeCommitingDelete(Gym validable, List<String> context) {
 		feePaymentService.deleteAllReferedToFeePayments(validable);
 		commentService.deleteAllReferedToGym(validable);
 		serviceOfGymService.deleteServicesOfferedByGym(validable);

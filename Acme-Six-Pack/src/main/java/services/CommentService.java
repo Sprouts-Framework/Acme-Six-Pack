@@ -75,7 +75,7 @@ public class CommentService extends AbstractService<Comment, CommentRepository> 
 	}
 
 	@Override
-	public void beforeCommitingCreate(Comment validable) {
+	public void beforeCommitingCreate(Comment validable, List<String> context) {
 	}
 
 	@Override
@@ -93,7 +93,7 @@ public class CommentService extends AbstractService<Comment, CommentRepository> 
 	}
 
 	@Override
-	public void beforeCommitingDelete(Comment validable) {
+	public void beforeCommitingDelete(Comment validable, List<String> context) {
 	}
 
 	@Override
