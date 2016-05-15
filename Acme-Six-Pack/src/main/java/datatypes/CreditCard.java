@@ -6,8 +6,6 @@ import javax.persistence.AccessType;
 import org.hibernate.validator.constraints.CreditCardNumber;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
-import org.hibernate.validator.constraints.SafeHtml;
-import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 
 import es.us.lsi.dp.datatypes.Datatype;
 
@@ -31,7 +29,6 @@ public class CreditCard implements Datatype{
 	private int cvvCode;
 
 	@NotBlank
-	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getHolderName() {
 		return holderName;
 	}
@@ -41,7 +38,6 @@ public class CreditCard implements Datatype{
 	}
 
 	@NotBlank
-	@SafeHtml(whitelistType=WhiteListType.NONE)
 	public String getBrandName() {
 		return brandName;
 	}
