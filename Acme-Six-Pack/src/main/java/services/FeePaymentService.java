@@ -121,23 +121,13 @@ public class FeePaymentService extends AbstractService<FeePayment, FeePaymentRep
 	@Override
 	public void beforeCommitingCreate(FeePayment validable, List<String> context) {
 		Assert.notNull(validable);
-
+		
 		validable.setPaymentMoment(Moment.now());
-
-		CreditCard fpCreditCard;
-		fpCreditCard = validable.getCreditCard();
-
-		//int fpCreditCardId = creditCardService.saveFeePaymentCreditCard(fpCreditCard);
-		//fpCreditCard = creditCardService.findById(fpCreditCardId);
-		validable.setCreditCard(fpCreditCard);
-
+		
 		Date inactivationDay;
 		inactivationDay = new Date(validable.getActivationDay().getTime() + 2592000000L);
 
 		validable.setInactivationDay(inactivationDay);
-		//validable.setFee(validable.getGym().getFee());
-		
-		
 	}
 
 	@Override

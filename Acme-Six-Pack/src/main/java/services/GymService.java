@@ -80,7 +80,9 @@ public class GymService extends AbstractService<Gym, GymRepository> implements C
 		serviceOfGym = serviceOfGymService.create();
 		serviceOfGym.setCustomersTotalNumber(0);
 		serviceOfGym
-				.setDescription("Actividad física de movimientos repetidos que se planifica y se sigue regularmente con el propósito de mejorar o mantener el cuerpo en buenas condiciones.");
+				.setDescription("Actividad física de movimientos repetidos que se planifica " +
+						"y se sigue regularmente con el propósito de mejorar o mantener el " +
+						"cuerpo en buenas condiciones.");
 		serviceOfGym.setPictures(new ArrayList<String>());
 		serviceOfGym.setGym(aux);
 		serviceOfGym.setServiceEntity(serviceEntity);

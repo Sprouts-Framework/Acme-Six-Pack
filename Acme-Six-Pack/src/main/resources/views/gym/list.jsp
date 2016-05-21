@@ -46,7 +46,7 @@
 	<sprouts:data-column code="gym.phoneNumber" path="phoneNumber" width="15%" />
 
 	<sprouts:data-column code="gym.fee" path="fee" sortable="true" width="5%"
-		format="currency" />
+		format="currency"/>
 
 	<sprouts:data-column code="gym.customersTotalNumber"
 		path="customersTotalNumber" sortable="true" width="15%" />
