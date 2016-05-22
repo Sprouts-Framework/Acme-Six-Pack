@@ -9,7 +9,7 @@
 	
 	<sprouts:data-column code="feePayment.gymName" path="gym.name" sortable="true"/>
 	
-	<sprouts:data-column code="feePayment.paymentMoment" path="paymentMoment" sortable="true" format="date" outFormat="feePayment.date"/>
+	<sprouts:data-column code="feePayment.paymentMoment" path="paymentMoment" sortable="true" format="date"/>
 	
 	<sprouts:data-column code="feePayment.activationDay" path="activationDay" sortable="true" format="date"/>
 	
