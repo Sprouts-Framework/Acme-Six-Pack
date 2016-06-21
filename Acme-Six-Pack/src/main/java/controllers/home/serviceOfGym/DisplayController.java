@@ -35,8 +35,6 @@ public class DisplayController extends AbstractShowController<ServiceOfGym, Serv
 		serviceOfGym = service.findById(serviceOfGymId);
 
 		objects.put("serviceOfGym", serviceOfGym);
-		objects.put("_viewName", "serviceOfGym/display");
-
 	}
 
 }

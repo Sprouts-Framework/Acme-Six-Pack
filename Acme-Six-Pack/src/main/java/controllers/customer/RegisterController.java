@@ -24,8 +24,7 @@ public class RegisterController extends AbstractCreateController<BaseRegistratio
 
 	@Override
 	protected String onSuccess() {
-		return "../../creditCard/customer/create.do";
-		//return "../../profile/customer/show.do";
+		return "../../";
 	}
 
 	@Override

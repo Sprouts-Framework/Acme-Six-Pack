@@ -100,7 +100,7 @@
 			<br/>
 		</security:authorize>
 		
-		<sprouts:data-table i18n="datatables.language" source="home/comment/serviceOfGym/${serviceOfGym.id}/list/data.do">
+		<sprouts:data-table i18n="datatables.language" source="home/comment/serviceOfGym/${serviceOfGym.id}/list/data.do"  searcheable="false">
 			<security:authorize access="hasRole('Administrator')">
 				<sprouts:action-button url="comment/administrator/{0}/delete.do" code="serviceOfGym.comment.delete"/>
 			</security:authorize>

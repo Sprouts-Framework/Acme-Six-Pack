@@ -38,7 +38,9 @@ public class SignInService implements UserDetailsService {
 	private UserAccountRepository userRepository;
 
 	// Business methods -------------------------------------------------------
-
+	
+	//Teníamos problemas con este método, ya que provocaba que al registrar un usuario,
+	//marcara la tranzacción como rollBackOnly.
 	@Override
 	public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
 		Assert.notNull(username);
@@ -58,6 +60,19 @@ public class SignInService implements UserDetailsService {
 
 	}
 
+	//Método destinado a sustituir el anterior
+	public boolean isUsernameInUse(final String username){
+		UserAccount userAccount;
+		boolean result = false;
+		
+		userAccount = userRepository.findByUsername(username);
+		if(userAccount != null)
+			result = true;
+		
+		return result;
+	}
+	
+	
 	public static UserAccount getPrincipal() {
 		UserAccount result;
 		SecurityContext context;

@@ -116,6 +116,7 @@ public abstract class BaseController {
 		result = Response.create(viewName, arguments);
 
 		result.addObject(Codes.MODEL_OBJECT_NAME, modelObject);
+		result.addObject(Codes.VIEW_NAME, currentViewName);
 
 		usesEntities = this instanceof AddsToModel;
 

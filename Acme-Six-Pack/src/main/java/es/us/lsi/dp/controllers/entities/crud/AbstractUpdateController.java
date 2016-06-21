@@ -35,12 +35,16 @@ public abstract class AbstractUpdateController<D extends DomainObject, S extends
 
 	// Action methods ----------------------------------------------------------
 
-	@RequestMapping(value = {Codes.UPDATE_MAPPING_VALUE, Codes.UPDATE_MAPPING_VALUE_PARAMS}, method = RequestMethod.GET)
+	@RequestMapping(value = {
+			Codes.UPDATE_MAPPING_VALUE, Codes.UPDATE_MAPPING_VALUE_PARAMS
+	}, method = RequestMethod.GET)
 	public ModelAndView updateGet(final HttpServletRequest request) {
 		return get(getPathVariables(request));
 	}
 
-	@RequestMapping(value = {Codes.UPDATE_MAPPING_VALUE, Codes.UPDATE_MAPPING_VALUE_PARAMS}, method = RequestMethod.POST)
+	@RequestMapping(value = {
+			Codes.UPDATE_MAPPING_VALUE, Codes.UPDATE_MAPPING_VALUE_PARAMS
+	}, method = RequestMethod.POST)
 	public ModelAndView updatePost(@ModelAttribute(Codes.MODEL_OBJECT_NAME) final D domainObject, final BindingResult bindingResult,
 			final HttpServletRequest request, final HttpServletResponse response) {
 		setRequestAndResponse(request, response);
@@ -49,17 +53,9 @@ public abstract class AbstractUpdateController<D extends DomainObject, S extends
 
 	// Gettable ----------------------------------------------------------------
 
-//	@SuppressWarnings("rawtypes")
 	@Override
 	public D getObject(final Map<String, String> pathVariables, final D entity, List<String> context) {
-//		if(service instanceof AbstractFormService){
-//			AbstractFormService abstractFormService = (AbstractFormService) service;
-//			D form;
-//			form = abstractFormService.findByIdAndConvertToForm(entityId(pathVariables));
-//
-//			return null;
-//		}else
-			return service.findById(entityId(pathVariables));
+		return service.findById(entityId(pathVariables));
 	}
 
 	// Postable ----------------------------------------------------------------
@@ -68,12 +64,12 @@ public abstract class AbstractUpdateController<D extends DomainObject, S extends
 	public void beforeAuthorization(final D domainObject, List<String> context) {
 		service.beforeUpdating(domainObject, context);
 	}
-	
+
 	@Override
-	public void beforeCommiting(D domainObject, List<String> context){
+	public void beforeCommiting(D domainObject, List<String> context) {
 		service.beforeCommitingUpdate(domainObject, context);
 	}
-	
+
 	@Override
 	public void postAction(final D domainObject, final D duplicatedDomainObject, final Map<String, String> pathVariables) {
 		int id = service.update(domainObject);

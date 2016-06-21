@@ -1,7 +1,7 @@
 <%@ include file="../template/libraries.jsp" %>
 
 
-<sprouts:data-table i18n="datatables.language" tableId="row" idProperty="row">
+<sprouts:data-table i18n="datatables.language" tableId="row" idProperty="row"  searcheable="false"> 
 
 	<spring:message code="booking.approved" var="approved"/>
 	<spring:message code="booking.denied" var="denied"/>

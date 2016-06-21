@@ -1,6 +1,6 @@
 <%@ include file="../template/libraries.jsp" %>
 
-<sprouts:data-table i18n="datatables.language">
+<sprouts:data-table i18n="datatables.language"  searcheable="false">
 
 	<sprouts:data-column code="serviceOfGym.name" path="name" sortable="true"/>
 	

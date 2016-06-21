@@ -12,7 +12,7 @@
 
 
  
-<sprouts:data-table i18n="datatables.language" >
+<sprouts:data-table i18n="datatables.language" searcheable="false">
 	<jstl:if test="${option=='7' }">
 		<sprouts:action-button url="dashboard/administrator/actor/${option},{0}/list.do" code="actor.displayAverage"/>
 	</jstl:if>

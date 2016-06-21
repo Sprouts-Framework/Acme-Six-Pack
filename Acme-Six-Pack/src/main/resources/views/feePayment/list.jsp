@@ -1,6 +1,6 @@
 <%@ include file="../template/libraries.jsp" %>
 
-<sprouts:data-table i18n="datatables.language">
+<sprouts:data-table i18n="datatables.language"  searcheable="false">
 	
 	<security:authorize access="hasRole('Administrator')">
 		<sprouts:data-column code="feePayment.customer.name" path="customer.name" sortable="true"/>

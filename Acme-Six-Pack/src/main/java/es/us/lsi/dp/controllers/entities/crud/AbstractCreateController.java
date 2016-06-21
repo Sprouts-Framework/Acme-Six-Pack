@@ -35,12 +35,16 @@ public abstract class AbstractCreateController<D extends DomainObject, S extends
 
 	// Action methods ----------------------------------------------------------
 
-	@RequestMapping(value = {Codes.CREATE_MAPPING_VALUE, Codes.CREATE_MAPPING_VALUE_PARAMS}, method = RequestMethod.GET)
+	@RequestMapping(value = {
+			Codes.CREATE_MAPPING_VALUE, Codes.CREATE_MAPPING_VALUE_PARAMS
+	}, method = RequestMethod.GET)
 	public ModelAndView createGet(final HttpServletRequest request) {
 		return get(getPathVariables(request));
 	}
 
-	@RequestMapping(value = {Codes.CREATE_MAPPING_VALUE, Codes.CREATE_MAPPING_VALUE_PARAMS}, method = RequestMethod.POST)
+	@RequestMapping(value = {
+			Codes.CREATE_MAPPING_VALUE, Codes.CREATE_MAPPING_VALUE_PARAMS
+	}, method = RequestMethod.POST)
 	public ModelAndView createPost(@ModelAttribute(Codes.MODEL_OBJECT_NAME) final D domainObject, final BindingResult bindingResult,
 			final HttpServletRequest request, final HttpServletResponse response) {
 		setRequestAndResponse(request, response);
@@ -51,7 +55,6 @@ public abstract class AbstractCreateController<D extends DomainObject, S extends
 
 	@Override
 	public D getObject(final Map<String, String> pathVariables, final D entity, List<String> context) {
-		service.create();
 		return service.create();
 	}
 
@@ -61,12 +64,12 @@ public abstract class AbstractCreateController<D extends DomainObject, S extends
 	public void beforeAuthorization(final D domainObject, List<String> context) {
 		service.beforeCreating(domainObject, context);
 	}
-	
+
 	@Override
-	public void beforeCommiting(D entity, List<String> context){
+	public void beforeCommiting(D entity, List<String> context) {
 		service.beforeCommitingCreate(entity, context);
 	}
-	
+
 	@Override
 	public void postAction(final D domainObject, final D duplicatedDomainObject, final Map<String, String> pathVariables) {
 		int id = service.save(domainObject);

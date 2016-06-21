@@ -43,7 +43,7 @@
 
 		<h1><jstl:out value="${servicesLabel}"/></h1>
 		<br/>
-		<sprouts:data-table i18n="datatables.language" source="home/gym/serviceOfGym/${gym.id}/list/data.do">
+		<sprouts:data-table i18n="datatables.language" source="home/gym/serviceOfGym/${gym.id}/list/data.do"  searcheable="false">
 
 			<sprouts:action-button url="home/serviceOfGym/{0}/show.do" code="gym.display"/>
 			<security:authorize access="hasRole('Administrator')">
@@ -90,7 +90,7 @@
 			<br/>
 		</security:authorize>
 		<br/>
-		<sprouts:data-table i18n="datatables.language" source="home/comment/gym/${gym.id}/list/data.do">
+		<sprouts:data-table i18n="datatables.language" source="home/comment/gym/${gym.id}/list/data.do"  searcheable="false">
 			<security:authorize access="hasRole('Administrator')">
 				<sprouts:action-button url="comment/administrator/{0}/delete.do" code="gym.comment.delete"/>
 			</security:authorize>

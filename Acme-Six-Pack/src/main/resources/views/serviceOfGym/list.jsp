@@ -1,6 +1,6 @@
 <%@ include file="../template/libraries.jsp" %>
 
-<sprouts:data-table i18n="datatables.language">
+<sprouts:data-table i18n="datatables.language"  searcheable="false">
 
 	<sprouts:action-button url="home/serviceOfGym/{0}/show.do" code="gym.display"/>
 	<security:authorize access="hasRole('Administrator')">
