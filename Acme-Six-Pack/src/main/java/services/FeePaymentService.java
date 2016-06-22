@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -62,9 +60,10 @@ public class FeePaymentService extends AbstractService<FeePayment, FeePaymentRep
 	private IsNotExpiredCreditCardFeePayment isNotExpiredCreditCardFeePayment;
 	@Autowired
 	private ActivationDayAfterPaymentMoment activationDayAfterPaymentMoment;
+/* FIXME
 	@Autowired
 	private KieContainer kieContainer;
-	
+	*/
 	// Create methods --------------------------------
 	@Override
 	public Class<? extends DomainEntity> getEntityClass() {
@@ -109,13 +108,14 @@ public class FeePaymentService extends AbstractService<FeePayment, FeePaymentRep
 		
 		Customer customer = customerService.findByPrincipal();
 		Long numberOfFeeInAGym = customerService.findNumberOfFeeInAGym(customer.getId(), validable.getGym().getId());
-		
+
+		/* FIXME
 		KieSession kieSession = kieContainer.newKieSession("KSession");
 	    kieSession.insert(customer);
 	    kieSession.insert(numberOfFeeInAGym);
 	    kieSession.insert(validable);
 	    kieSession.fireAllRules();
-
+*/
 	}
 
 	@Override

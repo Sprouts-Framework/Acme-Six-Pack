@@ -423,7 +423,7 @@
 		</dependency>
 
 		<!-- Drools -->
-
+<!-- 
 		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-core</artifactId>
@@ -455,7 +455,7 @@
 			<artifactId>kie-ci</artifactId>
 			<version>6.3.0.Final</version>
 		</dependency>
-
+-->
 		<!-- <dependency> <groupId>Design-and-Testing</groupId> <artifactId>Acme-Six-Pack</artifactId> 
 			<version>LATEST</version> </dependency> -->
 

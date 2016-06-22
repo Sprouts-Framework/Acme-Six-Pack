@@ -1,14 +1,8 @@
 package controllers;
 
-import org.kie.api.KieServices;
-import org.kie.api.runtime.KieContainer;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
-import java.io.IOException;
-
-
-@Configuration
+//FIXME
+//@Configuration
 public class RulesConfig {
 
 //	KieServices kieServices = KieServices.Factory.get();
@@ -27,10 +21,10 @@ public class RulesConfig {
 //	// Start the KieScanner polling the Maven repository every 10 seconds
 ////	kScanner.start(1000L);
 
-	
+	/* FIXME
     @Bean
     public KieContainer kieContainer() throws IOException {
         KieServices ks = KieServices.Factory.get();
         return ks.getKieClasspathContainer();
-    }
+    }*/
 }

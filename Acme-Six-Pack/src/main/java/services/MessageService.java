@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,10 +31,10 @@ import es.us.lsi.dp.validation.contracts.BusinessRule;
 @Transactional
 public class MessageService extends AbstractService<Message, MessageRepository> implements CrudService<Message>, ListService<Message> {
 
-	
+	/* FIXME
 	@Autowired
 	private KieContainer kieContainer;
-	
+	*/
 	@Autowired
 	private IsItPenalized isItPenalized;
 	
@@ -93,12 +91,13 @@ public class MessageService extends AbstractService<Message, MessageRepository> 
 		
 		Customer customer = customerService.findByPrincipal();
 		Long numberOfSpams = customerService.findNumberOfSpamMessages(customer.getId());
-		
+		/* FIXME
 		KieSession kieSession = kieContainer.newKieSession("KSession");
 	    kieSession.insert(customer);
 	    kieSession.insert(numberOfSpams);
 	    kieSession.fireAllRules();
 	    System.out.println(customer.getEndOfPenalty());
+	    */
 	}
 
 	@Override

@@ -1,12 +1,7 @@
 package services;
 
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
-import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.KieSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -31,8 +26,9 @@ import es.us.lsi.dp.validation.contracts.BusinessRule;
 public class CustomerService extends AbstractService<Customer, CustomerRepository> implements ShowService<Customer>, UpdateService<Customer>,
 		ListService<Customer> {
 	
-	@Autowired
-	private KieContainer kieContainer;
+	//FIXME
+//	@Autowired
+//	private KieContainer kieContainer;
 
 	public Customer findByPrincipal() {
 		Customer result;
@@ -41,8 +37,9 @@ public class CustomerService extends AbstractService<Customer, CustomerRepositor
 		Assert.notNull(userAccount);
 		result = repository.findByPrincipal(userAccount.getId());
 		Assert.notNull(result);
-		
-		 KieSession kieSession = kieContainer.newKieSession("KSession");
+
+		//FIXME
+		 /*KieSession kieSession = kieContainer.newKieSession("KSession");
 		 Collection<Customer> customers = (Collection<Customer>) repository.findAll();
 		 Date date = new Date(System.currentTimeMillis()-15778500000L*2);
 		 kieSession.insert(date);
@@ -51,7 +48,7 @@ public class CustomerService extends AbstractService<Customer, CustomerRepositor
 			 kieSession.insert(e);
 		 }
 		 
-	     kieSession.fireAllRules();	     
+	     kieSession.fireAllRules();	 */    
 		
 		return result;
 	}
