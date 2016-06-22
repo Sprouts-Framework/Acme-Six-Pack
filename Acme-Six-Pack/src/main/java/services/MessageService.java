@@ -83,21 +83,25 @@ public class MessageService extends AbstractService<Message, MessageRepository> 
 
 	@Override
 	public void createBusinessRules(List<BusinessRule<Message>> rules, List<Validator> validators) {
-		rules.add(isItPenalized);
+		//FIXME
+		//if (SignInService.checkAuthority("Customer"))
+		//rules.add(isItPenalized);
 	}
 
 	@Override
 	public void afterCommitingCreate(int id) {
 		
-		Customer customer = customerService.findByPrincipal();
-		Long numberOfSpams = customerService.findNumberOfSpamMessages(customer.getId());
-		/* FIXME
-		KieSession kieSession = kieContainer.newKieSession("KSession");
-	    kieSession.insert(customer);
-	    kieSession.insert(numberOfSpams);
-	    kieSession.fireAllRules();
-	    System.out.println(customer.getEndOfPenalty());
-	    */
+		if (SignInService.checkAuthority("Customer")){
+			Customer customer = customerService.findByPrincipal();
+			Long numberOfSpams = customerService.findNumberOfSpamMessages(customer.getId());
+			/* FIXME
+			KieSession kieSession = kieContainer.newKieSession("KSession");
+		    kieSession.insert(customer);
+		    kieSession.insert(numberOfSpams);
+		    kieSession.fireAllRules();
+		    System.out.println(customer.getEndOfPenalty());
+		    */
+		}
 	}
 
 	@Override
