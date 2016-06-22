@@ -21,7 +21,12 @@
 	<sprouts:hidden-field path="fee"/>
 	<sprouts:hidden-field path="activationDay"/>
 	<sprouts:hidden-field path="paymentMoment"/>
-	<sprouts:hidden-field path="creditCard"/>
+	<sprouts:hidden-field path="creditCard.brandName"/>
+	<sprouts:hidden-field path="creditCard.holderName"/>
+	<sprouts:hidden-field path="creditCard.number"/>
+	<sprouts:hidden-field path="creditCard.expirationMonth"/>
+	<sprouts:hidden-field path="creditCard.expirationYear"/>
+	<sprouts:hidden-field path="creditCard.cvvCode"/>
 	<sprouts:hidden-field path="gym"/>
 	
 	<sprouts:protected path="id" />
@@ -29,7 +34,12 @@
 	<sprouts:protected path="customer" />
 	<sprouts:protected path="fee" />
 	<sprouts:protected path="activationDay" />
-	<sprouts:protected path="creditCard" />
+	<sprouts:protected path="creditCard.brandName"/>
+	<sprouts:protected path="creditCard.holderName"/>
+	<sprouts:protected path="creditCard.number"/>
+	<sprouts:protected path="creditCard.expirationMonth"/>
+	<sprouts:protected path="creditCard.expirationYear"/>
+	<sprouts:protected path="creditCard.cvvCode"/>
 	<sprouts:protected path="paymentMoment" />
 	<sprouts:protected path="gym" />
 	
