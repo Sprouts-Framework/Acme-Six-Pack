@@ -140,10 +140,10 @@ public class GymService extends AbstractService<Gym, GymRepository> implements C
 		Page<Gym> result;
 		Sort sort = new Sort(Sort.DEFAULT_DIRECTION, "id");
 		Pageable aux = new PageRequest(page.getPageNumber(), page.getPageSize(), sort);
-		result = fullTextSearch(Gym.class, aux, searchCriteria, "name", "description", "postalAddress", "phoneNumber");
+		result = fullTextSearch(aux, searchCriteria, Gym.class, "name", "description", "postalAddress", "phoneNumber");
 		return result;
 	}
-
+	
 	@Override
 	public Gym findById(int id) {
 		Gym result;
