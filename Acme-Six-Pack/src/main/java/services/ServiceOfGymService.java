@@ -340,9 +340,12 @@ public class ServiceOfGymService extends AbstractService<ServiceOfGym, ServiceOf
 
 	public Integer quantityServicesThatHaveMoreComments() {
 		Integer result;
-		result = repository.quantityServicesThatHaveMoreComments().intValue();
-		if (result == null)
+		Long aux;
+		aux = repository.quantityServicesThatHaveMoreComments();
+		if (aux == null)
 			result = 0;
+		else
+			result = aux.intValue();
 		return result;
 	}
 

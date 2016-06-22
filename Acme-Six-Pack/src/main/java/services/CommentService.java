@@ -19,6 +19,7 @@ import domain.Gym;
 import domain.ServiceOfGym;
 import es.us.lsi.dp.domain.DomainObject;
 import es.us.lsi.dp.services.AbstractService;
+import es.us.lsi.dp.services.SignInService;
 import es.us.lsi.dp.services.contracts.CreateService;
 import es.us.lsi.dp.services.contracts.DeleteService;
 import es.us.lsi.dp.services.contracts.ListService;
@@ -101,16 +102,19 @@ public class CommentService extends AbstractService<Comment, CommentRepository> 
 
 	@Override
 	public void afterCommitingDelete(int id) {
-		Comment result = findById(id);
-		Long numberOfDeletedComment = customerService.findNumberOfDeletedComments(result.getActor().getId());
-		Customer customer = (Customer) result.getActor();
-		/* FIXME
-		KieSession kieSession = kieContainer.newKieSession("KSession");
-	    kieSession.insert(numberOfDeletedComment);
-	    kieSession.insert(customer);
-	    kieSession.fireAllRules();
-	    System.out.println(customer.getCustomerType());
-	    */
+
+		if (SignInService.checkAuthority("Customer")){
+			Comment result = findById(id);
+			Long numberOfDeletedComment = customerService.findNumberOfDeletedComments(result.getActor().getId());
+			Customer customer = (Customer) result.getActor();
+			/* FIXME
+			KieSession kieSession = kieContainer.newKieSession("KSession");
+		    kieSession.insert(numberOfDeletedComment);
+		    kieSession.insert(customer);
+		    kieSession.fireAllRules();
+		    System.out.println(customer.getCustomerType());
+		    */
+		}
 	}
 
 	// Comments are not deleted, but they are no shown again
