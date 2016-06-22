@@ -43,12 +43,10 @@
 			<sprouts:textbox-input code="customer.contactPhone" path="contactPhone" />
 			<sprouts:textbox-input code="customer.userAccount.username" path="userAccount.username" />
 			
-			<jstl:if test="${modelObject.userAccount.socialAccounts == null}">
+			<jstl:if test="${modelObject.userAccount.socialAccounts.size() == 0}">
 				<a class="btn btn-default" href="profile/userAccount/update.do"><spring:message code="customer.userAccount-update" /></a>
 			</jstl:if>
 			
-			
-
 			<a class="btn btn-default" href="profile/customer/update.do"><spring:message code="customer.profile-update" /></a>
 			
 		</fieldset>
