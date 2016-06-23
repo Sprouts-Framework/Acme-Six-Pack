@@ -8,10 +8,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import services.CustomerService;
 import domain.Customer;
 import es.us.lsi.dp.controllers.core.contracts.AddsToModel;
 import es.us.lsi.dp.controllers.entities.crud.AbstractListController;
+import es.us.lsi.dp.services.CustomerService;
 
 @Controller("listCustomerDashboardController")
 @RequestMapping("dashboard/administrator/customer")

@@ -60,11 +60,11 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.view.RedirectView;
 
 import services.ActorService;
-import services.CustomerService;
 import social.SocialConfig;
 import domain.Customer;
 import es.us.lsi.dp.domain.SocialAccount;
 import es.us.lsi.dp.domain.UserAccount;
+import es.us.lsi.dp.services.CustomerService;
 import es.us.lsi.dp.services.SignInService;
 import es.us.lsi.dp.services.SocialAccountService;
 import es.us.lsi.dp.services.UserAccountService;

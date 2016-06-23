@@ -1,4 +1,4 @@
-package services;
+package es.us.lsi.dp.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import repositories.CustomerRepository;
+import services.ActorService;
+import services.BoxService;
 import validation.validators.LegalTermsValidator;
 import validation.validators.PasswordValidator;
 import domain.Actor;
@@ -17,8 +19,6 @@ import domain.Customer;
 import es.us.lsi.dp.domain.DomainObject;
 import es.us.lsi.dp.domain.UserAccount;
 import es.us.lsi.dp.forms.BaseRegistrationForm;
-import es.us.lsi.dp.services.AbstractFormService;
-import es.us.lsi.dp.services.UserAccountService;
 import es.us.lsi.dp.services.contracts.forms.CreateFormService;
 import es.us.lsi.dp.validation.contracts.BusinessRule;
 

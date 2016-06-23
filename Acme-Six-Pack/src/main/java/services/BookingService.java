@@ -20,6 +20,7 @@ import domain.Administrator;
 import domain.Booking;
 import domain.Customer;
 import es.us.lsi.dp.services.AbstractService;
+import es.us.lsi.dp.services.CustomerService;
 import es.us.lsi.dp.services.contracts.DeleteService;
 import es.us.lsi.dp.services.contracts.ListService;
 import es.us.lsi.dp.services.contracts.UpdateService;

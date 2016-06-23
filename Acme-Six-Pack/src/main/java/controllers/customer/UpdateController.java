@@ -6,10 +6,10 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import services.CustomerService;
 import domain.Customer;
 import es.us.lsi.dp.controllers.entities.crud.AbstractUpdateController;
 import es.us.lsi.dp.domain.UserAccount;
+import es.us.lsi.dp.services.CustomerService;
 
 @Controller("customerControllerUpdate")
 @RequestMapping("profile/customer")

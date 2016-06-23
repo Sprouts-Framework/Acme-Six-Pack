@@ -3,10 +3,10 @@ package controllers.customer.socialIdentity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import services.SocialIdentityService;
 import domain.SocialIdentity;
 import es.us.lsi.dp.controllers.entities.crud.AbstractCreateController;
 import es.us.lsi.dp.domain.UserAccount;
+import es.us.lsi.dp.services.SocialIdentityService;
 
 @Controller("socialIdentityCustomerCreate")
 @RequestMapping("socialIdentity/customer")

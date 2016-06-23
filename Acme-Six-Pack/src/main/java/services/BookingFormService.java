@@ -21,6 +21,7 @@ import domain.Customer;
 import domain.ServiceOfGym;
 import es.us.lsi.dp.domain.DomainObject;
 import es.us.lsi.dp.services.AbstractFormService;
+import es.us.lsi.dp.services.CustomerService;
 import es.us.lsi.dp.services.contracts.forms.CreateFormService;
 import es.us.lsi.dp.utilities.Moment;
 import es.us.lsi.dp.validation.contracts.BusinessRule;

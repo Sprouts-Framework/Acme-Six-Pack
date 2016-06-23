@@ -1,4 +1,4 @@
-package services;
+package es.us.lsi.dp.services;
 
 import java.util.List;
 
@@ -12,7 +12,6 @@ import repositories.SocialIdentityRepository;
 import domain.Customer;
 import domain.SocialIdentity;
 import es.us.lsi.dp.domain.DomainEntity;
-import es.us.lsi.dp.services.AbstractService;
 import es.us.lsi.dp.services.contracts.CreateService;
 import es.us.lsi.dp.services.contracts.DeleteService;
 import es.us.lsi.dp.services.contracts.UpdateService;

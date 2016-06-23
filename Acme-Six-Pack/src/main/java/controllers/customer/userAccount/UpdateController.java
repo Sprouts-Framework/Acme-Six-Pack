@@ -35,6 +35,6 @@ public class UpdateController extends AbstractUpdateController<UserAccountForm, 
 
 	@Override
 	protected String onSuccess() {
-		return "/profile/customer/show.do";
+		return "/home/sign-out.do";
 	}
 }

@@ -22,6 +22,7 @@ import domain.ServiceEntity;
 import domain.ServiceOfGym;
 import es.us.lsi.dp.domain.DomainEntity;
 import es.us.lsi.dp.services.AbstractService;
+import es.us.lsi.dp.services.CustomerService;
 import es.us.lsi.dp.services.contracts.CrudService;
 import es.us.lsi.dp.services.contracts.ListService;
 import es.us.lsi.dp.validation.contracts.BusinessRule;

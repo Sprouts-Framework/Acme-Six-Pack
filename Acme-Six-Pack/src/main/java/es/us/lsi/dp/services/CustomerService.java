@@ -1,4 +1,4 @@
-package services;
+package es.us.lsi.dp.services;
 
 import java.util.List;
 
@@ -14,8 +14,6 @@ import org.springframework.validation.Validator;
 import repositories.CustomerRepository;
 import domain.Customer;
 import es.us.lsi.dp.domain.UserAccount;
-import es.us.lsi.dp.services.AbstractService;
-import es.us.lsi.dp.services.SignInService;
 import es.us.lsi.dp.services.contracts.ListService;
 import es.us.lsi.dp.services.contracts.ShowService;
 import es.us.lsi.dp.services.contracts.UpdateService;

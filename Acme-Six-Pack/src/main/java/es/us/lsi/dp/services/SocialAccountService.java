@@ -13,9 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.validation.Validator;
 
-import services.CustomerRegistrationService;
-import services.CustomerService;
-import services.SocialIdentityService;
 import domain.Customer;
 import domain.SocialIdentity;
 import es.us.lsi.dp.domain.BaseActor;

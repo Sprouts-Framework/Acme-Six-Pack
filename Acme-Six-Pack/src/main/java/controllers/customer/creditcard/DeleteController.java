@@ -7,11 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import services.CustomerService;
 import datatypes.CreditCard;
 import domain.Customer;
 import es.us.lsi.dp.controllers.datatypes.AbstractPostController;
 import es.us.lsi.dp.domain.UserAccount;
+import es.us.lsi.dp.services.CustomerService;
 import es.us.lsi.dp.validation.contracts.BusinessRule;
 
 @Controller("creditCardCustomerDelete")

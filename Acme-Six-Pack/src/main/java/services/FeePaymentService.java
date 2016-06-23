@@ -28,6 +28,7 @@ import domain.FeePayment;
 import domain.Gym;
 import es.us.lsi.dp.domain.DomainEntity;
 import es.us.lsi.dp.services.AbstractService;
+import es.us.lsi.dp.services.CustomerService;
 import es.us.lsi.dp.services.contracts.CreateService;
 import es.us.lsi.dp.services.contracts.ListService;
 import es.us.lsi.dp.services.contracts.ShowService;

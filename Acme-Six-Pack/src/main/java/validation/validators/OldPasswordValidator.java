@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import services.CustomerService;
+import es.us.lsi.dp.services.CustomerService;
 import es.us.lsi.dp.utilities.PasswordEncoder;
 import forms.UserAccountForm;
 

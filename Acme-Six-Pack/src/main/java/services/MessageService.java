@@ -22,6 +22,7 @@ import domain.SpamTerms;
 import es.us.lsi.dp.domain.DomainEntity;
 import es.us.lsi.dp.domain.UserAccount;
 import es.us.lsi.dp.services.AbstractService;
+import es.us.lsi.dp.services.CustomerService;
 import es.us.lsi.dp.services.SignInService;
 import es.us.lsi.dp.services.contracts.CrudService;
 import es.us.lsi.dp.services.contracts.ListService;

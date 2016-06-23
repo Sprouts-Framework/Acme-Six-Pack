@@ -19,6 +19,7 @@ import domain.Gym;
 import domain.ServiceOfGym;
 import es.us.lsi.dp.domain.DomainObject;
 import es.us.lsi.dp.services.AbstractService;
+import es.us.lsi.dp.services.CustomerService;
 import es.us.lsi.dp.services.SignInService;
 import es.us.lsi.dp.services.contracts.CreateService;
 import es.us.lsi.dp.services.contracts.DeleteService;

@@ -5,12 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import services.CustomerService;
-import services.SocialIdentityService;
 import domain.Customer;
 import domain.SocialIdentity;
 import es.us.lsi.dp.controllers.entities.crud.AbstractUpdateController;
 import es.us.lsi.dp.domain.UserAccount;
+import es.us.lsi.dp.services.CustomerService;
+import es.us.lsi.dp.services.SocialIdentityService;
 
 @Controller("socialIdentityCustomerUpdate")
 @RequestMapping("socialIdentity/customer")

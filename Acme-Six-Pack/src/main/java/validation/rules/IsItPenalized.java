@@ -3,9 +3,9 @@ package validation.rules;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import services.CustomerService;
 import domain.Customer;
 import domain.Message;
+import es.us.lsi.dp.services.CustomerService;
 import es.us.lsi.dp.utilities.Moment;
 import es.us.lsi.dp.validation.contracts.BusinessRule;
 

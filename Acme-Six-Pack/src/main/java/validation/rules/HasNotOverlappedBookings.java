@@ -8,10 +8,10 @@ import org.springframework.util.Assert;
 
 import services.BookingFormService;
 import services.BookingService;
-import services.CustomerService;
 
 import domain.Booking;
 import domain.Customer;
+import es.us.lsi.dp.services.CustomerService;
 import es.us.lsi.dp.validation.contracts.BusinessRule;
 import forms.BookingForm;
 

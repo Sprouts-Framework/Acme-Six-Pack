@@ -63,7 +63,9 @@
 					<form:options items="${items}" itemLabel="${itemLabel}" itemValue="id"/>
 				</form:select>
 			</div>
-			<form:errors class="alert alert-danger col-sm-3" path="${path}"/>
+			<br/>
+			<br/>
+			<form:errors class="text-danger col-sm-3" path="${path}"/>
 			<br/>
 	</div>
 </div>
