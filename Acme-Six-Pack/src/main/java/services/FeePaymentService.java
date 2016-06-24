@@ -107,10 +107,11 @@ public class FeePaymentService extends AbstractService<FeePayment, FeePaymentRep
 		validable.setGym(gym);
 		validable.setFee(gym.getFee());
 		
+		/* FIXME
 		Customer customer = customerService.findByPrincipal();
 		Long numberOfFeeInAGym = customerService.findNumberOfFeeInAGym(customer.getId(), validable.getGym().getId());
 
-		/* FIXME
+		
 		KieSession kieSession = kieContainer.newKieSession("KSession");
 	    kieSession.insert(customer);
 	    kieSession.insert(numberOfFeeInAGym);

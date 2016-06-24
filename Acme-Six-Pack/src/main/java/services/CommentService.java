@@ -14,13 +14,10 @@ import org.springframework.validation.Validator;
 import repositories.CommentRepository;
 import domain.Actor;
 import domain.Comment;
-import domain.Customer;
 import domain.Gym;
 import domain.ServiceOfGym;
 import es.us.lsi.dp.domain.DomainObject;
 import es.us.lsi.dp.services.AbstractService;
-import es.us.lsi.dp.services.CustomerService;
-import es.us.lsi.dp.services.SignInService;
 import es.us.lsi.dp.services.contracts.CreateService;
 import es.us.lsi.dp.services.contracts.DeleteService;
 import es.us.lsi.dp.services.contracts.ListService;
@@ -37,10 +34,10 @@ public class CommentService extends AbstractService<Comment, CommentRepository> 
 	private ServiceOfGymService serviceOfGymService;
 	@Autowired
 	private ActorService actorService;
+	/*FIXME
 	@Autowired
 	private CustomerService customerService;
 
-	/*FIXME
 	@Autowired
 	private KieContainer kieContainer;
 */
@@ -103,19 +100,19 @@ public class CommentService extends AbstractService<Comment, CommentRepository> 
 
 	@Override
 	public void afterCommitingDelete(int id) {
-
+		/* FIXME
 		if (SignInService.checkAuthority("Customer")){
 			Comment result = findById(id);
 			Long numberOfDeletedComment = customerService.findNumberOfDeletedComments(result.getActor().getId());
 			Customer customer = (Customer) result.getActor();
-			/* FIXME
+			
 			KieSession kieSession = kieContainer.newKieSession("KSession");
 		    kieSession.insert(numberOfDeletedComment);
 		    kieSession.insert(customer);
 		    kieSession.fireAllRules();
 		    System.out.println(customer.getCustomerType());
-		    */
 		}
+		*/
 	}
 
 	// Comments are not deleted, but they are no shown again

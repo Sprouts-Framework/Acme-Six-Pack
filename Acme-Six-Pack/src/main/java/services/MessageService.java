@@ -13,16 +13,13 @@ import org.springframework.util.Assert;
 import org.springframework.validation.Validator;
 
 import repositories.MessageRepository;
-import validation.rules.IsItPenalized;
 import domain.Actor;
 import domain.Box;
-import domain.Customer;
 import domain.Message;
 import domain.SpamTerms;
 import es.us.lsi.dp.domain.DomainEntity;
 import es.us.lsi.dp.domain.UserAccount;
 import es.us.lsi.dp.services.AbstractService;
-import es.us.lsi.dp.services.CustomerService;
 import es.us.lsi.dp.services.SignInService;
 import es.us.lsi.dp.services.contracts.CrudService;
 import es.us.lsi.dp.services.contracts.ListService;
@@ -35,19 +32,19 @@ public class MessageService extends AbstractService<Message, MessageRepository> 
 	/* FIXME
 	@Autowired
 	private KieContainer kieContainer;
-	*/
+	
 	@Autowired
 	private IsItPenalized isItPenalized;
-	
+	*/
 	@Autowired
 	private ActorService actorService;
 
 	@Autowired
 	private BoxService boxService;
-	
+	/* FIXME
 	@Autowired
 	private CustomerService customerService;
-
+	*/
 	@Autowired
 	private SpamTermsService spamTermsService;
 
@@ -91,18 +88,18 @@ public class MessageService extends AbstractService<Message, MessageRepository> 
 
 	@Override
 	public void afterCommitingCreate(int id) {
-		
+		/* FIXME
 		if (SignInService.checkAuthority("Customer")){
 			Customer customer = customerService.findByPrincipal();
 			Long numberOfSpams = customerService.findNumberOfSpamMessages(customer.getId());
-			/* FIXME
+			
 			KieSession kieSession = kieContainer.newKieSession("KSession");
 		    kieSession.insert(customer);
 		    kieSession.insert(numberOfSpams);
 		    kieSession.fireAllRules();
 		    System.out.println(customer.getEndOfPenalty());
-		    */
 		}
+		*/
 	}
 
 	@Override

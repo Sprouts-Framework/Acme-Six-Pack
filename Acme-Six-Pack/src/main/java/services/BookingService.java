@@ -155,18 +155,19 @@ public class BookingService extends AbstractService<Booking, BookingRepository> 
 		Booking result;
 		result = booking;
 		result.setHasBeenApproved(hasBeenApproved);
+		/*FIXME
 		if(hasBeenApproved == false){
 			Customer c = result.getCustomer();
 			Long numberOfBookings = repository.countTotalBookingsByCustomer(c.getId());
 			Double ratioOfCancelledBookings = repository.ratioOfCancelledBookings(c.getId());
-			/*FIXME
+			
 			KieSession kieSession = kieContainer.newKieSession("KSession");
 		    kieSession.insert(c);
 		    kieSession.insert(numberOfBookings);
 		    kieSession.insert(ratioOfCancelledBookings);
 		    kieSession.fireAllRules();
-		    */
 		}
+		*/
 		beforeCommitingUpdate(result, new ArrayList<String>());
 		update(result);
 		afterCommitingUpdate(result.getId());
